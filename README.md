@@ -9,6 +9,7 @@ Alexander Serov — Independent Researcher
 - [Complete selected method source and execution instructions](public-method-source-release-v1/README.md).
 - [Exact Kaggle notebook](public-method-source-release-v1/notebook/official-public-entry.ipynb) and [readable parent/worker payload](public-method-source-release-v1/readable-entry/).
 - [Frozen fitted parameter pair and scoped terms](public-method-source-release-v1/parameters/).
+- [Frozen prospective study protocol, calibration methods, budgets and public-game split](study/README.md).
 - [Original source archive](archives/public-method-source-release-v1.tar.xz) and [preliminary paper package](archives/paper-draft-20261028-v1.zip).
 
 ## Evidence and current scope

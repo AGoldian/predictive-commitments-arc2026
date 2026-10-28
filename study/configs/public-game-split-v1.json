@@ -1,0 +1,216 @@
+{
+  "algorithm": "forced inspected families, SHA256 of salt+full ID (minimum full ID per version family)",
+  "families": {
+    "ar25": {
+      "game_ids": [
+        "ar25-0c556536"
+      ],
+      "phase": "audit"
+    },
+    "bp35": {
+      "game_ids": [
+        "bp35-0a0ad940"
+      ],
+      "phase": "development"
+    },
+    "cd82": {
+      "game_ids": [
+        "cd82-fb555c5d"
+      ],
+      "phase": "validation"
+    },
+    "cn04": {
+      "game_ids": [
+        "cn04-2fe56bfb"
+      ],
+      "phase": "audit"
+    },
+    "dc22": {
+      "game_ids": [
+        "dc22-fdcac232"
+      ],
+      "phase": "development"
+    },
+    "ft09": {
+      "game_ids": [
+        "ft09-0d8bbf25"
+      ],
+      "phase": "development"
+    },
+    "g50t": {
+      "game_ids": [
+        "g50t-5849a774"
+      ],
+      "phase": "development"
+    },
+    "ka59": {
+      "game_ids": [
+        "ka59-38d34dbb"
+      ],
+      "phase": "validation"
+    },
+    "lf52": {
+      "game_ids": [
+        "lf52-271a04aa"
+      ],
+      "phase": "audit"
+    },
+    "lp85": {
+      "game_ids": [
+        "lp85-305b61c3"
+      ],
+      "phase": "validation"
+    },
+    "ls20": {
+      "game_ids": [
+        "ls20-9607627b"
+      ],
+      "phase": "development"
+    },
+    "m0r0": {
+      "game_ids": [
+        "m0r0-492f87ba"
+      ],
+      "phase": "audit"
+    },
+    "r11l": {
+      "game_ids": [
+        "r11l-495a7899"
+      ],
+      "phase": "audit"
+    },
+    "re86": {
+      "game_ids": [
+        "re86-8af5384d"
+      ],
+      "phase": "audit"
+    },
+    "s5i5": {
+      "game_ids": [
+        "s5i5-18d95033"
+      ],
+      "phase": "audit"
+    },
+    "sb26": {
+      "game_ids": [
+        "sb26-7fbdac44"
+      ],
+      "phase": "validation"
+    },
+    "sc25": {
+      "game_ids": [
+        "sc25-635fd71a"
+      ],
+      "phase": "development"
+    },
+    "sk48": {
+      "game_ids": [
+        "sk48-d8078629"
+      ],
+      "phase": "validation"
+    },
+    "sp80": {
+      "game_ids": [
+        "sp80-589a99af"
+      ],
+      "phase": "development"
+    },
+    "su15": {
+      "game_ids": [
+        "su15-1944f8ab"
+      ],
+      "phase": "development"
+    },
+    "tn36": {
+      "game_ids": [
+        "tn36-ef4dde99"
+      ],
+      "phase": "audit"
+    },
+    "tr87": {
+      "game_ids": [
+        "tr87-cd924810"
+      ],
+      "phase": "development"
+    },
+    "tu93": {
+      "game_ids": [
+        "tu93-0768757b"
+      ],
+      "phase": "audit"
+    },
+    "vc33": {
+      "game_ids": [
+        "vc33-5430563c"
+      ],
+      "phase": "development"
+    },
+    "wa30": {
+      "game_ids": [
+        "wa30-ee6fef47"
+      ],
+      "phase": "audit"
+    }
+  },
+  "family_counts": {
+    "audit": 10,
+    "development": 10,
+    "validation": 5
+  },
+  "forced_development_families": [
+    "ls20",
+    "ft09",
+    "vc33"
+  ],
+  "frozen": true,
+  "frozen_at_utc": "2026-10-11T13:05:43.709304+00:00",
+  "games": {
+    "ar25-0c556536": "audit",
+    "bp35-0a0ad940": "development",
+    "cd82-fb555c5d": "validation",
+    "cn04-2fe56bfb": "audit",
+    "dc22-fdcac232": "development",
+    "ft09-0d8bbf25": "development",
+    "g50t-5849a774": "development",
+    "ka59-38d34dbb": "validation",
+    "lf52-271a04aa": "audit",
+    "lp85-305b61c3": "validation",
+    "ls20-9607627b": "development",
+    "m0r0-492f87ba": "audit",
+    "r11l-495a7899": "audit",
+    "re86-8af5384d": "audit",
+    "s5i5-18d95033": "audit",
+    "sb26-7fbdac44": "validation",
+    "sc25-635fd71a": "development",
+    "sk48-d8078629": "validation",
+    "sp80-589a99af": "development",
+    "su15-1944f8ab": "development",
+    "tn36-ef4dde99": "audit",
+    "tr87-cd924810": "development",
+    "tu93-0768757b": "audit",
+    "vc33-5430563c": "development",
+    "wa30-ee6fef47": "audit"
+  },
+  "inputs": {
+    "kaggle_catalogue": {
+      "filename": "kaggle-catalogue.json",
+      "sha256": "ec31f601f1c3bac524a1c6955dcd86eef7879999467b8d64cc18663b644d14e7"
+    },
+    "protocol": {
+      "filename": "split-protocol-v04.txt",
+      "sha256": "1be74a304e89a51c8226280df9bcb2124d5ad7b147cc2295830b1f1ba6cb3b19"
+    },
+    "sdk_catalogue": {
+      "filename": "catalogue.json",
+      "sha256": "b70267dd96c07af190e371aa7073f6642801a88f258ed68cb0425d56c61a4d71"
+    }
+  },
+  "limitations": [
+    "Public corpus may have been exposed to inherited baseline and models.",
+    "Family grouping uses official ID prefix, not a proved semantic duplicate detector.",
+    "IDs/catalogue hashes freeze logical versions; environment package content hashes belong in each run manifest.",
+    "This is a split freeze only, not a fully frozen main experiment or a performance result."
+  ],
+  "salt": "arc26-evidence-v1:",
+  "schema_version": 1
+}

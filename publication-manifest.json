@@ -1,8 +1,8 @@
 {
-  "assembled_at_utc": "2026-10-28T19:45:26.673210+00:00",
+  "assembled_at_utc": "2026-10-28T19:56:18.394563+00:00",
   "files": {
-    "LICENSE.md": "b1cdf84220b28871c74f1ee2c0d5f396b78be657fee27d29dddf17a56ae7ba8d",
-    "README.md": "1f116a8c529db11d757c8357758d8b33051750c5d5b7b0bae29284dd973c2de5",
+    "LICENSE.md": "85a67e1083895bd4297ea2f55c7258ad0893e7762e92e8b358f117f493c44ed3",
+    "README.md": "80355ec65e2786662a750b7b957e711c161ed68c8daa9e1f5335e158f5cecfd5",
     "archives/paper-draft-20261028-v1.zip": "60e2ee9df8488ddb71d51314e6dbc029513eb7256d48854d6ca2ed68656f2765",
     "archives/public-method-source-release-v1.tar.xz": "5b8659a11095743536ec8ed4d8ad1992eabc07712753dec434952ddf7e9bffc5",
     "paper-draft-20261028/LICENSE-paper.txt": "58f39e65b02a673bae6de3b316437d87cf78c4c7793ee7aa0224bebf4b48bf48",
@@ -171,8 +171,16 @@
     "public-method-source-release-v1/readable-entry/worker/transport-profile-delta.patch": "ebdad30627a53ba97788c90853b1ec57dc5b826988645b669d4e739286616a44",
     "public-method-source-release-v1/readable-entry/worker/witness-integration-delta.patch": "ac094b302a4b284de62ef780cc01d8d6b20559869a0d9d0bed63c8f133e9cf1b",
     "public-method-source-release-v1/readable-entry/worker/worker.py": "cc0d58a5a09fe1215565ccfea1598f591a4ceb73eba5dddcbc2a56b03878d96c",
-    "public-method-source-release-v1/release-manifest.json": "3f24ad64b5b8d542b7034933a57cc6ca5512ccf8ca7c7073ebea54002fa4eb63"
+    "public-method-source-release-v1/release-manifest.json": "3f24ad64b5b8d542b7034933a57cc6ca5512ccf8ca7c7073ebea54002fa4eb63",
+    "study/README.md": "5873992a69042a0ad2e401b5e6cb4e36e9e1a3a9f6b7163c60dee49a285be6d1",
+    "study/configs/public-game-split-v1.json": "6ffb40075d6c04ee9e6851c7a6373340ef4e31c4a50d136fdb7577642fda85d3",
+    "study/configs/tier2-audit-budget-freeze-v1.json": "8d974db1cca5a33160630eef606cbedc5d7ac0d1a421993fe598a37b59e7d80b",
+    "study/manifest.json": "1381f2897b20cf7824305b29d33a0dc28396649ceb60274051557e020ae48ab4",
+    "study/research/tier2-audit-protocol-20261028.md": "26a13b4552fba46fa569a14b10aea450c5b3d7066254d1618410c5240cd0f391",
+    "study/research/validation-calibration-methods-20261028.md": "bcfab6e4cda4ca6098e47e3c93f59b4a0b67d46381ce353e8e2583d65fc1b555"
   },
-  "kind": "curated preliminary public source and paper snapshots",
+  "kind": "curated preliminary public source, paper snapshots and prospective study documents",
+  "parent_public_commit": "42b7142a86bd6fddf9b89e9c5a89714f2930d794",
+  "previous_manifest_sha256": "9bde1c5c655c40937494bb93f2f723267e64b30239d04d247564faa82bcbbdad",
   "schema_version": 1
 }

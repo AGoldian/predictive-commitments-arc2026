@@ -1,0 +1,10 @@
+{
+  "files_sha256": {
+    "configs/public-game-split-v1.json": "6ffb40075d6c04ee9e6851c7a6373340ef4e31c4a50d136fdb7577642fda85d3",
+    "configs/tier2-audit-budget-freeze-v1.json": "8d974db1cca5a33160630eef606cbedc5d7ac0d1a421993fe598a37b59e7d80b",
+    "research/tier2-audit-protocol-20261028.md": "26a13b4552fba46fa569a14b10aea450c5b3d7066254d1618410c5240cd0f391",
+    "research/validation-calibration-methods-20261028.md": "bcfab6e4cda4ca6098e47e3c93f59b4a0b67d46381ce353e8e2583d65fc1b555"
+  },
+  "namespace": "frozen-study-documents-public-copy-v1",
+  "schema_version": 1
+}

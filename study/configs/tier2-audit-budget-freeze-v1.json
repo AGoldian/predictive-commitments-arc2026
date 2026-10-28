@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "study": "full_ten_public_game_audit",
+  "adopted_date": "2026-10-28",
+  "launch_authorized": false,
+  "free_resources_only": true,
+  "workers": 10,
+  "capacity": 2,
+  "passes": 1,
+  "request_seeds": [
+    101,
+    202,
+    303
+  ],
+  "arm_order": {
+    "101": [
+      "B0",
+      "B1",
+      "A1",
+      "P"
+    ],
+    "202": [
+      "B1",
+      "A1",
+      "P",
+      "B0"
+    ],
+    "303": [
+      "A1",
+      "P",
+      "B0",
+      "B1"
+    ]
+  },
+  "fleet_runs": 12,
+  "planned_episodes": 120,
+  "per_arm": {
+    "whole_first_code": 6000,
+    "worker_work": 5970,
+    "outer_cleanup": 30,
+    "startup": 3600,
+    "readiness": 60,
+    "gameplay_shared_fleet": 1800,
+    "drain": 150,
+    "teardown": 120,
+    "platform_timeout": 8100
+  },
+  "request_limits": {
+    "http_read_seconds": 120,
+    "main_output_tokens": 12288,
+    "summary_output_tokens": 8192,
+    "default_tail_output_tokens": 12288
+  },
+  "aggregate_target_token_bank": null,
+  "one_fresh_server_per_arm": true,
+  "warm_context_reuse_between_arms": false,
+  "overlapping_scientific_jobs": false,
+  "summed_audit_first_code_ceiling_seconds": 72000,
+  "summed_audit_platform_ceiling_seconds": 97200,
+  "separate_platform_ceilings": {
+    "calibration": 10800,
+    "full_Bpub": 32400,
+    "official_P": 32400
+  },
+  "summed_main_and_separate_platform_ceiling_seconds": 172800,
+  "scope": "Ceilings only; not quota reservations or actual consumption. Fresh free quota and named committed operations required separately. Preserve all arms/seeds across free reset waits.",
+  "protocol": {
+    "path": "research/tier2-audit-protocol-20261028.md",
+    "sha256": "26a13b4552fba46fa569a14b10aea450c5b3d7066254d1618410c5240cd0f391"
+  }
+}
