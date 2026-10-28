@@ -22,6 +22,79 @@
     "public_source": "../README.md#evidence-and-current-scope",
     "valid_prediction_packets": 331
   },
+  "Bpub_full_reproduction_attempt": {
+    "public_source": "../analysis/bpub-full-reproduction-failure-20261029.json",
+    "sanitized_result": {
+      "API_listed_output_files": 531,
+      "account_metadata_included": false,
+      "all_planned_denominator_retained": true,
+      "api_status": "ERROR",
+      "api_status_observed_at_utc": "2026-10-28T22:10:23.061729+00:00",
+      "arm": "Bpub",
+      "complete_run_eligible": false,
+      "copy_at_utc": "2026-10-28T22:23:50.636333+00:00",
+      "descriptive_SDK098_best_of4_per_game_then_mean25": null,
+      "descriptive_published_policy_mean25_games_then_mean4_passes": null,
+      "evidence_sha256": {
+        "original_evidence_cause_note": "2620b36f100f30b3b31e9066e3ed800109bf8fc0f2a4e5d1d97b9ed4af2fc31a",
+        "original_execution_record": "b222b84982f69336061b04ecf5a869f517d8988f48c8bba144060a2a2cb3c06b",
+        "strict_reader_report": "0562b97f559c26db3c10a9ce83f5bab552e3bd02fb293de974504750deb9ef05"
+      },
+      "final_inventory_entries": 532,
+      "five_game_calibration_state_at_source_cut": "unlaunched",
+      "full_claim_registry_included": false,
+      "inventory_scope": "API-listed output plus retained log; no raw files are published in this summary",
+      "kernel_id": 141407495,
+      "legacy_capacity": 10,
+      "limitations": [
+        "All100 planned episodes remain; no survivor aggregate, score rescue or unknown-cost-zero imputation.",
+        "The underlying transport/OS exception was not retained; connection refusal is unproven.",
+        "Added strict accounting interrupted upstream retry handling, so this attempt does not establish what the unmodified published policy would have done.",
+        "Main audit and calibration were unlaunched at the manuscript source cut; the later copy timestamp is not a claim about subsequent operational status."
+      ],
+      "main_audit_state_at_source_cut": "unlaunched",
+      "manuscript_source_cut_commit": "38df78bfd2b6abc9369fdf372838e56179038ced",
+      "namespace": "sanitized-Bpub-full-reproduction-failure-20261029-v1",
+      "official_Bpub_score": null,
+      "official_P_0_00_is_a_separate_result": true,
+      "original_P_DEVELOPMENT_coverage_refusal_unchanged": true,
+      "original_download_completed_at_utc": "2026-10-28T22:12:53.254375+00:00",
+      "original_inventory_bytes": 6907564,
+      "passes": 4,
+      "planned_episodes": 100,
+      "public_game_count": 25,
+      "raw_private_files_included": false,
+      "schema_version": 1,
+      "scope": "A failed instrumented full-reproduction attempt, not a baseline score0, successful reproduction or outcome of the unmodified upstream retry policy.",
+      "source_cut_relation_to_calibration": "Before any actual calibration request",
+      "source_supported_failure_sequence": {
+        "added_accounting_raised_before_upstream_retry_handler": true,
+        "connection_refusal_proven": false,
+        "fail_closed_accounting_and_session_binding_failed_propagation": true,
+        "legacy_release_seconds_from_first_code": 720,
+        "model_still_loading_at_release": true,
+        "original_transport_exception_record_preempted": true,
+        "recorded_transport_error_class": "TransportError",
+        "underlying_OS_exception": null,
+        "unknown_usage_attempts": 4,
+        "unmodified_upstream_retry_policy_outcome_established": false
+      },
+      "target_costs": {
+        "accepted_target_tokens": null,
+        "complete_scan": true,
+        "draft_internal_work": null,
+        "host_journal_count": 100,
+        "known_accepted_target_tokens_lower_bound": 0,
+        "lower_bound_is_actual_cost_total": false,
+        "observed_pending_attempts": 0,
+        "observed_unknown_usage_attempts": 4,
+        "whole_kernel_GPU_seconds": null
+      },
+      "upstream_score_reproduced": null,
+      "version": 1
+    },
+    "source_sha256": "1a646f002b5db394248688cc67f7769a4ad7a32c80b2ceee2bfb58f8a9a79730"
+  },
   "P": {
     "public_source": "../analysis/p-v6-feasibility-result.json",
     "sanitized_result": {
@@ -134,6 +207,9 @@
     "source_sha256": "7d07b9a23ede86c7e30b4254f7d581a521c84640ed7b8160735a5083aa461bf1"
   },
   "draft_model_work": null,
+  "five_game_calibration_state_at_source_cut": "unlaunched",
+  "main_audit_state_at_source_cut": "unlaunched",
+  "manuscript_source_cut_commit": "38df78bfd2b6abc9369fdf372838e56179038ced",
   "moscow_date": "2026-10-29",
   "namespace": "public-paper-snapshot-20261029-evidence-v1",
   "official_P_result": {
@@ -210,7 +286,8 @@
   "private_notebook_output_included": false,
   "raw_training_rows_included": false,
   "schema_version": 1,
-  "scope": "Public development aggregates and the corresponding official API P score; no eligible efficacy comparison or raw rerun evidence.",
-  "snapshot_at_utc": "2026-10-28T21:49:56.389389+00:00",
+  "scope": "Public DEV aggregates, separate official P API0.00 and failed instrumented Bpub reproduction; no eligible efficacy comparison.",
+  "snapshot_at_utc": "2026-10-28T22:23:50.636333+00:00",
+  "source_cut_relation_to_calibration": "Before actual calibration request; copy timestamp may be later",
   "whole_kernel_cost": null
 }

@@ -1,8 +1,10 @@
 {
-  "assembled_at_utc": "2026-10-28T21:49:56.389389+00:00",
+  "assembled_at_utc": "2026-10-28T22:23:50.636333+00:00",
   "files": {
     "LICENSE.md": "ab5f00747de104da0be96cb28fc34cfbfadf73c28acdcc28683a8a01b98d4921",
-    "README.md": "8290a26dcb84953a0acd1d22cac78c8348a9755afc7a446e390ccef360099467",
+    "README.md": "350f7065b7591b5b0cf015e0526014062538efdd33ed60a3922736c9cdeb202c",
+    "analysis/bpub-full-reproduction-failure-20261029.json": "1a646f002b5db394248688cc67f7769a4ad7a32c80b2ceee2bfb58f8a9a79730",
+    "analysis/bpub-full-reproduction-failure-20261029.md": "4e415f0b19c7c46a0c9f26d2226086d85161b57d5277d359b9b524b8737806e5",
     "analysis/official-p-result-20261029.json": "bb3f91b6a01d6b180c3f1acd4600039e858cd9590f52a1f7d5be51201c5fd46f",
     "analysis/official-p-result-20261029.md": "2358300a0b70d879b1e1225ced2da57985f44959a4fce57b6508e336e93710ac",
     "analysis/p-v6-feasibility-result.json": "7d07b9a23ede86c7e30b4254f7d581a521c84640ed7b8160735a5083aa461bf1",
@@ -29,10 +31,10 @@
     "paper-draft-20261028/parameters/model-config.json": "e061d1de77c70806c0aaa3ecb832c27facbf9e260ebbe33f3a41c09720ae4dd4",
     "paper-draft-20261028/parameters/paired-models.json": "cccc2ffbaaf223ce1a284af1afd2405f58fca4cafeee4b12692678bd33f4b6ed",
     "paper-draft-20261029/LICENSE-paper.txt": "58f39e65b02a673bae6de3b316437d87cf78c4c7793ee7aa0224bebf4b48bf48",
-    "paper-draft-20261029/README.md": "7896aad641109bb1c317b433539c1a3c8daf2a3a32554a541fbacb691c3003dc",
-    "paper-draft-20261029/evidence-summary.json": "1b7b8dfcb3e6984e4a4fc5c5032236b457063cc5bece723aaabab619a24222e4",
-    "paper-draft-20261029/kaggle-writeup.txt": "7abb8c4ad5a9c03dd8440d4a81fdf0de598fcfb6d0a03c9ff195c9e7311e4614",
-    "paper-draft-20261029/paper.tex": "4903ac275cfa648341a2e5017bff0d5c5aa559b46726e86bfc3548a29bb6f928",
+    "paper-draft-20261029/README.md": "e173bebc6e6dc83231e02b7114067f8025bfa424b662a4432f392d8da4a2ffed",
+    "paper-draft-20261029/evidence-summary.json": "eeeef58dfbe202ce773c30523070eef6a95da5783caf25c57dec515a65f1bf45",
+    "paper-draft-20261029/kaggle-writeup.txt": "b67497b7d5f9191a737fc410ab3e50fb01e45b5a86ae13c6cb6b492186eb621e",
+    "paper-draft-20261029/paper.tex": "b8d092cd1624ebd883bd7f91fbcc2870892a312a444c1f2652430d255ccc5191",
     "public-method-source-release-v1/NOTICE.txt": "00bc8e1ec37904e4c489b479e733bd600e0d28cb59218563a98b33bf3447638e",
     "public-method-source-release-v1/README.md": "8fc98a4a30e0e41597ec2542cc9bf198eb172b8949b6ce35518b5287085e449b",
     "public-method-source-release-v1/SHA256SUMS": "0f86b961742239c5146d143f9dd4658509790ecc7bd99eb0a2533413a89d32ea",
@@ -192,8 +194,10 @@
     "study/research/tier2-audit-protocol-20261028.md": "26a13b4552fba46fa569a14b10aea450c5b3d7066254d1618410c5240cd0f391",
     "study/research/validation-calibration-methods-20261028.md": "bcfab6e4cda4ca6098e47e3c93f59b4a0b67d46381ce353e8e2583d65fc1b555"
   },
-  "kind": "curated public method source, preserved old snapshots, revised preliminary paper, disclosed DEV feasibility failure and corresponding official P API public score0.00 under competition-source notebook privacy embargo",
-  "parent_public_commit": "ed97de3b0fe5c56ce8c1bb674bf4a159045a1271",
-  "previous_manifest_sha256": "be880a28e2bcfc3e5f7441d3c6f07e748502261a2ad0a3d480b32fcbf7c08b21",
+  "kind": "curated public method and preliminary O32 paper source cut before calibration; negative DEV feasibility, separate official P0.00, failed instrumented full Bpub reproduction with unknown usage and upstream retry limitation",
+  "manuscript_source_cut_before_calibration_request": true,
+  "manuscript_source_cut_commit": "38df78bfd2b6abc9369fdf372838e56179038ced",
+  "parent_public_commit": "b5f8a1432dcab26fe1312d76c144be25972aa733",
+  "previous_manifest_sha256": "91b616a4d8e88dcf426861195a2a9c91cdff24d595b764f0f8073701458ccdbc",
   "schema_version": 1
 }
