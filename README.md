@@ -22,6 +22,8 @@ After that snapshot, B1 completed: 331/422 valid prediction packets, 412,843 acc
 
 The included notebook is source, not a claimed public Kaggle execution or scored entry. Its ordinary Save branch deliberately writes a labelled offline placeholder; only an actual competition rerun invokes the full method. Do not interpret the placeholder as a measured score. Follow its pinned attachments and resource requirements. No paid API or GPU resource is required by this project's resource policy; execution depends on available free Kaggle resources.
 
+Kaggle confirmed that notebooks using this competition as a source cannot be made public until the competition ends, so the corresponding Kaggle execution notebook is private and not anonymously accessible. The full method code was already public before the official request; the [execution metadata overlay](execution-metadata-20261029/README.md) supplies the exact private metadata while preserving the published notebook and payload bytes. Official submission **57749129** was accepted on 28 October at 21:28:14 UTC and its result is pending at this snapshot; the completed Save verified source and produced a placeholder, and neither Save nor submission acceptance establishes a working or scored method result.
+
 ## Provenance, licenses and release snapshots
 
 The source archive SHA256 is `5b8659a11095743536ec8ed4d8ad1992eabc07712753dec434952ddf7e9bffc5`; the unchanged 28 October paper package SHA256 is `60e2ee9df8488ddb71d51314e6dbc029513eb7256d48854d6ca2ed68656f2765`. The byte-exact parameter pair SHA256 is `cccc2ffbaaf223ce1a284af1afd2405f58fca4cafeee4b12692678bd33f4b6ed`.
