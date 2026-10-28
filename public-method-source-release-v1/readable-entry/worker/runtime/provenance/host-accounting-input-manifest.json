@@ -1,0 +1,94 @@
+{
+  "actual_instrumented_runtime_sdk_verified": false,
+  "builder_sha256": "99dced470ba8b7c3c6ce3f005ee6ed314fe976b65a4899389f7458be080d91aa",
+  "files_sha256": {
+    "child-bootstrap/python_tool_bootstrap.py": "e4fe7b2aa6944e1fd940459e00d50d04bd85e2faf0116977e560bbfc4d5941f2",
+    "host-package/arc_paper/__init__.py": "71f757b8d8d7ab55e6ec655f5281ca6a69bae4a44e17dae4f0cdc52fe5ab6c84",
+    "host-package/arc_paper/allocation.py": "661f17f8b5636f63af8dcf4fc3bbbfc9aaf37bd4241c2f649d7640d8dc407bd7",
+    "host-package/arc_paper/evidence_history.py": "b22c63db8226790ebc9aef7ca56e08fbf9940d600231c97b186d1484a98d4aae",
+    "host-package/arc_paper/franzen_host_accounting.py": "468fdbbe63d618edf793706fcab5f1fe7c2bf94601ba4c494c908a92971e9df8",
+    "host-package/arc_paper/franzen_host_accounting_v2.py": "923eb121bb4f75ce4d23b685c5c11fae2a5589107261af54d14c10a5a26b3031",
+    "host-package/arc_paper/franzen_prediction_runtime.py": "2087dfe7785df934049544d7373b86d2e200ba23eb2f461832b1e5c5a288c336",
+    "host-package/arc_paper/host_accounting.py": "beabeae3ec4a97315601051f80a57bef7b65eafff268d133988b657222afd8d7",
+    "host-package/arc_paper/prediction_adapter.py": "d560a2834ba0f032002faba33955516ab0b39e3cb18c0bdfadb9b937d97ff369",
+    "host-package/arc_paper/predictions.py": "ebd53fe1296e16832b497fdd8b4d6e2d1cfb0d1ba1cf9bac8f9729e8ff3d83fe",
+    "host-package/arc_paper/receipt_integrity.py": "19030d18d92e1a712084724376cad56bfc0d9e55f68a79508ff7517baf2a1046",
+    "patched-source/ARC3-Inference/inference/agent/prompts.py": "667a9327d0a6d261eb8e031ecedb336fd5d75a55b172e31b8022122b70d630a0",
+    "patched-source/ARC3-Inference/inference/agent/python_tool_sandbox.py": "15c85964a644edf158ebe50d4aac8fe000b6c4a5ea24d9a4f0db2a93c0c72b80",
+    "patched-source/ARC3-Inference/inference/agent/tool_agent.py": "ffa947c04817c61c7464bd712e17acababb9ca39161b0803c0fba3c3a8471f4f",
+    "patched-source/ARC3-Inference/inference/framework/solver.py": "21525426d09a97cd79f058af4fd673b1b7cea1f17fe5643ef769a45cbc6a6794",
+    "patched-source/tufa-arc-agi-framework/src/taaf/game.py": "cafb5cc2f4dd556ab389e83138633d3c9c29361e8dfe3c9e7ab3b5513bfd650d",
+    "patched-source/tufa-arc-agi-framework/src/taaf/game_api.py": "de8bc91a0081c9c130f2e87405236cd6335eb79ca7b00fa80147cb9736bf6623",
+    "patches/01-prediction-receipts.patch": "859362c338eecf298145633710ba42baf40b9bbb02a1273198f9db443ff3e77e",
+    "patches/02-request-accounting.patch": "646674c23ccf9a177daa9af9bf1922b9c647a675ae06b2074c68f6ec867c025c",
+    "patches/03-child-confinement.patch": "142ce338085c376d0b9c3ffea83f520ef8406d52bc7251795b77843b49839d44",
+    "patches/04-host-accounting.patch": "70113c54191caab18bfe584247e688a20b0eb60e0215d4027f562cb769ec9d38",
+    "patches/05-pre-sdk-stop-refusal.patch": "7ce2b87ab5f77045ac304d6c519f05494cc52a0ad7e3bbc9196603848b3dbba9",
+    "patches/combined-with-confinement.patch": "72774bf74937ba503d488494e37adcb41564d48d52c8ff0cf107fd1b6e8a727c",
+    "patches/combined.patch": "1017c3549d704c26af78823ece69a171c51c67ffb38ce6a7d707715752333be5",
+    "provenance/sdk-source-manifest.json": "e9e36ef21659862d6b885d3312770cbd037bb299229a05aec00c75e09a3ff0d3"
+  },
+  "final_source_sha256": {
+    "ARC3-Inference/inference/agent/prompts.py": "667a9327d0a6d261eb8e031ecedb336fd5d75a55b172e31b8022122b70d630a0",
+    "ARC3-Inference/inference/agent/python_tool_sandbox.py": "15c85964a644edf158ebe50d4aac8fe000b6c4a5ea24d9a4f0db2a93c0c72b80",
+    "ARC3-Inference/inference/agent/runtime_state.py": "371e211ac2e364829f44acd1bd9de85284c365445c8bb4669445ac4a7545ac73",
+    "ARC3-Inference/inference/agent/tool_agent.py": "ffa947c04817c61c7464bd712e17acababb9ca39161b0803c0fba3c3a8471f4f",
+    "ARC3-Inference/inference/framework/solver.py": "21525426d09a97cd79f058af4fd673b1b7cea1f17fe5643ef769a45cbc6a6794",
+    "ARC3-Inference/inference/utils/frame_diff.py": "843be0ce9225ae19de91dd34409bd7b7cf69ebad1ff73e69759c506c161bdeee",
+    "ARC3-Inference/inference/utils/grid_utils.py": "2c96de5a6e0da2ae0390ab191b39a154784089b00fce8e2da98ebb3960715b67",
+    "ARC3-Inference/inference/utils/retained_functions.py": "9450d8c73fa5f84f40f7bd7bc3868ab63fadde2c68e4546de7b041b387be0b37",
+    "ARC3-Inference/inference/utils/segmentation.py": "1bd1346e4b87a8eca5f1b67df88237cb7527f96132de84772b2094de95353aed",
+    "tufa-arc-agi-framework/src/taaf/game.py": "cafb5cc2f4dd556ab389e83138633d3c9c29361e8dfe3c9e7ab3b5513bfd650d",
+    "tufa-arc-agi-framework/src/taaf/game_api.py": "de8bc91a0081c9c130f2e87405236cd6335eb79ca7b00fa80147cb9736bf6623"
+  },
+  "fleet_gate_connected": false,
+  "frozen_v1_payload_retained": true,
+  "input_manifest_sha256": "2b6db7e9501fc2823650db7e044e38656abe4f7740212d3b77e515c1370c4887",
+  "limitations": [
+    "CPU fixtures do not validate an executed target SDK/model, OS confinement or solver performance.",
+    "Fleet admission and production window collection remain separate layers.",
+    "A proven pre-SDK normal stop is refused; entered or ambiguous calls never receive zero-cost execution credit."
+  ],
+  "model_or_game_or_http_request_launched": false,
+  "original_prediction_runtime_unchanged": true,
+  "runtime_bridge_version": 2,
+  "schema_version": 2,
+  "sdk_infrastructure_sha256": {
+    "base": "42973618f223096d6269422352980e85bdf6b2b51dcb42e7390f96164b0f994f",
+    "local_wrapper": "77e0a39f583e148bfc785f933d111ed4d8653d134def55b204dda3064e93bbd2",
+    "remote_wrapper": "ebe8fd0a5ab2d5f65600f072fb22cf1de21c347a55b8c5ef569d6d7305c520e5",
+    "scorecard": "1cc830e48008bec60b8a98ae14d3e9312e8408f102a9878bad42744aa9e489b7",
+    "wrapper": "deaf07a628fb2e0f743366de4967110d4c06bafa21c5b61561d9ca02f31055ee"
+  },
+  "sdk_matches_competition_offline_inventory": true,
+  "sdk_provenance_sha256": "e9e36ef21659862d6b885d3312770cbd037bb299229a05aec00c75e09a3ff0d3",
+  "sdk_version": "0.9.8",
+  "source_sha256": {
+    "ARC3-Inference/inference/agent/prompts.py": "667a9327d0a6d261eb8e031ecedb336fd5d75a55b172e31b8022122b70d630a0",
+    "ARC3-Inference/inference/agent/python_tool_sandbox.py": "15c85964a644edf158ebe50d4aac8fe000b6c4a5ea24d9a4f0db2a93c0c72b80",
+    "ARC3-Inference/inference/agent/runtime_state.py": "371e211ac2e364829f44acd1bd9de85284c365445c8bb4669445ac4a7545ac73",
+    "ARC3-Inference/inference/agent/tool_agent.py": "2069ee0a108ed6bf69ebc5aa3807ecce04e65e5f1f0f5e6dc14f5106ba385bfc",
+    "ARC3-Inference/inference/framework/solver.py": "d9948521e771deaaaac15178e51c137211c810ab4768002db348e7daa5989e82",
+    "ARC3-Inference/inference/utils/frame_diff.py": "843be0ce9225ae19de91dd34409bd7b7cf69ebad1ff73e69759c506c161bdeee",
+    "ARC3-Inference/inference/utils/grid_utils.py": "2c96de5a6e0da2ae0390ab191b39a154784089b00fce8e2da98ebb3960715b67",
+    "ARC3-Inference/inference/utils/retained_functions.py": "9450d8c73fa5f84f40f7bd7bc3868ab63fadde2c68e4546de7b041b387be0b37",
+    "ARC3-Inference/inference/utils/segmentation.py": "1bd1346e4b87a8eca5f1b67df88237cb7527f96132de84772b2094de95353aed",
+    "tufa-arc-agi-framework/src/taaf/game.py": "caca8fd21c212f6e0fd9dcb86ad550c9d00200f0d6d395ea1f164c881c9a2ac1",
+    "tufa-arc-agi-framework/src/taaf/game_api.py": "3702c07e3bd631f9ebcc1eb149e696473b7ac18718b5b0d23f13e17a75e4cf36"
+  },
+  "stages": [
+    {
+      "input_manifest_sha256": "64baee31bd8bebcda6713cfedb028d6d1b9ff379a3b62ee57007ca38fc523dcd",
+      "name": "host_binding_physical_usage_and_sdk_return_capture",
+      "ordinal": 4,
+      "patch_sha256": "70113c54191caab18bfe584247e688a20b0eb60e0215d4027f562cb769ec9d38"
+    },
+    {
+      "input_manifest_sha256": "2b6db7e9501fc2823650db7e044e38656abe4f7740212d3b77e515c1370c4887",
+      "name": "known_pre_sdk_stop_refusal",
+      "ordinal": 5,
+      "patch_file": "patches/05-pre-sdk-stop-refusal.patch",
+      "patch_sha256": "7ce2b87ab5f77045ac304d6c519f05494cc52a0ad7e3bbc9196603848b3dbba9"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+<title id="title">Testing Predictive Commitments in Interactive Reasoning</title>
+<desc id="desc">Research draft by Alexander Serov, Independent Researcher. A controlled ARC-AGI-3 study comparing prediction error as an inference allocation signal. Diagram is conceptual; it reports no performance result.</desc>
+<rect width="1600" height="900" fill="#f6f5f0"/>
+<rect x="80" y="76" width="72" height="8" fill="#eb8054"/>
+<text x="80" y="135" font-family="Helvetica, Arial, sans-serif" font-size="23" font-weight="600" fill="#5c6d76" letter-spacing="2">ARC PRIZE 2026  /  PAPER TRACK</text>
+<text x="80" y="245" font-family="Helvetica, Arial, sans-serif" font-size="76" font-weight="700" fill="#172b3a" >Testing Predictive</text>
+<text x="80" y="335" font-family="Helvetica, Arial, sans-serif" font-size="76" font-weight="700" fill="#172b3a" >Commitments in</text>
+<text x="80" y="425" font-family="Helvetica, Arial, sans-serif" font-size="76" font-weight="700" fill="#172b3a" >Interactive Reasoning</text>
+<text x="84" y="500" font-family="Helvetica, Arial, sans-serif" font-size="31" font-weight="400" fill="#5c6d76" >Does prediction error help allocate inference effort?</text>
+<text x="84" y="765" font-family="Helvetica, Arial, sans-serif" font-size="30" font-weight="600" fill="#172b3a" >Alexander Serov</text>
+<text x="84" y="808" font-family="Helvetica, Arial, sans-serif" font-size="25" font-weight="400" fill="#5c6d76" >Independent Researcher</text>
+<text x="84" y="857" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="500" fill="#74818a" letter-spacing="1.5">RESEARCH DRAFT  ·  EMPIRICAL COMPARISON PENDING</text>
+<rect x="1110" y="175" width="410" height="520" rx="28" fill="#172b3a"/>
+<text x="1150" y="230" font-family="Helvetica, Arial, sans-serif" font-size="19" font-weight="600" fill="#b5c4ca" letter-spacing="1.5">COMMIT → OBSERVE</text>
+<rect x="1150" y="270" width="68" height="68" rx="6" fill="#477fa0"/>
+<rect x="1228" y="270" width="68" height="68" rx="6" fill="#477fa0"/>
+<rect x="1306" y="270" width="68" height="68" rx="6" fill="#eb8054"/>
+<rect x="1384" y="270" width="68" height="68" rx="6" fill="#eb8054"/>
+<rect x="1150" y="348" width="68" height="68" rx="6" fill="#477fa0"/>
+<rect x="1228" y="348" width="68" height="68" rx="6" fill="#7ca995"/>
+<rect x="1306" y="348" width="68" height="68" rx="6" fill="#7ca995"/>
+<rect x="1384" y="348" width="68" height="68" rx="6" fill="#eb8054"/>
+<rect x="1150" y="426" width="68" height="68" rx="6" fill="#e5c86d"/>
+<rect x="1228" y="426" width="68" height="68" rx="6" fill="#7ca995"/>
+<rect x="1306" y="426" width="68" height="68" rx="6" fill="#7ca995"/>
+<rect x="1384" y="426" width="68" height="68" rx="6" fill="#477fa0"/>
+<rect x="1150" y="504" width="68" height="68" rx="6" fill="#e5c86d"/>
+<rect x="1228" y="504" width="68" height="68" rx="6" fill="#e5c86d"/>
+<rect x="1306" y="504" width="68" height="68" rx="6" fill="#477fa0"/>
+<rect x="1384" y="504" width="68" height="68" rx="6" fill="#477fa0"/>
+<text x="1150" y="635" font-family="Helvetica, Arial, sans-serif" font-size="29" font-weight="500" fill="#f6f5f0" >p  →  action  →  y</text>
+<text x="1150" y="668" font-family="Helvetica, Arial, sans-serif" font-size="17" font-weight="600" fill="#b5c4ca" letter-spacing="1">ERROR → ALLOCATION</text>
+<path d="M85 596 H1030" fill="none" stroke="#ccd2d1" stroke-width="2"/>
+<text x="85" y="648" font-family="Helvetica, Arial, sans-serif" font-size="27" font-weight="600" fill="#5c6d76" >B0</text>
+<text x="228" y="648" font-family="Helvetica, Arial, sans-serif" font-size="27" font-weight="600" fill="#5c6d76" >B1</text>
+<text x="372" y="648" font-family="Helvetica, Arial, sans-serif" font-size="27" font-weight="600" fill="#25779d" >A1</text>
+<text x="516" y="648" font-family="Helvetica, Arial, sans-serif" font-size="27" font-weight="700" fill="#c76035" >P</text>
+<text x="85" y="687" font-family="Helvetica, Arial, sans-serif" font-size="23" font-weight="400" fill="#5c6d76" >Four arms. One fixed resource policy.</text>
+<text x="1114" y="748" font-family="Helvetica, Arial, sans-serif" font-size="19" font-weight="400" fill="#74818a" >Conceptual illustration</text>
+</svg>

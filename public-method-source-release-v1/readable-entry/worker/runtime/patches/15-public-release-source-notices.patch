@@ -1,0 +1,12 @@
+--- a/ARC3-Inference/inference/framework/solver.py
++++ b/ARC3-Inference/inference/framework/solver.py
+@@ -2,6 +2,9 @@
+ # This redistributed file has project modifications; exact source changes
+ # and original provenance are recorded by the package manifests and patches.
+ # Original copyright notices and Apache-2.0 terms are retained.
++# Modified by Alexander Serov for ARC Prize research, 2026-10-28.
++# Historical project derivative; original component terms and notices retained.
++# Exact upstream revisions and changes are recorded in package provenance.
+ """TAAF solver adapter for the existing tool-using harness."""
+ 
+ from __future__ import annotations

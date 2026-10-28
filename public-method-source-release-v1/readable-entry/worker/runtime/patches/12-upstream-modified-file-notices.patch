@@ -1,0 +1,50 @@
+--- a/ARC3-Inference/inference/agent/prompts.py
++++ b/ARC3-Inference/inference/agent/prompts.py
+@@ -1,3 +1,7 @@
++# Modified for ARC Prize research, 2026-10-28.
++# This redistributed file has project modifications; exact source changes
++# and original provenance are recorded by the package manifests and patches.
++# Original copyright notices and Apache-2.0 terms are retained.
+ """Prompt templates for the analyzer agent."""
+ 
+ from inference.utils.grid_utils import ARC_COLOR_LEGEND
+--- a/ARC3-Inference/inference/framework/solver.py
++++ b/ARC3-Inference/inference/framework/solver.py
+@@ -1,3 +1,7 @@
++# Modified for ARC Prize research, 2026-10-28.
++# This redistributed file has project modifications; exact source changes
++# and original provenance are recorded by the package manifests and patches.
++# Original copyright notices and Apache-2.0 terms are retained.
+ """TAAF solver adapter for the existing tool-using harness."""
+ 
+ from __future__ import annotations
+--- a/tufa-arc-agi-framework/src/taaf/benchmark.py
++++ b/tufa-arc-agi-framework/src/taaf/benchmark.py
+@@ -1,3 +1,7 @@
++# Modified for ARC Prize research, 2026-10-28.
++# This redistributed file has project modifications; exact source changes
++# and original provenance are recorded by the package manifests and patches.
++# Original copyright notices and Apache-2.0 terms are retained.
+ """``Benchmark`` orchestration (R2.1–R2.15). Deployment (R2.21–R2.39)
+ lives in ``taaf.deploy*``."""
+ 
+--- a/tufa-arc-agi-framework/src/taaf/game.py
++++ b/tufa-arc-agi-framework/src/taaf/game.py
+@@ -1,3 +1,7 @@
++# Modified for ARC Prize research, 2026-10-28.
++# This redistributed file has project modifications; exact source changes
++# and original provenance are recorded by the package manifests and patches.
++# Original copyright notices and Apache-2.0 terms are retained.
+ """Core game abstractions (R11.01–R11.05). The R11.06 example subclass
+ lives in ``taaf.game_examples``.
+ 
+--- a/tufa-arc-agi-framework/src/taaf/game_api.py
++++ b/tufa-arc-agi-framework/src/taaf/game_api.py
+@@ -1,3 +1,7 @@
++# Modified for ARC Prize research, 2026-10-28.
++# This redistributed file has project modifications; exact source changes
++# and original provenance are recorded by the package manifests and patches.
++# Original copyright notices and Apache-2.0 terms are retained.
+ """arcengine-backed ``Game`` subclass (R11.11) with R11.12 score
+ reconciliation. ``ArcadeSpec`` is the picklable description of an
+ ``arc_agi.Arcade``; ``RunSession`` caches one Arcade per unique spec.

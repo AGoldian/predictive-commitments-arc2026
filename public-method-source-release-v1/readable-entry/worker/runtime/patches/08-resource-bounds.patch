@@ -1,0 +1,748 @@
+--- a/ARC3-Inference/inference/agent/python_tool_sandbox.py
++++ b/ARC3-Inference/inference/agent/python_tool_sandbox.py
+@@ -2,6 +2,8 @@
+ from __future__ import annotations
+ 
+ import inspect
++from arc_paper.bounded_child_io import (BoundsFailure, BoundedChildIO, DEVELOPMENT_PROFILE, ERROR_STAGES,
++    validate_inputs, validate_resource_report, encode_json, close_process)
+ import hashlib
+ from arc_paper.receipt_integrity import verify_child_receipts
+ import json
+@@ -301,6 +303,212 @@
+                    "policy_source_sha256": _ARC_POLICY_SOURCE_SHA256,
+                    "policy_fragment_sha256": _ARC_POLICY_FRAGMENT_SHA256})
+             os._exit(72)
++
++    import math
++
++    DEVELOPMENT_PROFILE = {
++        "max_tool_seconds": 30, "address_space_bytes": 512 * 1024 * 1024,
++        "file_size_bytes": 1_000_000, "open_files": 32, "core_bytes": 0,
++        "max_code_bytes": 256 * 1024, "max_retained_bytes": 256 * 1024,
++        "max_retained_functions": 64, "max_input_bytes": 4 * 1024 * 1024,
++        "max_frame_bytes": 1024 * 1024, "max_stdout_bytes": 4 * 1024 * 1024,
++        "max_stderr_bytes": 64 * 1024, "max_display_stdout_bytes": 64 * 1024,
++        "max_result_bytes": 256 * 1024, "max_json_depth": 32,
++        "max_json_nodes": 100_000, "max_messages": 256,
++    }
++
++    ERROR_STAGES = frozenset({
++        "invalid_timeout", "code_limit", "retained_limit", "json_type", "json_depth",
++        "json_nodes", "json_bytes", "json_nonfinite", "invalid_json", "frame_limit",
++        "stdout_limit", "stderr_limit", "message_limit", "incomplete_frame", "decode_error",
++        "deadline", "pipe_io", "resource_setup", "unsupported_resource_platform",
++        "display_stdout_limit", "result_limit", "resource_report", "child_exit",
++        "unexpected_host_failure", "cleanup_failed",
++    })
++
++    class BoundsFailure(RuntimeError):
++        def __init__(self, stage, error=None):
++            self.stage = stage if stage in ERROR_STAGES else "unexpected_host_failure"
++            self.error = error if type(error) is int else None
++            super().__init__(self.stage)
++
++        def record(self):
++            record = {"stage": self.stage}
++            if self.error is not None:
++                record.update(errno=self.error, errno_name=errno.errorcode.get(self.error, "UNKNOWN"))
++            return record
++
++    def _walk_json(value, profile, max_bytes):
++        '''Count before serialization, visiting only exact builtin JSON types.'''
++        pending, nodes, string_bytes = [(value, 0)], 0, 0
++        while pending:
++            item, depth = pending.pop()
++            nodes += 1
++            if nodes > profile["max_json_nodes"]:
++                raise BoundsFailure("json_nodes")
++            if depth > profile["max_json_depth"]:
++                raise BoundsFailure("json_depth")
++            kind = type(item)
++            if kind is str:
++                if len(item) > max_bytes:
++                    raise BoundsFailure("json_bytes")
++                string_bytes += len(item.encode("utf-8"))
++                if string_bytes > max_bytes:
++                    raise BoundsFailure("json_bytes")
++            elif kind is float:
++                if not math.isfinite(item):
++                    raise BoundsFailure("json_nonfinite")
++            elif kind is int:
++                if item.bit_length() > 4096:
++                    raise BoundsFailure("json_bytes")
++            elif item is None or kind is bool:
++                pass
++            elif kind in (list, tuple):
++                if len(item) + nodes + len(pending) > profile["max_json_nodes"]:
++                    raise BoundsFailure("json_nodes")
++                pending.extend((child, depth + 1) for child in item)
++            elif kind is dict:
++                if 2 * len(item) + nodes + len(pending) > profile["max_json_nodes"]:
++                    raise BoundsFailure("json_nodes")
++                for key, child in item.items():
++                    if type(key) is not str:
++                        raise BoundsFailure("json_type")
++                    pending.append((key, depth + 1))
++                    pending.append((child, depth + 1))
++            else:
++                raise BoundsFailure("json_type")
++
++    def encode_json(value, profile, max_bytes):
++        _walk_json(value, profile, max_bytes)
++        encoded = bytearray()
++        try:
++            for chunk in json.JSONEncoder(ensure_ascii=False, allow_nan=False, separators=(",", ":")).iterencode(value):
++                raw = chunk.encode("utf-8")
++                if len(encoded) + len(raw) + 1 > max_bytes:
++                    raise BoundsFailure("json_bytes")
++                encoded.extend(raw)
++        except (ValueError, OverflowError, RecursionError, UnicodeError) as exc:
++            raise BoundsFailure("invalid_json") from exc
++        encoded.extend(b"\n")
++        return bytes(encoded)
++
++    def _scan_json_structure(raw, profile):
++        depth, nodes, quoted, escaped, atom = 0, 0, False, False, False
++        for byte in raw:
++            if quoted:
++                if escaped:
++                    escaped = False
++                elif byte == 92:
++                    escaped = True
++                elif byte == 34:
++                    quoted = False
++                continue
++            if byte == 34:
++                quoted, atom = True, False
++                nodes += 1
++            elif byte in (123, 91):
++                depth += 1
++                nodes += 1
++                atom = False
++                if depth > profile["max_json_depth"]:
++                    raise BoundsFailure("json_depth")
++            elif byte in (125, 93):
++                depth -= 1
++                atom = False
++            elif byte in (32, 9, 10, 13, 44, 58):
++                atom = False
++            elif not atom:
++                atom = True
++                nodes += 1
++            if nodes > profile["max_json_nodes"]:
++                raise BoundsFailure("json_nodes")
++
++    def decode_json_line(raw, profile, max_bytes):
++        if len(raw) > max_bytes:
++            raise BoundsFailure("frame_limit")
++        _scan_json_structure(raw, profile)
++        try:
++            text = raw.decode("utf-8")
++        except UnicodeError as exc:
++            raise BoundsFailure("decode_error") from exc
++        try:
++            value = json.loads(text, parse_constant=lambda _: (_ for _ in ()).throw(ValueError()))
++        except (ValueError, RecursionError) as exc:
++            raise BoundsFailure("invalid_json") from exc
++        _walk_json(value, profile, max_bytes)
++        return value
++
++    def validate_inputs(code, retained, timeout, profile):
++        if type(timeout) is not int or not 1 <= timeout <= profile["max_tool_seconds"]:
++            raise BoundsFailure("invalid_timeout")
++        if type(code) is not str or len(code) > profile["max_code_bytes"] or len(code.encode()) > profile["max_code_bytes"]:
++            raise BoundsFailure("code_limit")
++        if retained is not None:
++            if type(retained) not in (list, tuple) or len(retained) > profile["max_retained_functions"]:
++                raise BoundsFailure("retained_limit")
++            size = 0
++            for source in retained:
++                if type(source) is not str or len(source) > profile["max_retained_bytes"]:
++                    raise BoundsFailure("retained_limit")
++                size += len(source.encode())
++                if size > profile["max_retained_bytes"]:
++                    raise BoundsFailure("retained_limit")
++
++    def _set_limits(timeout_seconds):
++        if platform.system() != "Linux" or resource is None:
++            raise BoundsFailure("unsupported_resource_platform")
++        targets = {
++            "RLIMIT_AS": DEVELOPMENT_PROFILE["address_space_bytes"],
++            "RLIMIT_CPU": timeout_seconds + 1,
++            "RLIMIT_FSIZE": DEVELOPMENT_PROFILE["file_size_bytes"],
++            "RLIMIT_NOFILE": DEVELOPMENT_PROFILE["open_files"],
++            "RLIMIT_CORE": DEVELOPMENT_PROFILE["core_bytes"],
++        }
++        report = {"verified": False, "limits": {}}
++        for name, maximum in targets.items():
++            identifier = getattr(resource, name, None)
++            if identifier is None:
++                raise BoundsFailure("resource_setup")
++            try:
++                inherited_soft, inherited_hard = resource.getrlimit(identifier)
++                soft = maximum if inherited_soft == resource.RLIM_INFINITY else min(inherited_soft, maximum)
++                hard = maximum if inherited_hard == resource.RLIM_INFINITY else min(inherited_hard, maximum)
++                resource.setrlimit(identifier, (soft, hard))
++                effective_soft, effective_hard = resource.getrlimit(identifier)
++            except (OSError, ValueError) as exc:
++                raise BoundsFailure("resource_setup", getattr(exc, "errno", None)) from exc
++            if not 0 <= effective_soft <= effective_hard <= maximum:
++                raise BoundsFailure("resource_setup")
++            report["limits"][name] = {"requested_maximum": maximum,
++                "soft": effective_soft, "hard": effective_hard}
++        report["verified"] = True
++        return report
++
++
++    def _arc_resource_failed(exc):
++        _send({"type": "confinement_failed", "failure": exc.record(),
++               "policy_source_sha256": _ARC_POLICY_SOURCE_SHA256,
++               "policy_fragment_sha256": _ARC_POLICY_FRAGMENT_SHA256})
++        os._exit(73)
++
++
++    class _ArcBoundedStdout(io.StringIO):
++        def __init__(self):
++            super().__init__()
++            self._arc_bytes = 0
++
++        def write(self, value):
++            if len(value) > DEVELOPMENT_PROFILE["max_display_stdout_bytes"]:
++                raise BoundsFailure("display_stdout_limit")
++            self._arc_bytes += len(value.encode("utf-8"))
++            if self._arc_bytes > DEVELOPMENT_PROFILE["max_display_stdout_bytes"]:
++                raise BoundsFailure("display_stdout_limit")
++            return super().write(value)
++
++
++    def _arc_bounded_result(value):
++        encode_json(value, DEVELOPMENT_PROFILE, DEVELOPMENT_PROFILE["max_result_bytes"])
++        return value
+ 
+     SAFE_BUILTINS = {
+         # Exception types. Only four were present, so anything narrower than
+@@ -379,15 +587,18 @@
+ 
+ 
+     def _send(payload):
+-        HOST_STDOUT.write(json.dumps(payload, ensure_ascii=False) + "\n")
++        HOST_STDOUT.write(encode_json(payload, DEVELOPMENT_PROFILE, DEVELOPMENT_PROFILE["max_frame_bytes"]).decode("utf-8"))
+         HOST_STDOUT.flush()
+ 
+ 
+     def _recv():
+-        line = sys.stdin.readline()
+-        if not line:
+-            raise EOFError("sandbox input closed")
+-        return json.loads(line)
++        raw = sys.stdin.buffer.readline(DEVELOPMENT_PROFILE["max_input_bytes"] + 1)
++        if not raw or not raw.endswith(b"\n"):
++            raise BoundsFailure("incomplete_frame")
++        value = decode_json_line(raw, DEVELOPMENT_PROFILE, DEVELOPMENT_PROFILE["max_input_bytes"])
++        if type(value) is not dict:
++            raise BoundsFailure("json_type")
++        return value
+ 
+ 
+     class FrameView:
+@@ -515,21 +726,7 @@
+         return builtins.__import__(name, globals, locals, fromlist, level)
+ 
+ 
+-    def _set_limits(timeout_seconds):
+-        if resource is None:
+-            return
+-        cpu_limit = max(1, int(timeout_seconds)) + 1
+-        for limit, value in (
+-            (getattr(resource, "RLIMIT_CPU", None), cpu_limit),
+-            (getattr(resource, "RLIMIT_FSIZE", None), 1_000_000),
+-            (getattr(resource, "RLIMIT_NOFILE", None), 32),
+-        ):
+-            if limit is None:
+-                continue
+-            try:
+-                resource.setrlimit(limit, (value, value))
+-            except (OSError, ValueError):
+-                pass
++
+ 
+ 
+     def _normalize_actions(actions):
+@@ -574,19 +771,29 @@
+ 
+ 
+     def main():
+-        initial = _recv()
++        try:
++            _set_limits(DEVELOPMENT_PROFILE["max_tool_seconds"])
++            initial = _recv()
++            validate_inputs(initial.get("code"), initial.get("kept_functions"),
++                            initial.get("timeout_seconds"), DEVELOPMENT_PROFILE)
++        except BoundsFailure as exc:
++            _arc_resource_failed(exc)
+         global COLOR_CHARS
+         COLOR_CHARS = str(initial.get("color_chars") or "")
+         timeout_seconds = max(1, int(initial.get("timeout_seconds", 30)))
+         sandbox_cwd = str(initial.get("sandbox_cwd", "")).strip()
+         if sandbox_cwd:
+             os.chdir(sandbox_cwd)
+-        _set_limits(timeout_seconds)
++        try:
++            _arc_resource_report = _set_limits(timeout_seconds)
++        except BoundsFailure as exc:
++            _arc_resource_failed(exc)
+         _arc_confinement = _arc_preload_and_install_policy()
++        _arc_confinement["resource_limits"] = _arc_resource_report
+         _send({"type": "confinement_ready", "confinement": _arc_confinement})
+ 
+         action_results = []
+-        stdout = io.StringIO()
++        stdout = _ArcBoundedStdout()
+         runtime_globals = {
+             "__builtins__": {
+                 name: getattr(builtins, name)
+@@ -939,7 +1146,7 @@
+                     "type": "final",
+                     **_collect_retention_payload(),
+                     "stdout": stdout.getvalue(),
+-                    "result": _json_safe(runtime_globals.get("result")),
++                    "result": _arc_bounded_result(runtime_globals.get("result")),
+                     "action_results": _json_safe(action_results),
+                 }
+             )
+@@ -981,11 +1188,13 @@
+ 
+ _ARC_POLICY_SOURCE_SHA256 = 'a8412effd96184841e5db36f1eebc2498c897063537c6c2b1a05f51237eb4251'
+ _ARC_POLICY_FRAGMENT_SHA256 = '2128ea88d37b9d17e1cf0b25d8ff195c173e05b8faf83ff163bbee984c376b1e'
+-_ARC_CHILD_BOOTSTRAP_SHA256 = 'e4fe7b2aa6944e1fd940459e00d50d04bd85e2faf0116977e560bbfc4d5941f2'
+-
+-def _arc_confinement_ready_record(message):
++_ARC_CHILD_BOOTSTRAP_SHA256 = '234f156459dedbeb12aa5e618a7701b554dc2dbc2f0684ecce4902f9684e6ebb'
++
++def _arc_confinement_ready_record(message, timeout_seconds):
+     record = message.get("confinement")
+     if not isinstance(record, dict):
++        return None
++    if not validate_resource_report(record.get("resource_limits"), timeout_seconds, DEVELOPMENT_PROFILE):
+         return None
+     descriptors = record.get("descriptor_setup")
+     policy = record.get("policy")
+@@ -1009,7 +1218,7 @@
+         return None
+     # The first pipe message is emitted by trusted bootstrap code before any
+     # retained-function restoration. It is a setup report, not a certificate.
+-    return {"policy_version": record["policy_version"],
++    return {"resource_limits": record["resource_limits"], "policy_version": record["policy_version"],
+             "phase": record["phase"], "library": record.get("library"),
+             "libseccomp_version": policy.get("libseccomp_version"),
+             "native_arch_token": policy.get("native_arch_token"),
+@@ -1094,219 +1303,196 @@
+     retain_imports: bool = False,
+     repair_hints: bool = False,
+ ) -> dict[str, Any]:
+-    host_confinement_record = {
+-        "schema_version": 1, "required": True, "gate_passed": False,
+-        "status": "awaiting_ready_report", "isolation_certified": False,
+-        "policy_source_sha256": _ARC_POLICY_SOURCE_SHA256,
+-        "policy_fragment_sha256": _ARC_POLICY_FRAGMENT_SHA256,
+-        "child_environment": "fixed_public_whitelist",
+-        "python_hash_seed_control_effective": False,
+-    }
+-
+-    def _arc_confinement_result(payload):
+-        record = dict(host_confinement_record)
+-        if record["status"] == "awaiting_ready_report":
+-            record["status"] = "missing_ready_report"
+-        record["tool_error"] = bool(payload.get("error"))
+-        log.info("ARC_PAPER_CHILD_CONFINEMENT %s", json.dumps(record, sort_keys=True, allow_nan=False))
+-        return {**payload, "confinement": record}
+-
+-    if hashlib.sha256(_SANDBOX_BOOTSTRAP.encode("utf-8")).hexdigest() != _ARC_CHILD_BOOTSTRAP_SHA256:
+-        host_confinement_record["status"] = "child_bootstrap_source_mismatch"
+-        return _arc_confinement_result({"error": "Sandbox child bootstrap source hash differs.",
+-                                        "stdout": "", "action_results": []})
+-
+-    with tempfile.TemporaryDirectory(prefix="rgb_python_tool_") as sandbox_dir:
+-        host_action_results: list[dict[str, Any]] = []
+-        try:
+-            process = subprocess.Popen(
+-                [sys.executable, "-I", "-S", "-c", _SANDBOX_BOOTSTRAP],
+-                stdin=subprocess.PIPE,
+-                stdout=subprocess.PIPE,
+-                stderr=subprocess.PIPE,
+-                text=True,
+-                encoding="utf-8",
+-                cwd=sandbox_dir,
+-                env=_sandbox_env(),
+-                start_new_session=True,
+-                close_fds=True,
+-            )
+-        except OSError:
+-            return _arc_confinement_result({
+-                "error": "Sandbox process could not start.",
+-                "stdout": "",
+-                "action_results": [],
+-            })
+-        assert process.stdin is not None
+-        assert process.stdout is not None
+-        assert process.stderr is not None
+-
+-        stdout_queue: queue.Queue[str | None] = queue.Queue()
+-
+-        def _stdout_reader() -> None:
+-            for raw_line in process.stdout:
+-                stdout_queue.put(raw_line)
+-            stdout_queue.put(None)
+-
+-        threading.Thread(target=_stdout_reader, daemon=True).start()
+-
+-        _send_json_line(
+-            process.stdin,
+-            {
+-                "code": code,
+-                "kept_functions": list(kept_functions or []),
+-                "persistence_enabled": kept_functions is not None,
+-                "retain_imports": retain_imports,
+-                "repair_hints": repair_hints,
+-                "animation_enabled": animation_handler is not None,
+-                "timeout_seconds": timeout_seconds,
+-                "sandbox_cwd": sandbox_dir,
+-                "state": initial_state,
+-                "color_chars": ARC_COLOR_CHARS,
+-            },
+-        )
+-
+-        deadline = time.monotonic() + max(1, int(timeout_seconds))
+-        while True:
+-            remaining = deadline - time.monotonic()
+-            if remaining <= 0:
+-                _kill_process_group(process)
+-                _wait_for_process_exit(process)
++    process = channel = None
++    pending_results, host_action_results = [], []
++    resource_failure = None
++    started = time.monotonic()
++    deadline = started + (timeout_seconds if type(timeout_seconds) is int and 1 <= timeout_seconds <= DEVELOPMENT_PROFILE["max_tool_seconds"] else 0)
++    try:
++        host_confinement_record = {
++            "schema_version": 1, "required": True, "gate_passed": False,
++            "status": "awaiting_ready_report", "isolation_certified": False,
++            "policy_source_sha256": _ARC_POLICY_SOURCE_SHA256,
++            "policy_fragment_sha256": _ARC_POLICY_FRAGMENT_SHA256,
++            "child_environment": "fixed_public_whitelist",
++            "python_hash_seed_control_effective": False,
++        }
++
++        def _arc_confinement_result(payload):
++            record = dict(host_confinement_record)
++            if record["status"] == "awaiting_ready_report":
++                record["status"] = "missing_ready_report"
++            record["tool_error"] = bool(payload.get("error"))
++            record["resource_bounds"] = {
++                "profile": dict(DEVELOPMENT_PROFILE), "requires_external_supervisor": True,
++                "synchronous_callback_deadline_enforced": False,
++                "setup_verified": bool(record.get("trusted_setup_report", {}).get("resource_limits", {}).get("verified")),
++                "failure": resource_failure or (record.get("failure") if record.get("failure", {}).get("stage") in ERROR_STAGES else None),
++            }
++            result = {**payload, "confinement": record}
++            pending_results.append(result)
++            return result
++
++        validate_inputs(code, kept_functions, timeout_seconds, DEVELOPMENT_PROFILE)
++        if hashlib.sha256(_SANDBOX_BOOTSTRAP.encode("utf-8")).hexdigest() != _ARC_CHILD_BOOTSTRAP_SHA256:
++            host_confinement_record["status"] = "child_bootstrap_source_mismatch"
++            return _arc_confinement_result({"error": "Sandbox child bootstrap source hash differs.",
++                                            "stdout": "", "action_results": []})
++
++        with tempfile.TemporaryDirectory(prefix="rgb_python_tool_") as sandbox_dir:
++            initial_payload_bytes = encode_json({'code': code, 'kept_functions': list(kept_functions or []), 'persistence_enabled': kept_functions is not None, 'retain_imports': retain_imports, 'repair_hints': repair_hints, 'animation_enabled': animation_handler is not None, 'timeout_seconds': timeout_seconds, 'sandbox_cwd': sandbox_dir, 'state': initial_state, 'color_chars': ARC_COLOR_CHARS}, DEVELOPMENT_PROFILE, DEVELOPMENT_PROFILE["max_input_bytes"])
++            try:
++                process = subprocess.Popen(
++                    [sys.executable, "-I", "-S", "-c", _SANDBOX_BOOTSTRAP],
++                    stdin=subprocess.PIPE,
++                    stdout=subprocess.PIPE,
++                    stderr=subprocess.PIPE,
++                    text=False,
++                    cwd=sandbox_dir,
++                    env=_sandbox_env(),
++                    start_new_session=True,
++                    close_fds=True,
++                )
++            except OSError:
+                 return _arc_confinement_result({
+-                    "error": f"Tool timed out after {timeout_seconds}s",
++                    "error": "Sandbox process could not start.",
++                    "stdout": "",
++                    "action_results": [],
++                })
++            assert process.stdin is not None
++            assert process.stdout is not None
++            assert process.stderr is not None
++
++            channel = BoundedChildIO(process, deadline, DEVELOPMENT_PROFILE)
++
++            channel.send_encoded(initial_payload_bytes)
++
++            while True:
++                remaining = deadline - time.monotonic()
++                if remaining <= 0:
++                    raise BoundsFailure("deadline")
++
++                message = channel.recv_message()
++                if message is None:
++                    stderr = ""
++                    return _arc_confinement_result({
++                        "error": _sanitize_host_error_text(stderr),
++                        "stdout": "",
++                        "action_results": list(host_action_results),
++                    })
++
++            
++
++                if not isinstance(message, dict):
++                    host_confinement_record["status"] = "invalid_message_object"
++                    return _arc_confinement_result({"error": "Sandbox confinement gate failed.",
++                                                    "stdout": "", "action_results": []})
++                msg_type = str(message.get("type", "")).strip()
++                if not host_confinement_record["gate_passed"]:
++                    ready = (_arc_confinement_ready_record(message, timeout_seconds)
++                             if msg_type == "confinement_ready" else None)
++                    if ready is None:
++                        host_confinement_record["status"] = "mandatory_child_setup_failed"
++                        failure = message.get("failure") if msg_type == "confinement_failed" else None
++                        if isinstance(failure, dict):
++                            host_confinement_record["failure"] = {
++                                key: failure[key] for key in ("stage", "errno", "errno_name", "exception_type")
++                                if key in failure and isinstance(failure[key], (str, int))}
++                        return _arc_confinement_result({"error": "Sandbox confinement gate failed.",
++                                                        "stdout": "", "action_results": []})
++                    host_confinement_record.update(status="trusted_bootstrap_ready_report_received",
++                                                    gate_passed=True, trusted_setup_report=ready)
++                    continue
++                if msg_type in {"confinement_ready", "confinement_failed"}:
++                    host_confinement_record["status"] = "unexpected_duplicate_setup_message"
++                    return _arc_confinement_result({"error": "Sandbox returned a duplicate setup message.",
++                                                    "stdout": "", "action_results": list(host_action_results)})
++                if msg_type == "animation":
++                    if animation_handler is None:
++                        channel.send_json({"type": "animation_error",
++                             "error": "Animation frames are not available in this session."})
++                        continue
++                    try:
++                        channel.check_deadline()
++                        animation_payload = animation_handler(dict(message.get("request") or {}))
++                    except Exception:  # noqa: BLE001
++                        channel.send_json({"type": "animation_error",
++                             "error": "animation failed in sandbox host."})
++                        continue
++                    channel.send_json({"type": "animation_result", "animation": animation_payload})
++                    continue
++                if msg_type == "action":
++                    try:
++                        # the message carries more than the action list: stale_after
++                        # tells the solver a previous action in this snippet changed
++                        # nothing, which it weighs after its own guards
++                        channel.check_deadline()
++                        action_result_payload = action_handler(
++                            list(message.get("actions") or []),
++                            stale_after=message.get("stale_after"),
++                            prediction=message.get("prediction"),
++                        )
++                    except Exception:  # noqa: BLE001
++                        channel.send_json({
++                                "type": "action_error",
++                                "error": "action failed in sandbox host.",
++                            })
++                        continue
++                    raw_action_result = action_result_payload.get("action_result") or {}
++                    if isinstance(raw_action_result, dict):
++                        host_action_results.append(dict(raw_action_result))
++                    channel.send_json({
++                            "type": "action_result",
++                            "action_result": raw_action_result,
++                            "state": action_result_payload.get("state") or {},
++                        })
++                    continue
++
++                if msg_type in {"final", "error"}:
++                    validate_inputs("", [item.get("source") for item in message.get("keepable_functions", [])], timeout_seconds, DEVELOPMENT_PROFILE)
++                    encode_json(message.get("result"), DEVELOPMENT_PROFILE, DEVELOPMENT_PROFILE["max_result_bytes"])
++                    displayed = message.get("stdout", "")
++                    if type(displayed) is not str or len(displayed.encode("utf-8")) > DEVELOPMENT_PROFILE["max_display_stdout_bytes"]:
++                        raise BoundsFailure("display_stdout_limit")
++                    channel.finish()
++                    verified = verify_child_receipts(message.get("action_results"), host_action_results)
++                    if not verified["valid"]:
++                        return _arc_confinement_result({"stdout": "", "result": None, "error": verified["error"],
++                                "action_results": verified["action_results"], "keepable_functions": [],
++                                "receipt_integrity_error": True})
++                    return _arc_confinement_result({
++                        "stdout": str(message.get("stdout", "") or ""),
++                        "result": message.get("result"),
++                        "error": str(message.get("error", "") or ""),
++                        "action_results": verified["action_results"],
++                        "keepable_functions": list(message.get("keepable_functions") or []),
++                        **({"retention_rejected": message.get("retention_rejected", [])}
++                           if kept_functions is not None else {}),
++                    })
++
++                return _arc_confinement_result({
++                    "error": "Sandbox process returned an unknown message type.",
+                     "stdout": "",
+                     "action_results": list(host_action_results),
+                 })
+-
+-            try:
+-                line = stdout_queue.get(timeout=remaining)
+-            except queue.Empty:
+-                continue
+-            if line is None:
+-                stderr = process.stderr.read()
+-                _wait_for_process_exit(process)
+-                return _arc_confinement_result({
+-                    "error": _sanitize_host_error_text(stderr),
+-                    "stdout": "",
+-                    "action_results": list(host_action_results),
+-                })
+-
+-            try:
+-                message = json.loads(line)
+-            except json.JSONDecodeError:
+-                _kill_process_group(process)
+-                stderr = process.stderr.read()
+-                _wait_for_process_exit(process)
+-                return _arc_confinement_result({
+-                    "error": "Sandbox process returned an invalid response.",
+-                    "stdout": "",
+-                    "action_results": list(host_action_results),
+-                })
+-
+-            if not isinstance(message, dict):
+-                _kill_process_group(process)
+-                _wait_for_process_exit(process)
+-                host_confinement_record["status"] = "invalid_message_object"
+-                return _arc_confinement_result({"error": "Sandbox confinement gate failed.",
+-                                                "stdout": "", "action_results": []})
+-            msg_type = str(message.get("type", "")).strip()
+-            if not host_confinement_record["gate_passed"]:
+-                ready = (_arc_confinement_ready_record(message)
+-                         if msg_type == "confinement_ready" else None)
+-                if ready is None:
+-                    _kill_process_group(process)
+-                    _wait_for_process_exit(process)
+-                    host_confinement_record["status"] = "mandatory_child_setup_failed"
+-                    failure = message.get("failure") if msg_type == "confinement_failed" else None
+-                    if isinstance(failure, dict):
+-                        host_confinement_record["failure"] = {
+-                            key: failure[key] for key in ("stage", "errno", "errno_name", "exception_type")
+-                            if key in failure and isinstance(failure[key], (str, int))}
+-                    return _arc_confinement_result({"error": "Sandbox confinement gate failed.",
+-                                                    "stdout": "", "action_results": []})
+-                host_confinement_record.update(status="trusted_bootstrap_ready_report_received",
+-                                                gate_passed=True, trusted_setup_report=ready)
+-                continue
+-            if msg_type in {"confinement_ready", "confinement_failed"}:
+-                _kill_process_group(process)
+-                _wait_for_process_exit(process)
+-                host_confinement_record["status"] = "unexpected_duplicate_setup_message"
+-                return _arc_confinement_result({"error": "Sandbox returned a duplicate setup message.",
+-                                                "stdout": "", "action_results": list(host_action_results)})
+-            if msg_type == "animation":
+-                if animation_handler is None:
+-                    _send_json_line(
+-                        process.stdin,
+-                        {"type": "animation_error",
+-                         "error": "Animation frames are not available in this session."},
+-                    )
+-                    continue
+-                try:
+-                    animation_payload = animation_handler(dict(message.get("request") or {}))
+-                except Exception:  # noqa: BLE001
+-                    _send_json_line(
+-                        process.stdin,
+-                        {"type": "animation_error",
+-                         "error": "animation failed in sandbox host."},
+-                    )
+-                    continue
+-                _send_json_line(
+-                    process.stdin,
+-                    {"type": "animation_result", "animation": animation_payload},
+-                )
+-                continue
+-            if msg_type == "action":
+-                try:
+-                    # the message carries more than the action list: stale_after
+-                    # tells the solver a previous action in this snippet changed
+-                    # nothing, which it weighs after its own guards
+-                    action_result_payload = action_handler(
+-                        list(message.get("actions") or []),
+-                        stale_after=message.get("stale_after"),
+-                        prediction=message.get("prediction"),
+-                    )
+-                except Exception:  # noqa: BLE001
+-                    _send_json_line(
+-                        process.stdin,
+-                        {
+-                            "type": "action_error",
+-                            "error": "action failed in sandbox host.",
+-                        },
+-                    )
+-                    continue
+-                raw_action_result = action_result_payload.get("action_result") or {}
+-                if isinstance(raw_action_result, dict):
+-                    host_action_results.append(dict(raw_action_result))
+-                _send_json_line(
+-                    process.stdin,
+-                    {
+-                        "type": "action_result",
+-                        "action_result": raw_action_result,
+-                        "state": action_result_payload.get("state") or {},
+-                    },
+-                )
+-                continue
+-
+-            if msg_type in {"final", "error"}:
+-                _wait_for_process_exit(process)
+-                verified = verify_child_receipts(message.get("action_results"), host_action_results)
+-                if not verified["valid"]:
+-                    return _arc_confinement_result({"stdout": "", "result": None, "error": verified["error"],
+-                            "action_results": verified["action_results"], "keepable_functions": [],
+-                            "receipt_integrity_error": True})
+-                return _arc_confinement_result({
+-                    "stdout": str(message.get("stdout", "") or ""),
+-                    "result": message.get("result"),
+-                    "error": str(message.get("error", "") or ""),
+-                    "action_results": verified["action_results"],
+-                    "keepable_functions": list(message.get("keepable_functions") or []),
+-                    **({"retention_rejected": message.get("retention_rejected", [])}
+-                       if kept_functions is not None else {}),
+-                })
+-
+-            _wait_for_process_exit(process)
+-            return _arc_confinement_result({
+-                "error": "Sandbox process returned an unknown message type.",
+-                "stdout": "",
+-                "action_results": list(host_action_results),
+-            })
++    except BoundsFailure as exc:
++        resource_failure = exc.record()
++        return _arc_confinement_result({"error": "Sandbox resource bound failed: " + exc.stage,
++            "stdout": "", "action_results": list(host_action_results)})
++    except Exception:
++        resource_failure = {"stage": "unexpected_host_failure"}
++        return _arc_confinement_result({"error": "Sandbox host failed closed.",
++            "stdout": "", "action_results": list(host_action_results)})
++    finally:
++        cleanup = (channel.close_and_reap() if channel is not None else
++                   close_process(process) if process is not None else
++                   {"reaped": True, "pipes_closed": True, "returncode": None})
++        for result in pending_results:
++            bounds = result["confinement"]["resource_bounds"]
++            bounds.update(cleanup=cleanup, elapsed_seconds=time.monotonic() - started,
++                completion_within_io_bounds=resource_failure is None)
++            if not cleanup["reaped"] or not cleanup["pipes_closed"]:
++                bounds.update(failure={"stage": "cleanup_failed"}, completion_within_io_bounds=False)
++                result["error"] = "Sandbox cleanup failed closed."
++            log.info("ARC_PAPER_CHILD_CONFINEMENT %s", json.dumps(result["confinement"], sort_keys=True, allow_nan=False))
++

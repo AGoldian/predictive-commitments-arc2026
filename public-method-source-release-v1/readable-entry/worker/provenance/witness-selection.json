@@ -1,0 +1,33 @@
+{
+  "b0": {
+    "base": "external/b0-worker-candidate-v1/package-candidate-4",
+    "base_closure_sha256": "3fea5e6769fd9d7e672e77c9285967d929c49f02834d2b8a8cb6186c16b0d8ce",
+    "files_sha256": {
+      "runtime-manifest.json": "e9adaba2e1af513658e51e748d71a868b5c115c010636feb8f8bd2f81aa97463",
+      "runtime-profiles/B0.json": "a04957dcdeff7dcb6b1e28cd8e0725c1106769aec04d99ff681160f86ae08cb3",
+      "runtime/final-source/ARC3-Inference/inference/agent/python_tool_sandbox.py": "e47d67971d08f6716fc5cf84b4e99d42423211aa3e2b7ce9e676f4030214c18c",
+      "runtime/final-source/ARC3-Inference/inference/agent/tool_agent.py": "90f9172c1a5f960fc9d5ce46c308ceda6261e3e1f983cdf4fb5e9e4a55483900",
+      "runtime/host-package/arc_paper/b0_runtime_loader_v1.py": "6114f62fcf9c2d3199a0502e05248d7758d4da0431dbd114685a82b0e79d1093",
+      "runtime/host-package/arc_paper/inference_child_witness_v1.py": "cc49e52e7791290ceb2a01d6a2a507f2823700de1ed27fecb72ab01c6e2d9df2"
+    },
+    "overlay": "external/inference-child-witness-candidate-v1/overlay-candidate-6/b0",
+    "overlay_manifest_sha256": "e83bc5ff4a28fa35e73c50faf39c92f31acb6774dd7ea7c1222c41b06cd441d6"
+  },
+  "learned": {
+    "base": "artifacts/reviews/learned-runtime-assembly-v1-source/package-candidate-2",
+    "base_closure_sha256": "c945d74d300a56ec517200de2652aa6e880b9682b9b223bcf8c79cd51f240d59",
+    "files_sha256": {
+      "runtime-manifest.json": "76a3a7bb9f61e993f4b2ff0baac8c1d0fe5871882702216e9eacd94be23785e8",
+      "runtime-profiles/A1.json": "496be75af337e5745498ce6302a971f9f5c24a22da32da6b74665485cdfb65cb",
+      "runtime-profiles/B1.json": "8364432c7639656b18c2fda1c9a7a00c4426b3d98460e2892b205cb6a78b892d",
+      "runtime-profiles/P.json": "f7c1ce8444f1f8afe201066f1db159b014b29077d21ca06e88998f6f5713d566",
+      "runtime/final-source/ARC3-Inference/inference/agent/python_tool_sandbox.py": "21bdada07e805f03822fb53bf5c1c4259aa534d85ca5f8f46e8c642ed47a2d19",
+      "runtime/final-source/ARC3-Inference/inference/agent/tool_agent.py": "f8a9b7f54f91c39b9d234ab20dc0f1232fb085a7296aad349c0351628345cd5c",
+      "runtime/host-package/arc_paper/inference_child_witness_v1.py": "cc49e52e7791290ceb2a01d6a2a507f2823700de1ed27fecb72ab01c6e2d9df2",
+      "runtime/host-package/arc_paper/learned_host_model_binding_v1.py": "345ac65c0386424bfec915ea4a6121033e0997a3897255a94adba747201ecbe9",
+      "runtime/host-package/arc_paper/reset_prefix_arm_loader_v1.py": "78628d0466ff2099d518e412a7d7a39f6244a66362c392d76ebad1af99f7f924"
+    },
+    "overlay": "external/inference-child-witness-candidate-v1/overlay-candidate-6/learned",
+    "overlay_manifest_sha256": "c142e59aff314eb4c4d26356148e16c32dbeb206d05aff233ad13c5e7b5e1f78"
+  }
+}

@@ -1,0 +1,58 @@
+--- a/ARC3-Inference/inference/agent/tool_agent.py
++++ b/ARC3-Inference/inference/agent/tool_agent.py
+@@ -1,5 +1,6 @@
+ """Direct OpenAI-compatible tool-calling analyzer for ARC puzzle runs."""
+ from __future__ import annotations
++from arc_paper.franzen_fleet_admission import common_agent_mode
+ from arc_paper.franzen_host_accounting_v2 import (host_accounted_chat, host_accounted_tool, before_physical_send, account_response)
+ 
+ import base64
+@@ -6509,6 +6510,9 @@
+         describes the trim that produced THIS request, and leaving it set would
+         keep the game demoted long after the prefix had been rebuilt.
+         """
++        if common_agent_mode(self):
++            self._context_was_trimmed = False
++            return
+         if not self._context_was_trimmed:
+             return
+         self._context_was_trimmed = False
+--- a/ARC3-Inference/inference/framework/solver.py
++++ b/ARC3-Inference/inference/framework/solver.py
+@@ -1,6 +1,7 @@
+ """TAAF solver adapter for the existing tool-using harness."""
+ 
+ from __future__ import annotations
++from arc_paper.franzen_fleet_admission import (common_mode, host_admitted_run_games, host_admitted_play_one)
+ 
+ import asyncio
+ import contextlib
+@@ -614,7 +615,7 @@
+         # A game that has not started yet sits in the top band, so every game
+         # gets going in queue order before any that has already trimmed comes
+         # back for a second turn.
+-        gate = _priority_gate()
++        gate = None if common_mode(self.solver) else _priority_gate()
+         if gate is not None:
+             deadline = (
+                 self.started_at + self.solver.max_runtime_s_per_game
+@@ -1527,8 +1528,10 @@
+             self._worker_pool.shutdown(wait=False)
+             self._worker_pool = None
+ 
++    @host_admitted_run_games
+     async def _run_games(self, games: list[taaf.game.Game]) -> None:
+-        self._stop_event.clear()
++        if not common_mode(self):
++            self._stop_event.clear()
+         semaphore = asyncio.Semaphore(max(1, int(self.concurrency)))
+         pass_indices_by_game_id: dict[str, int] = {}
+         loop = asyncio.get_running_loop()
+@@ -1859,6 +1862,7 @@
+             provider="vllm" if local_server is not None else None,
+         )
+ 
++    @host_admitted_play_one
+     def _play_one(
+         self,
+         game: taaf.game.Game,

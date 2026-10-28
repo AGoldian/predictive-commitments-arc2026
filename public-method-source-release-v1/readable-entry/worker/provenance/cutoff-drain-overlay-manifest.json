@@ -1,0 +1,57 @@
+{
+  "actual_runtime_model_SDK_native_API": false,
+  "base_closure_sha256": "fb66635574cc5ac3ff816ceed83d0580e990a8b9a378242e1cde89f94ec5281a",
+  "inputs": {
+    "runtime/final-source/ARC3-Inference/inference/agent/tool_agent.py": {
+      "bytes": 352160,
+      "sha256": "90f9172c1a5f960fc9d5ce46c308ceda6261e3e1f983cdf4fb5e9e4a55483900"
+    },
+    "runtime/host-package/arc_paper/common_fleet_governor_v2.py": {
+      "bytes": 17832,
+      "sha256": "735e4b8b579597ff0bc88e98d546f37827bfed6281b108f9e2a844c808182106"
+    },
+    "runtime/host-package/arc_paper/franzen_host_accounting.py": {
+      "bytes": 30059,
+      "sha256": "468fdbbe63d618edf793706fcab5f1fe7c2bf94601ba4c494c908a92971e9df8"
+    }
+  },
+  "outputs": {
+    "common_fleet_governor_v2.patch": {
+      "bytes": 1866,
+      "sha256": "8d6df5741085f9fa26d61d2e514954fcf5d4b5bfb320ac299320463637643ef7"
+    },
+    "common_fleet_governor_v2.py": {
+      "bytes": 18585,
+      "sha256": "3cb63ac4dae7c69ec62a38d3eb7de84710d292774d1dded3e44799213c3fd26d"
+    },
+    "franzen_host_accounting.patch": {
+      "bytes": 2470,
+      "sha256": "ef1c5a244693b406d2a6a09a0db116c8557aaf890bc4b4c31f49edc40bf3d6da"
+    },
+    "franzen_host_accounting.py": {
+      "bytes": 31793,
+      "sha256": "982d6baed295a82af2437c09af1fc281f01977fec088f88cde46b9342cf3da6a"
+    },
+    "tool_agent.patch": {
+      "bytes": 660,
+      "sha256": "6a8fe0db7d3da260280fc2c3e1401082109e25678dccfbf56a21329adbbf897f"
+    }
+  },
+  "prospective_source_only": true,
+  "public_tool": {
+    "path": "ARC3-Inference/inference/agent/tool_agent.py",
+    "predecessor_sha256": "90f9172c1a5f960fc9d5ce46c308ceda6261e3e1f983cdf4fb5e9e4a55483900",
+    "successor_sha256": "6dc787779d31f9a61738d3e9eac3a3f1aaad6f92b0a5358769657601615ea86d"
+  },
+  "schema_version": 1,
+  "unchanged": {
+    "HTTP_read_maximum_seconds": 120,
+    "admission_action_seconds": 1800,
+    "cleanup_seconds": 30,
+    "drain_seconds": 150,
+    "governor_event_schema": true,
+    "unknown_usage_still_invalid": true,
+    "whole_seconds": 3900,
+    "work_seconds": 3870
+  }
+}

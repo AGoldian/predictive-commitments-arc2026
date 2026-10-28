@@ -1,0 +1,23 @@
+{
+  "files_sha256": {
+    "archive-descriptor.json": "558511d8209a6d164dccc73f86ebbcc1973ccd432be12a2cac582235cfed72c7",
+    "delivery-manifest.json": "d97f90a22f8ebd4cafeac3f5d0f2d354df394a4272dcea14aaf37caa08763aa7",
+    "kernel-metadata.json": "a166470bfaf217dad1c59344f639322ae99b7d2910b8aaa52811d3c2a902a8af",
+    "official-public-entry.ipynb": "e5d245743649e5021c0f9796bde7c9eaf94ae2532348654184f8a219c917ee30",
+    "parent-plan.json": "3dcf35e0bba0dbb8f82812fc31916692c71c3f3636f49562ff8f9a2d27161fc7",
+    "payload.tar.xz": "872976d2d9d373194ce361f1a3d867afd2879307653ee43b41fb7f7a1243128e",
+    "release-notices/ASSEMBLY.md": "f45c174e3a8c86818272af439ebb3c6fe6ac9b8321a54504b38c0fac4d62ca74",
+    "release-notices/CURRENT-ASSEMBLY.md": "8e47d66172ba71844d309e8806bae643200dde602e54d18b8fda8b64b413a149",
+    "release-notices/DEPENDENCY-REFERENCES.json": "4600699049515b1edec6d5eff8c2729cb1f420d917e60a7e8aa4daa41218f2a3",
+    "release-notices/NOTICE.txt": "00bc8e1ec37904e4c489b479e733bd600e0d28cb59218563a98b33bf3447638e",
+    "release-notices/duck/ARC3-Inference-pyproject.toml": "e1615814eddbc6a731b630380144081d502f6bd9051b5a7aa09b93bae2ae4e77",
+    "release-notices/duck/DUCK-COMPONENT-NOTICE.txt": "e2afb2bb322ab83716aa7ceac52e71a599eeeaf5f3cb7313907bb590a5a04df7",
+    "release-notices/licenses/LICENSE-FRANZEN-APACHE-2.0.txt": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "release-notices/licenses/LICENSE-MIT-0.txt": "a8693da874d02f4a628a0ca919e4a576b88513a04542af92398f87dfdebd0242",
+    "release-notices/licenses/MIT-standard-text-reference.txt": "b05785f9f18e6716bab63424b11454513b9943a222595b70411009202fc592b5",
+    "release-notices/licenses/QWEN-COMMUNITY-1.0-reference.txt": "a0dc422560841fd68e06d974907f8b4c709bca44a67daad2b528437bdf676c08",
+    "release-notices/manifest.json": "c0d5a29d445d8eb70c2e06cec505fa52db26867c970a3f0e49870fc48b0bdc3d",
+    "run-config.json": "dda8f3518a6a5c340c488d7d4fda823022e2f927f19fd2abfb32f3cfa0dc99fc"
+  },
+  "schema_version": 1
+}

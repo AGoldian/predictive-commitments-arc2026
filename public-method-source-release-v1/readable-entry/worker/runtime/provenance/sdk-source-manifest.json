@@ -1,0 +1,42 @@
+{
+  "competition_install_hashes_match": true,
+  "exact_revision": "PyPI release 0.9.8; wheel SHA256 is exact artifact pin, no repository commit inferred",
+  "extracted_files": {
+    "arc_agi/base.py": {
+      "bytes": 42955,
+      "sha256": "42973618f223096d6269422352980e85bdf6b2b51dcb42e7390f96164b0f994f"
+    },
+    "arc_agi/local_wrapper.py": {
+      "bytes": 8753,
+      "sha256": "77e0a39f583e148bfc785f933d111ed4d8653d134def55b204dda3064e93bbd2"
+    },
+    "arc_agi/remote_wrapper.py": {
+      "bytes": 9434,
+      "sha256": "ebe8fd0a5ab2d5f65600f072fb22cf1de21c347a55b8c5ef569d6d7305c520e5"
+    },
+    "arc_agi/scorecard.py": {
+      "bytes": 37210,
+      "sha256": "1cc830e48008bec60b8a98ae14d3e9312e8408f102a9878bad42744aa9e489b7"
+    },
+    "arc_agi/wrapper.py": {
+      "bytes": 8467,
+      "sha256": "deaf07a628fb2e0f743366de4967110d4c06bafa21c5b61561d9ca02f31055ee"
+    }
+  },
+  "game_environment_tests_examples_traces_read": false,
+  "inventory_report_sha256": "7996239d754be402b307617d49d9892124b393ce64bf7adcd4574fa72acbeb86",
+  "inventory_script_sha256": "1cc33c63df95d0d19d3e087548c414ad972fd50a066d879ca8bd8a1bd59d219b",
+  "license": "MIT (PyPI/package metadata; upstream copyright retained)",
+  "model_or_dataset_versions": "none used",
+  "only_five_authorized_infrastructure_members_read": true,
+  "package": "arc-agi",
+  "package_imported": false,
+  "pypi_json_sha256": "c3232532111162b76a32d2f411ae3c6aca3fb8974584dfd2f4c9f1b808e746ef",
+  "pypi_release_url": "https://pypi.org/project/arc-agi/0.9.8/",
+  "schema_version": 1,
+  "source_url": "https://files.pythonhosted.org/packages/43/56/7abc80afbeb0dc151cc9222641408c418d512f1e80cd81c56d0ce86c4603/arc_agi-0.9.8-py3-none-any.whl",
+  "version": "0.9.8",
+  "wheel_bytes": 40151,
+  "wheel_filename": "arc_agi-0.9.8-py3-none-any.whl",
+  "wheel_sha256": "aeca1663db342e91cb8fc96cf0c83e2fa39db1640bc1298e80a8d522e3af70f3"
+}

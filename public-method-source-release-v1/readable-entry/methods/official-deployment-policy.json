@@ -1,0 +1,31 @@
+{
+  "A1_selection_explicit_no_runtime_fallback": true,
+  "actual_final_entry_budget_requires_root_selection": false,
+  "arms": [
+    "P",
+    "A1"
+  ],
+  "capacity_rule": "min(2,actual_supplied_fleet_size)",
+  "competition_roster": "all_actual_SDK_gateway_games_in_order",
+  "fresh_free_GPU_quota_required_seconds": 32400,
+  "genuine_fit_and_operator_review_custody_required": true,
+  "launch_authorized": false,
+  "matched_development_study": false,
+  "namespace": "official-learned-entry-deployment-policy-v1",
+  "platform_max_run_time_seconds": 32400,
+  "reader_closure_sha256": "b96fefa05b2eba74d761bd79aeb150a7215b9e165570db48cce2c7332b31b3c3",
+  "saved_roster": "explicit_public_smoke_only",
+  "schema_version": 1,
+  "single_game_cross_game_allocation_claimed": false,
+  "status": "root_selected_prospective_official_budget_no_launch_authorization",
+  "timing_default": {
+    "drain_seconds": 150,
+    "gameplay_seconds": 27300,
+    "outer_cleanup_seconds": 30,
+    "startup_seconds": 3600,
+    "teardown_seconds": 120,
+    "whole_seconds": 31800,
+    "worker_readiness_seconds": 60,
+    "worker_work_seconds": 31770
+  }
+}

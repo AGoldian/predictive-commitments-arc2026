@@ -1,0 +1,11 @@
+--- a/ARC3-Inference/inference/agent/tool_agent.py
++++ b/ARC3-Inference/inference/agent/tool_agent.py
+@@ -5383,7 +5383,7 @@
+                 # for the rest of the game
+                 timeout=(
+                     _CONNECT_TIMEOUT_SECONDS,
+-                    request_timeout_seconds if request_timeout_seconds is not None else self._timeout,
++                    _arc_paper_call['host_transport_read_timeout_seconds'],
+                 ),
+                 stream=bool(request_payload.get("stream")),
+             ), streamed=bool(request_payload.get('stream')),

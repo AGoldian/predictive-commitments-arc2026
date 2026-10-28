@@ -1,0 +1,14 @@
+{
+  "files_sha256": {
+    "LICENSE-MIT-0.txt": "a8693da874d02f4a628a0ca919e4a576b88513a04542af92398f87dfdebd0242",
+    "README.md": "59e45be79557729bbccce013926e18f38395f88d2552089b020cefaf5e083305",
+    "REVIEW-SUMMARY.md": "d9197907bfae399a6a64211981c7ce089132ed69b4530bcab00a53aea55dc99d",
+    "association.json": "cbfda2a62341ff1b9e0038b41a8dbf8f9edfa76140bdbded88c7c0986644fe89",
+    "model-config.json": "e061d1de77c70806c0aaa3ecb832c27facbf9e260ebbe33f3a41c09720ae4dd4",
+    "paired-models.json": "cccc2ffbaaf223ce1a284af1afd2405f58fca4cafeee4b12692678bd33f4b6ed"
+  },
+  "namespace": "public-fitted-allocation-release-v1",
+  "private_raw_data_included": false,
+  "published": false,
+  "schema_version": 1
+}

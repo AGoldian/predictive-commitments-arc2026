@@ -1,0 +1,167 @@
+--- a/ARC3-Inference/inference/agent/python_tool_sandbox.py
++++ b/ARC3-Inference/inference/agent/python_tool_sandbox.py
+@@ -1,3 +1,4 @@
++# Modified 2026-10-28 by ARC Prize research workspace: mandatory source-owned child custody hooks; upstream terms retained.
+ """Lightweight isolated runner for analyzer Python tool calls."""
+ from __future__ import annotations
+ 
+@@ -1292,6 +1293,9 @@
+         pass
+ 
+ 
++from arc_paper.inference_child_witness_v1 import verify_child_observer, ChildReceiptError
++from arc_paper.franzen_host_accounting_v2 import HostStopped
++
+ def run_sandboxed_python(
+     *,
+     code: str,
+@@ -1302,7 +1306,9 @@
+     kept_functions: list[str] | None = None,
+     retain_imports: bool = False,
+     repair_hints: bool = False,
++    receipt_observer=None,
+ ) -> dict[str, Any]:
++    receipt_observer = verify_child_observer(receipt_observer)
+     process = channel = None
+     pending_results, host_action_results = [], []
+     resource_failure = None
+@@ -1333,6 +1339,9 @@
+             pending_results.append(result)
+             return result
+ 
++        receipt_observer.observe("sandbox_entered", timeout_seconds=timeout_seconds,
++            profile_sha256=hashlib.sha256(json.dumps(DEVELOPMENT_PROFILE,sort_keys=True,separators=(",", ":")).encode()).hexdigest(),
++            bootstrap_sha256=_ARC_CHILD_BOOTSTRAP_SHA256)
+         validate_inputs(code, kept_functions, timeout_seconds, DEVELOPMENT_PROFILE)
+         if hashlib.sha256(_SANDBOX_BOOTSTRAP.encode("utf-8")).hexdigest() != _ARC_CHILD_BOOTSTRAP_SHA256:
+             host_confinement_record["status"] = "child_bootstrap_source_mismatch"
+@@ -1341,6 +1350,7 @@
+ 
+         with tempfile.TemporaryDirectory(prefix="rgb_python_tool_") as sandbox_dir:
+             initial_payload_bytes = encode_json({'code': code, 'kept_functions': list(kept_functions or []), 'persistence_enabled': kept_functions is not None, 'retain_imports': retain_imports, 'repair_hints': repair_hints, 'animation_enabled': animation_handler is not None, 'timeout_seconds': timeout_seconds, 'sandbox_cwd': sandbox_dir, 'state': initial_state, 'color_chars': ARC_COLOR_CHARS}, DEVELOPMENT_PROFILE, DEVELOPMENT_PROFILE["max_input_bytes"])
++            receipt_observer.observe("spawn_intent")
+             try:
+                 process = subprocess.Popen(
+                     [sys.executable, "-I", "-S", "-c", _SANDBOX_BOOTSTRAP],
+@@ -1353,12 +1363,14 @@
+                     start_new_session=True,
+                     close_fds=True,
+                 )
+-            except OSError:
++            except OSError as error:
++                receipt_observer.observe("spawn_failed", error=error)
+                 return _arc_confinement_result({
+                     "error": "Sandbox process could not start.",
+                     "stdout": "",
+                     "action_results": [],
+                 })
++            receipt_observer.observe("spawn_returned", process=process)
+             assert process.stdin is not None
+             assert process.stdout is not None
+             assert process.stderr is not None
+@@ -1392,6 +1404,7 @@
+                     ready = (_arc_confinement_ready_record(message, timeout_seconds)
+                              if msg_type == "confinement_ready" else None)
+                     if ready is None:
++                        receipt_observer.observe("setup_observed", gate_passed=False,status="mandatory_child_setup_failed",setup=None)
+                         host_confinement_record["status"] = "mandatory_child_setup_failed"
+                         failure = message.get("failure") if msg_type == "confinement_failed" else None
+                         if isinstance(failure, dict):
+@@ -1402,6 +1415,7 @@
+                                                         "stdout": "", "action_results": []})
+                     host_confinement_record.update(status="trusted_bootstrap_ready_report_received",
+                                                     gate_passed=True, trusted_setup_report=ready)
++                    receipt_observer.observe("setup_observed", gate_passed=True,status=host_confinement_record["status"],setup=ready)
+                     continue
+                 if msg_type in {"confinement_ready", "confinement_failed"}:
+                     host_confinement_record["status"] = "unexpected_duplicate_setup_message"
+@@ -1475,6 +1489,8 @@
+                     "stdout": "",
+                     "action_results": list(host_action_results),
+                 })
++    except (HostStopped, ChildReceiptError):
++        raise
+     except BoundsFailure as exc:
+         resource_failure = exc.record()
+         return _arc_confinement_result({"error": "Sandbox resource bound failed: " + exc.stage,
+@@ -1484,15 +1500,37 @@
+         return _arc_confinement_result({"error": "Sandbox host failed closed.",
+             "stdout": "", "action_results": list(host_action_results)})
+     finally:
+-        cleanup = (channel.close_and_reap() if channel is not None else
+-                   close_process(process) if process is not None else
+-                   {"reaped": True, "pipes_closed": True, "returncode": None})
+-        for result in pending_results:
+-            bounds = result["confinement"]["resource_bounds"]
+-            bounds.update(cleanup=cleanup, elapsed_seconds=time.monotonic() - started,
+-                completion_within_io_bounds=resource_failure is None)
+-            if not cleanup["reaped"] or not cleanup["pipes_closed"]:
+-                bounds.update(failure={"stage": "cleanup_failed"}, completion_within_io_bounds=False)
+-                result["error"] = "Sandbox cleanup failed closed."
+-            log.info("ARC_PAPER_CHILD_CONFINEMENT %s", json.dumps(result["confinement"], sort_keys=True, allow_nan=False))
+-
++        original_error = sys.exc_info()[1]
++        cleanup = None
++        cleanup_error = None
++        channel_observed = ({key: getattr(channel,key) for key in
++            ("stdout_bytes","stderr_bytes","messages","stdout_eof","stderr_eof")} if channel is not None else None)
++        try:
++            cleanup = (channel.close_and_reap() if channel is not None else
++                       close_process(process) if process is not None else
++                       {"reaped": True, "pipes_closed": True, "returncode": None})
++            for result in pending_results:
++                bounds = result["confinement"]["resource_bounds"]
++                bounds.update(cleanup=cleanup, elapsed_seconds=time.monotonic() - started,
++                    completion_within_io_bounds=resource_failure is None)
++                if not cleanup["reaped"] or not cleanup["pipes_closed"]:
++                    bounds.update(failure={"stage": "cleanup_failed"}, completion_within_io_bounds=False)
++                    result["error"] = "Sandbox cleanup failed closed."
++                log.info("ARC_PAPER_CHILD_CONFINEMENT %s", json.dumps(result["confinement"], sort_keys=True, allow_nan=False))
++
++        except BaseException as caught:
++            cleanup_error = caught
++            if original_error is None:
++                raise
++        finally:
++            terminal_error = original_error or cleanup_error
++            state = locals().get("host_confinement_record", {})
++            try:
++                receipt_observer.observe("sandbox_finished",cleanup=cleanup,channel=channel_observed,
++                    error_type=type(terminal_error).__name__ if terminal_error is not None else None,
++                    cleanup_error_type=type(cleanup_error).__name__ if cleanup_error is not None else None,
++                    gate_passed=state.get("gate_passed",False),status=state.get("status","unavailable"),
++                    resource_failure=resource_failure,elapsed_seconds=time.monotonic()-started)
++            except BaseException:
++                if terminal_error is None:
++                    raise
+--- a/ARC3-Inference/inference/agent/tool_agent.py
++++ b/ARC3-Inference/inference/agent/tool_agent.py
+@@ -1,3 +1,4 @@
++# Modified 2026-10-28 by ARC Prize research workspace: mandatory source-owned child custody hooks; upstream terms retained.
+ """Direct OpenAI-compatible tool-calling analyzer for ARC puzzle runs."""
+ from __future__ import annotations
+ from arc_paper.franzen_fleet_admission_reset_prefix_v1 import common_agent_mode
+@@ -69,6 +70,7 @@
+ )
+ 
+ from inference.agent.python_tool_sandbox import run_sandboxed_python
++from arc_paper.inference_child_witness_v1 import child_recorded_python, current_child_observer
+ from inference.agent.runtime_state import Frame, HistoryEntry, RUNTIME_STATE_FILENAME, load_runtime_state
+ from inference.utils.openai_compat import (
+     assemble_streamed_chat_response,
+@@ -5841,6 +5843,7 @@
+             compact["error"] = payload.get("error")
+         return compact
+ 
++    @child_recorded_python
+     def _run_python_tool(self, state_path: Path, arguments: dict[str, Any]) -> _ToolDispatchResult:
+         self._ensure_session(state_path)
+         code = str(arguments.get("code", "")).rstrip()
+@@ -6023,6 +6026,7 @@
+         # loop failing to converge
+         self._repeat_state_seen.clear()
+         sandbox_result = run_sandboxed_python(
++            receipt_observer=current_child_observer(self),
+             code=code,
+             timeout_seconds=self._python_timeout,
+             initial_state=_serialized_runtime_state(),

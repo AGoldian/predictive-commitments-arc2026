@@ -1,0 +1,39 @@
+{
+  "arm": "P",
+  "control_sha256": "03e3435265500fec99a7817895d40a0733aa912224f8b5525e1bcd290b84c794",
+  "fit_custody": {
+    "authority_scope": "source-pinned published pair and retained trusted-operator association; not self-authenticating review",
+    "full_private_review_included": false,
+    "kind": "public_fitted_parameter_release",
+    "original_independent_review_sha256": "c5174556685d8fef8baf5efa6d574f3970b3472301ba17f93082ac481e0a4b8f",
+    "original_inspection_included": false,
+    "original_reader_closure_sha256": "b96fefa05b2eba74d761bd79aeb150a7215b9e165570db48cce2c7332b31b3c3",
+    "paired_model_sha256": "cccc2ffbaaf223ce1a284af1afd2405f58fca4cafeee4b12692678bd33f4b6ed",
+    "public_association_sha256": "cbfda2a62341ff1b9e0038b41a8dbf8f9edfa76140bdbded88c7c0986644fe89",
+    "raw_training_rows_included": false,
+    "refitted": false
+  },
+  "launch_authorized": false,
+  "methods_source_sha256": {
+    "official-deployment-policy.json": "e5a3ec9c60f93b9f8d39737ec638f1be03f7d84551b4fb12037744a342aba5e5"
+  },
+  "namespace": "official-public-parent-plan-v1",
+  "observer_sha256": "88e26d132671db2891b79b39dfcc11c38c647aa4b2ff2a46d677a412ebafa328",
+  "owned_fixture_only": false,
+  "package_manifest_sha256": "8f22c35ecec4f08583f8094cfab9f65f03c652970990e0ea952abc64c5c0e126",
+  "parent_runtime_sha256": "3c1e327cac0df7635e8c65e5bb05469aeecaa1551b14b3de5b7566d6e13c753b",
+  "private_root": "/kaggle/working/capacity-supervisor",
+  "protocol_sha256": "e5a3ec9c60f93b9f8d39737ec638f1be03f7d84551b4fb12037744a342aba5e5",
+  "run_config_sha256": "dda8f3518a6a5c340c488d7d4fda823022e2f927f19fd2abfb32f3cfa0dc99fc",
+  "runtime_manifest_sha256": "98a4374fb3c1f3db34f9a29369bd54eb1995a7d6733f52bffe99a3b235d87fc2",
+  "runtime_profile_sha256": {
+    "A1": "25ee8b7a0687957be88f14845ee7ac01a33da80852d33c438c9663ba9a9d37f7",
+    "B1": "97881adb72640ba536f170beb22c23cd3a140df72ad2e27f74e6c734ac04127c",
+    "P": "8606526f79bd4dc2e58ecdbe27b18e33c4cb65bebab62354d759f3e15ce5e089"
+  },
+  "schema_version": 1,
+  "supervisor_sha256": "3126cdaec525178ca5f9bb44f30bbba1e168107f3253a6c6ee580ff6da787a76",
+  "trusted_root": "/kaggle/arc26-public-pair-v1-trusted",
+  "worker_closure_sha256": "69d388234e0edb887d51b3f4eb41a3af6055a3a10aeb3905e644213387824a0b",
+  "worker_sha256": "cc0d58a5a09fe1215565ccfea1598f591a4ceb73eba5dddcbc2a56b03878d96c"
+}

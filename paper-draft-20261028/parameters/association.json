@@ -1,0 +1,26 @@
+{
+  "authority_scope": "Public content identity and retained trusted-operator review association; not a self-authenticating eligibility assertion or replacement for the full scientific bridge bundle",
+  "canonical_training_rows_sha256": "1d475d7e6de0a863f64268e7a1baab42cec62390a32d265333fe67ecfce04053",
+  "license": "MIT-0",
+  "model": {
+    "bytes": 6096,
+    "path": "paired-models.json",
+    "sha256": "cccc2ffbaaf223ce1a284af1afd2405f58fca4cafeee4b12692678bd33f4b6ed"
+  },
+  "namespace": "public-fitted-allocation-association-v1",
+  "original_eligibility_inspection_sha256": "a57db9790fa4579b422d33f2af2e1c33c1096caff2cf1563adf3f4082a4e8a20",
+  "original_independent_review_sha256": "c5174556685d8fef8baf5efa6d574f3970b3472301ba17f93082ac481e0a4b8f",
+  "original_inspection_included": false,
+  "original_reader_closure_sha256": "b96fefa05b2eba74d761bd79aeb150a7215b9e165570db48cce2c7332b31b3c3",
+  "original_runtime_bundle_unchanged": true,
+  "output_identity_sha256": {
+    "constant_controls": "7fc50d819b24d393dab3f0f325ea43f0a25adccd8d052c7457396896c71080f3",
+    "ordered_development_rows": "0a693b3ee5ffe62a62195eae446ec29f0dbc4f7e95f1bdc684d9a784a59db8de",
+    "original_dispositions": "2db1635c3b8e5b4629d9796142d540ce48351e1ac91dabcbd4b05d8cf4729fed",
+    "paired_models": "cccc2ffbaaf223ce1a284af1afd2405f58fca4cafeee4b12692678bd33f4b6ed",
+    "support_diagnostics": "d530679c195d9ac7ccff4a2ae3fc255f95c77c15c79c63bc1cc47a6e2163eb7f"
+  },
+  "raw_training_rows_included": false,
+  "refitted": false,
+  "schema_version": 1
+}

@@ -1,0 +1,40 @@
+{
+  "arms": [
+    "A1",
+    "P"
+  ],
+  "canonical_runtime_path_rule": "Resolve model_path relative to this document to a canonical absolute regular path before passing the unchanged exact model SHA to load_model_pair",
+  "expected_model_sha256": "cccc2ffbaaf223ce1a284af1afd2405f58fca4cafeee4b12692678bd33f4b6ed",
+  "final_entry_binding": "Pending prospective cutoff/runtime repair and new exact source/package/notebook pins; no launch or official result established",
+  "model_dimensions": {
+    "A1": {
+      "coefficients": 62,
+      "features": 31,
+      "training_rows": 16
+    },
+    "P": {
+      "coefficients": 65,
+      "features": 34,
+      "training_rows": 16
+    }
+  },
+  "model_path": "paired-models.json",
+  "namespace": "public-fitted-allocation-config-v1",
+  "preprocessing": {
+    "P_residuals_fully_unavailable": "Use retained A1 model exactly as the existing allocation.adjusted_priority policy",
+    "feature_order": "Each model.names array, unchanged",
+    "missing_values": "Zero after standardization (development-mean imputation); append float(value is None) for COMMON_FEATURES in model.names order only",
+    "priority": "baseline_priority * (0.5 + probability)",
+    "probability": "Stable sigmoid(intercept + dot(coefficients, vector))",
+    "standardization": "(value-mean)/scale using retained development means and scales"
+  },
+  "runtime_fit_authority": "The existing scientific bridge still requires its original externally reviewed bundle; this public association is not that runtime bundle",
+  "schema_version": 1,
+  "source_contracts_sha256": {
+    "official-deployment-policy.json": "467912a5ac3993a8ced0b01c9e6f49201e8d42272e870ba52644368bd65b7466",
+    "runtime/host-package/arc_paper/allocation.py": "661f17f8b5636f63af8dcf4fc3bbbfc9aaf37bd4241c2f649d7640d8dc407bd7",
+    "runtime/host-package/arc_paper/franzen_fleet_admission.py": "9091e8ada88dbe626793ed0a2402ddfa83f773b9bf63d8ade8bc625e56ccd4f4",
+    "runtime/host-package/arc_paper/learned_host_model_binding_v1.py": "279527cb1329d349740455720e27246838c30c624e0f0da82183a7c93cfd174a",
+    "runtime/host-package/arc_paper/paired_model_loader.py": "c491a1046ad727c3c705d065ad5ebb54211b17ef2147b9764bd81acc4e7aee54"
+  }
+}

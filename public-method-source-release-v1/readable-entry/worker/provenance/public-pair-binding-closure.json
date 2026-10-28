@@ -1,0 +1,19 @@
+{
+  "files_sha256": {
+    "LICENSE": "a8693da874d02f4a628a0ca919e4a576b88513a04542af92398f87dfdebd0242",
+    "README.md": "131e90aead1801716ca42b1885c301f8ae9046bac24f9cba0e947a521810343c",
+    "callsite-recipe.json": "e1da46f1fa8dfdc5be2b71b9be3cffb310881c824f28047cea2ddbf97d6813c1",
+    "data-only-load-once/facts.json": "02fcb113a559b72be40ba3e4d0d6269dbda68cfb7b0ae7862dc1ab7dad333fed",
+    "data-only-load-once/invocation-source.py": "41a78465e5c3eca3e4ea60469ca5a7ab7324277ab6da1b78941d0c11819ebcb7",
+    "data-only-load-once/stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "data-only-load-once/stdout": "e46851297da7f7661d52e1966b6f00a656e785112d7ac9ff44bc51a98cbbd678",
+    "inputs/association.json": "cbfda2a62341ff1b9e0038b41a8dbf8f9edfa76140bdbded88c7c0986644fe89",
+    "inputs/paired-models.json": "cccc2ffbaaf223ce1a284af1afd2405f58fca4cafeee4b12692678bd33f4b6ed",
+    "learned_host_model_binding_v1.py": "cda80c065ab28d41d8c276e20a64136ece4d58234be9597d6728869e48226bb4",
+    "manifest.json": "32aa26e61dd07fc71fa84671835f953b5161020802fb0a01548f5758dff2c1a7",
+    "public-binding.pyfrag": "ec7ae0828a00735cf651fba49d0f2c32f662618a6cf3ebd0ef1e450ba7b3498a",
+    "source-delta.patch": "9057683fc0f6a7f0995926a62a41658565f751151097f09d44cad932418e231e",
+    "source-proof.json": "7e1434b57bdcf177742a640a204090317b90e986dbb269a0bcdbfc156243998f"
+  },
+  "schema_version": 1
+}

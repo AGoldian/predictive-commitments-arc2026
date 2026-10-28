@@ -1,0 +1,24 @@
+--- learned-predecessor-worker-top.py
++++ learned-successor-worker-top.py
+@@ -20,8 +20,8 @@
+ for name, expected in CAPACITY_MEMBER_SHA.items():
+     if hashlib.sha256((CAPACITY_TRUSTED / name).read_bytes()).hexdigest() != expected:
+         raise RuntimeError('trusted capacity payload changed: ' + name)
+-RUNTIME_MANIFEST_SHA = 'f081e3416a5df0753d7d5343c6e06f2e3da402aca3cdbe6f79bcd82e672a973f'
+-RUNTIME_PROFILE_SHA = {'B1': '9b029ba6940de39a3bd4bf21f51e8b1865ea1005e2737f4f17a21d0f7e44c88b', 'A1': 'c6a262f3ab34acce1ad94e9eea135d29fc1ff2bc521d734e2127ad4d13da7e0d', 'P': 'dae5671184215d497af19603fbea72a5e58ae70e7704624c4d341afb21fd1fb9'}
++RUNTIME_MANIFEST_SHA = '818ec75ad657efa00b04ead35394bed384911db7347661691ac4fcb6687f1731'
++RUNTIME_PROFILE_SHA = {'B1': 'a38cb15ba261dc7b696da370176899a50b63e343465dbbf4807b9894e379fed4', 'A1': '704597ece690ce2b52f9e5a0dc093673abe3fb2ca5fc93a57d7d6b5a13db4cf3', 'P': '79fbfb1046a9dfb0e2b5285838fb22940040b0ee2c0725738dc1a2a2d052a2cc'}
+ import importlib.util as _learned_import
+ _control_path = CAPACITY_TRUSTED / 'learned_worker_control.py'
+ _control_spec = _learned_import.spec_from_file_location('_trusted_learned_worker_control', _control_path)
+--- learned-predecessor-cell-4.py
++++ learned-successor-cell-4.py
+@@ -111,7 +111,7 @@
+             yield json.loads(line)
+ 
+ _capacity_apply_runtime()
+-print('ten verified capacity source stages applied')
++print('12 verified capacity source stages applied')
+ 
+ # True only inside a real competition rerun; switches diagnostics + soft deadline.
+ TRUE_SUBMISSION = os.environ.get("KAGGLE_IS_COMPETITION_RERUN", "").strip().lower() in {"1", "true"}

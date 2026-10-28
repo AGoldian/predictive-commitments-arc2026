@@ -1,0 +1,137 @@
+--- a/ARC3-Inference/inference/agent/prompts.py
++++ b/ARC3-Inference/inference/agent/prompts.py
+@@ -344,3 +344,13 @@
+     "leave out is gone.\n"
+     "Length is not a problem here; leaving something out is."
+ )
++
++
++# Matched B1/A1/P instrumentation; B0 keeps the published prompt and batches.
++from arc_paper.prediction_adapter import PREDICTION_PROMPT
++_ARC_PREDICTION_GUIDANCE = (
++    "\n\nPrediction pilot tool rule (takes precedence over earlier batching guidance):\n"
++    "Use action(single_action, prediction=prediction_object). One real action per call.\n"
++    + PREDICTION_PROMPT
++)
++COMPACT_TOOL_SESSION_ADDENDUM += _ARC_PREDICTION_GUIDANCE
+--- a/ARC3-Inference/inference/agent/python_tool_sandbox.py
++++ b/ARC3-Inference/inference/agent/python_tool_sandbox.py
+@@ -2,6 +2,7 @@
+ from __future__ import annotations
+ 
+ import inspect
++from arc_paper.receipt_integrity import verify_child_receipts
+ import json
+ import logging
+ import os
+@@ -486,13 +487,16 @@
+             ),
+         }
+ 
+-        def action(actions):
++        def action(actions, *, prediction=None):
+             if _terminal_state:
+                 raise TerminalStateActionError(_TERMINAL_DETAIL[_terminal_state[0]])
+             normalized_actions = _normalize_actions(actions)
++            if len(normalized_actions) != 1:
++                raise ValueError('Prediction pilot accepts exactly one action per call.')
+             _send({
+                 "type": "action",
+                 "actions": normalized_actions,
++                "prediction": prediction,
+                 # the solver decides precedence: a known death or a known no-op
+                 # is a sharper message than "your state may be stale", and it
+                 # carries a concrete override
+@@ -931,6 +935,7 @@
+                     action_result_payload = action_handler(
+                         list(message.get("actions") or []),
+                         stale_after=message.get("stale_after"),
++                        prediction=message.get("prediction"),
+                     )
+                 except Exception:  # noqa: BLE001
+                     _send_json_line(
+@@ -956,11 +961,16 @@
+ 
+             if msg_type in {"final", "error"}:
+                 _wait_for_process_exit(process)
++                verified = verify_child_receipts(message.get("action_results"), host_action_results)
++                if not verified["valid"]:
++                    return {"stdout": "", "result": None, "error": verified["error"],
++                            "action_results": verified["action_results"], "keepable_functions": [],
++                            "receipt_integrity_error": True}
+                 return {
+                     "stdout": str(message.get("stdout", "") or ""),
+                     "result": message.get("result"),
+                     "error": str(message.get("error", "") or ""),
+-                    "action_results": list(message.get("action_results") or host_action_results),
++                    "action_results": verified["action_results"],
+                     "keepable_functions": list(message.get("keepable_functions") or []),
+                     **({"retention_rejected": message.get("retention_rejected", [])}
+                        if kept_functions is not None else {}),
+--- a/ARC3-Inference/inference/agent/tool_agent.py
++++ b/ARC3-Inference/inference/agent/tool_agent.py
+@@ -5775,12 +5775,14 @@
+             return build_animation_view(record)
+ 
+         def _handle_action(
+-            actions: list[dict[str, Any]], *, stale_after: str | None = None
++            actions: list[dict[str, Any]], *, stale_after: str | None = None, prediction: Any = None
+         ) -> dict[str, Any]:
+             nonlocal terminal_action_result, snippet_executed_actions
+             if self._step_env_callback is None:
+                 raise RuntimeError("action(actions) is not available in this session.")
+             normalized_actions = self._normalize_python_actions(actions)
++            if len(normalized_actions) != 1:
++                raise ValueError("Prediction pilot accepts exactly one action per call.")
+             if terminal_action_result is not None:
+                 reason = _terminal_action_reason(terminal_action_result) or "terminal_state"
+                 compact_payload = {
+@@ -5840,7 +5842,7 @@
+             # places consumed the override slot twice - the pre-check armed it,
+             # the retry cleared it, and the hook then blocked the very action
+             # the model had been invited to repeat.
+-            step_arguments: dict[str, Any] = {"actions": normalized_actions}
++            step_arguments: dict[str, Any] = {"actions": normalized_actions, "prediction": prediction}
+             if stale_after:
+                 # forwarded as an argument so the solver can weigh it AFTER its
+                 # own per-position guards, which name a specific action and
+@@ -5904,6 +5906,8 @@
+             repair_hints=_get_env_bool("ARC3_PERSISTENT_FUNCTIONS_REPAIR_HINTS", False),
+         )
+ 
++        if sandbox_result.get("receipt_integrity_error") and self._step_env_callback is not None:
++            self._step_env_callback({"query": "prediction_integrity_error"})
+         action_results = [
+             item
+             for item in sandbox_result.get("action_results") or []
+--- a/ARC3-Inference/inference/framework/solver.py
++++ b/ARC3-Inference/inference/framework/solver.py
+@@ -21,6 +21,7 @@
+ from typing import Any, Callable
+ 
+ import arcengine
++from arc_paper.franzen_prediction_runtime import prediction_step_env, prediction_game_action
+ import taaf.game
+ from taaf.solver import Solver
+ 
+@@ -992,6 +993,9 @@
+         }
+ 
+     def step_env(self, arguments: dict[str, Any]) -> dict[str, Any]:
++        return prediction_step_env(self, arguments, self._arc_paper_original_step_env)
++
++    def _arc_paper_original_step_env(self, arguments: dict[str, Any]) -> dict[str, Any]:
+         if str(arguments.get("query") or "").strip() == "animation":
+             # Routed through step_env so no analyzer-protocol signature has to
+             # change. Executes nothing and spends no action budget.
+@@ -1248,8 +1252,8 @@
+             generated_tokens = max(0, current_tokens - self.token_baseline)
+             self.token_baseline = current_tokens
+ 
+-        new_state = self.game.execute_action(
+-            action, generated_tokens=generated_tokens, uncached_input_tokens=0
++        new_state = prediction_game_action(
++            self, action, generated_tokens=generated_tokens, automatic=automatic
+         )
+         self.last_engine_action = action.id.name
+         action_display = _format_action_display(action.id.name, dict(action.data))

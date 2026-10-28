@@ -1,0 +1,9 @@
+ARC Prize research source release preparation, 28 October 2026
+
+Original research contributions: Alexander Serov, Independent Researcher; MIT-0.
+Franzen material: Daniel Franzen, pinned da-fr/arc-agi-3-solution revision 10882e332d883af3e61616df8c8a17d03a328a75; Apache-2.0.
+Inherited Duck ARC3-Inference package: publisher Tufalabs, declared author field ARC3 Inference authors, revision 7652836056c59e044f093e3c13ed7438c814169e; original-publisher MIT declaration retained in duck/. No invented copyright holder is supplied.
+
+Retain applicable original notices and existing prominent changed-file statements. This is project attribution, not a recovered upstream NOTICE, new grant, endorsement or organizer approval.
+
+Mixed workers contain original MIT-0 wrappers plus upstream notebook cells/patches with their inherited terms. A first-line MIT-0 marker applies only to the original wrapper; it does not relicense embedded upstream content. Rendered child bootstrap and patches likewise retain component scope. Qwen model terms and binary dependency terms remain separate; no LLM weights or wheels are included.

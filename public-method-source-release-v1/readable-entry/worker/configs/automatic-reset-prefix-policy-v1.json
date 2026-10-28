@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "policy_id": "arc26-first-real-exchange-reset-prefix-v1",
+  "status": "selected_for_separate_preparation_only",
+  "resource_policy": "free and local resources only; no launch authorized by this selection",
+  "selected_candidate": "first_real_logical_exchange_may_own_one_automatic_reset_prefix",
+  "proposal": {
+    "path": "research/reviews/automatic-reset-admission-proposal.md",
+    "sha256": "9d4799ac1bf834200f2903be4e9169433fead8f0aaef84677cf41ef7494a5cd2"
+  },
+  "actual_failed_result_review": {
+    "path": "research/reviews/capacity-notebook-magic-result-independent.md",
+    "sha256": "8d40bc2b4a0744f18fcad8964976653b1f3158bca976396e9ad9ffc9af5f62e1"
+  },
+  "arms": ["B0", "B1", "A1", "P"],
+  "trusted_automatic_causes": ["warmup_claim", "first_public_game_over"],
+  "source_binding_required": true,
+  "prefix_preconditions": {
+    "actual_bound_host_owner": true,
+    "pending_free_boundary": true,
+    "no_existing_lease": true,
+    "logical_sequence": 0,
+    "post_start_sdk_calls": 0,
+    "post_start_history_commits": 0,
+    "accepted_target_tokens": 0,
+    "prior_prefix": false
+  },
+  "prefix_action": "one canonical RESET using the original automatic method",
+  "ownership_interval": "acquire and begin before adapter commitment; hold through the whole original automatic method including history, runtime and viewer writes, then through the first actual logical exchange and its existing tool/history tails",
+  "first_allocation_features": "freeze at the proved pre-RESET admission boundary; this earlier location is an explicit common scheduling policy change for every arm",
+  "logical_reuse": "the first actual main or standalone-summary preflight consumes one completed private prefix marker and reuses its begun lease exactly once at unchanged sequence zero; subsequent boundaries use ordinary sequence-plus-one handover",
+  "later_automatic_reset": "retain the existing begun logical lease and existing tail; do not enqueue, release or award another service",
+  "sdk_entry_guard": "every post-start SDK action must prove the actual same-owner begun lease; a prefix permits only its single private source-bound RESET context; direct common clock and stop checks remain mandatory",
+  "prefix_journal": {
+    "namespace": "automatic-reset-prefix-v1",
+    "exclusive_fsynced_file": true,
+    "typed_transitions": ["admitted", "body_finished", "logical_reuse", "refused", "aborted"],
+    "binds": ["policy hash", "source call-site", "actual session and episode", "host binding", "begun lease", "frozen allocation features", "common clock", "pre and post watermarks", "actual action commitment and receipt"]
+  },
+  "failure_disposition": "unknown work, journal failure, identity mismatch or incomplete body is sticky and requires existing physical drain or hard stop; preserve full known costs and actual action/history facts; a known settled prefix without any real logical request uses terminal abort with no first-service credit and remains infeasible under the strict capacity criterion",
+  "readiness": "prefix enqueue readiness is neither endpoint health nor successful model service; existing startup deadline is unchanged",
+  "unchanged_requirements": [
+    "one real logical exchange per settled lease",
+    "all post-start SDK and history intervals contained in a settled complete exchange",
+    "success-only first-service bootstrap",
+    "existing per-arm priority and multiplier definitions",
+    "original warmup claim ordering and both automatic call sites",
+    "physical retry, tool and history ownership tails",
+    "initial factory RESET accounting remains separate",
+    "all numerical capacity, contention, cost, admission, drain, teardown and whole-session predicates"
+  ],
+  "not_authorized_by_this_selection": [
+    "editing frozen predecessor modules, packages, results or protocol",
+    "retroactively leasing or exempting the failed C1 RESET",
+    "treating prefix admission as a fabricated logical or HTTP start",
+    "capacity selection, C2 launch, collection, fitting, main audit or official submission"
+  ],
+  "integration_requirements": [
+    "distinct checksum-gated modules and builder with truthful predecessor lineage",
+    "source-bound benign fixtures for both automatic causes, full method completion, main and summary reuse, later tails, ownership refusals and failure paths",
+    "independent source and focused-test review",
+    "separately reviewed common cancellation and drain correction",
+    "prospectively frozen successor package, launch plan and execution evidence before any bounded native or model run"
+  ],
+  "notebook_executed": false,
+  "native_validation": false,
+  "model_execution_authorized": false,
+  "study_eligibility_claimed": false
+}

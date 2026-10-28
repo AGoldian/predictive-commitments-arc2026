@@ -1,0 +1,43 @@
+--- a/ARC3-Inference/inference/agent/tool_agent.py
++++ b/ARC3-Inference/inference/agent/tool_agent.py
+@@ -1,6 +1,6 @@
+ """Direct OpenAI-compatible tool-calling analyzer for ARC puzzle runs."""
+ from __future__ import annotations
+-from arc_paper.franzen_host_accounting import (host_accounted_chat, host_accounted_tool, before_physical_send, account_response)
++from arc_paper.franzen_host_accounting_v2 import (host_accounted_chat, host_accounted_tool, before_physical_send, account_response)
+ 
+ import base64
+ import heapq
+--- a/ARC3-Inference/inference/framework/solver.py
++++ b/ARC3-Inference/inference/framework/solver.py
+@@ -22,7 +22,7 @@
+ 
+ import arcengine
+ from arc_paper.franzen_prediction_runtime import prediction_step_env
+-from arc_paper.franzen_host_accounting import accounted_prediction_game_action, bind_session, host_accounted_session_play
++from arc_paper.franzen_host_accounting_v2 import accounted_prediction_game_action, bind_session, host_accounted_session_play
+ import taaf.game
+ from taaf.solver import Solver
+ 
+--- a/tufa-arc-agi-framework/src/taaf/game.py
++++ b/tufa-arc-agi-framework/src/taaf/game.py
+@@ -6,7 +6,7 @@
+ """
+ 
+ from __future__ import annotations
+-from arc_paper.franzen_host_accounting import host_accounted_game_start
++from arc_paper.franzen_host_accounting_v2 import host_accounted_game_start
+ 
+ import asyncio
+ import copy
+--- a/tufa-arc-agi-framework/src/taaf/game_api.py
++++ b/tufa-arc-agi-framework/src/taaf/game_api.py
+@@ -4,7 +4,7 @@
+ """
+ 
+ from __future__ import annotations
+-from arc_paper.franzen_host_accounting import host_make
++from arc_paper.franzen_host_accounting_v2 import host_make
+ 
+ import copy
+ import logging

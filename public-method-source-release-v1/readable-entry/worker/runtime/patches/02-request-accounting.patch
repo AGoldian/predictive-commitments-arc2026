@@ -1,0 +1,238 @@
+--- a/ARC3-Inference/inference/agent/tool_agent.py
++++ b/ARC3-Inference/inference/agent/tool_agent.py
+@@ -3457,6 +3457,88 @@
+     served_by: str = ""
+ 
+ 
++# ARC paper additive host request accounting; our additions MIT-0.
++import uuid as _arc_paper_uuid
++_ARC_PAPER_HTTP_LOCK = threading.Lock()
++
++def _arc_paper_safe_usage(payload):
++    if not isinstance(payload, dict):
++        return None
++    result = {}
++    for name in ('prompt_tokens', 'completion_tokens', 'total_tokens', 'input_tokens',
++                 'output_tokens', 'generated_tokens', 'reasoning_tokens'):
++        value = payload.get(name)
++        if type(value) is int and value >= 0:
++            result[name] = value
++    for group, names in (
++        ('prompt_tokens_details', ('cached_tokens', 'image_tokens')),
++        ('completion_tokens_details', ('reasoning_tokens', 'accepted_prediction_tokens', 'rejected_prediction_tokens')),
++    ):
++        values = payload.get(group)
++        if isinstance(values, dict):
++            kept = {name: values[name] for name in names if type(values.get(name)) is int and values[name] >= 0}
++            if kept:
++                result[group] = kept
++    return result or None
++
++def _arc_paper_safe_id(value):
++    return value if isinstance(value, str) and re.fullmatch(r'[A-Za-z0-9_.:-]{1,256}', value) else None
++
++def _arc_paper_http_record(agent, context, event, **fields):
++    if not agent._save_request_logs:
++        return
++    path = getattr(agent, '_arc_paper_http_log_path', None)
++    if path is None:
++        raise RuntimeError('Host HTTP accounting requires an initialized episode.')
++    row = {
++        'schema_version': 1, 'event': event, 'monotonic_ns': time.monotonic_ns(),
++        'host_agent_id': agent._arc_paper_agent_id,
++        'host_episode_id': agent._arc_paper_episode_id,
++        'game_alias': _arc_paper_safe_id(getattr(agent, '_diag_name', None)),
++        'host_call_id': context['call_id'],
++        'host_attempt_id': context.get('attempt_id'),
++        'attempt_ordinal': context.get('attempt_ordinal', 0),
++        **fields,
++    }
++    encoded = json.dumps(row, sort_keys=True, allow_nan=False) + '\n'
++    with _ARC_PAPER_HTTP_LOCK:
++        path.parent.mkdir(parents=True, exist_ok=True)
++        with path.open('a', encoding='utf-8') as stream:
++            stream.write(encoded)
++
++def _arc_paper_http_attempt(agent, context, send, *, streamed):
++    context['attempt_id'] = _arc_paper_uuid.uuid4().hex
++    context['attempt_ordinal'] = context.get('attempt_ordinal', 0) + 1
++    started = time.monotonic_ns()
++    context['attempt_started_ns'] = started
++    context['response_accounted'] = False
++    _arc_paper_http_record(agent, context, 'attempt_started', started_ns=started, streamed=streamed)
++    try:
++        response = send()
++    except BaseException as exc:
++        _arc_paper_http_record(agent, context, 'attempt_error', started_ns=started,
++                              ended_ns=time.monotonic_ns(), error_type=type(exc).__name__,
++                              api_usage_unavailable=True)
++        raise
++    status = getattr(response, 'status_code', None)
++    _arc_paper_http_record(agent, context, 'http_return', started_ns=started,
++                          ended_ns=time.monotonic_ns(),
++                          http_status=status if type(status) is int else None,
++                          streamed=streamed, api_usage_unavailable=True)
++    # For streams this records header arrival; parsing completion is separate.
++    # Do not inspect JSON, consume the response, attach IDs, or modify headers.
++    return response
++
++def _arc_paper_response_record(agent, context, response, payload):
++    usage = _arc_paper_safe_usage(payload.get('usage') if isinstance(payload, dict) else None)
++    _arc_paper_http_record(agent, context, 'response_parsed',
++                          started_ns=context.get('attempt_started_ns'), ended_ns=time.monotonic_ns(),
++                          api_response_id=_arc_paper_safe_id(payload.get('id')) if isinstance(payload, dict) else None,
++                          usage=usage, api_usage_unavailable=usage is None,
++                          http_status=getattr(response, 'status_code', None))
++    context['response_accounted'] = True
++
++
+ class ToolAgent:
+     """Direct tool-calling analyzer compatible with OpenAI-style endpoints."""
+ 
+@@ -3499,6 +3581,10 @@
+         self._tool_output_tokens = max(64, _LOCAL_ANALYZER_TOOL_OUTPUT_TOKENS)
+         self._tool_output_chars = max(256, self._tool_output_tokens * 4)
+         self._save_request_logs = bool(save_request_logs)
++        self._arc_paper_agent_id = _arc_paper_uuid.uuid4().hex
++        self._arc_paper_episode_id = None
++        self._arc_paper_state_path = None
++        self._arc_paper_http_log_path = None
+         self._system_prompt = _build_system_prompt(
+             tool_output_tokens=self._tool_output_tokens,
+         )
+@@ -3603,6 +3689,12 @@
+         )
+ 
+     def _ensure_session(self, state_path: Path) -> None:
++        if self._arc_paper_state_path != state_path:
++            self._arc_paper_state_path = state_path
++            self._arc_paper_episode_id = _arc_paper_uuid.uuid4().hex
++            self._arc_paper_http_log_path = _resolve_named_run_artifact(
++                state_path, default_name='host_http_requests.jsonl',
++                per_game_suffix='_host_http_requests.jsonl')
+         runtime_dir = state_path.parent
+         if self._session_runtime_dir != runtime_dir:
+             self._session_runtime_dir = runtime_dir
+@@ -5262,8 +5354,10 @@
+                 evicted=getattr(self, "_has_evicted", False),
+             )
+         )
++        _arc_paper_call = {'call_id': _arc_paper_uuid.uuid4().hex}
+         def post_chat(request_payload: dict[str, Any]) -> requests.Response:
+-            return requests.post(
++            return _arc_paper_http_attempt(
++                self, _arc_paper_call, lambda: requests.post(
+                 f"{self._model.base_url.rstrip('/')}/chat/completions",
+                 headers=self._headers(),
+                 json=request_payload,
+@@ -5275,6 +5369,7 @@
+                     request_timeout_seconds if request_timeout_seconds is not None else self._timeout,
+                 ),
+                 stream=bool(request_payload.get("stream")),
++            ), streamed=bool(request_payload.get('stream')),
+             )
+ 
+         # Per agent, not per process: every game meets the cold server on its
+@@ -5297,47 +5392,62 @@
+             # the server coming up, and by now it either did or will not
+             self._http_initial_grace_used = True
+         try:
+-            response.raise_for_status()
+-        except requests.HTTPError as exc:
+-            detail = response.text.strip()
+-            message = f"{exc}"
+-            if detail:
+-                message += f" | response: {detail}"
+-            raise requests.RequestException(message) from exc
+-        if getattr(response, "status_code", 200) >= 400:
+-            detail = response.text.strip()
+-            message = f"{response.status_code} Error"
+-            if detail:
+-                message += f" | response: {detail}"
+-            raise requests.RequestException(message)
+-        if payload.get("stream"):
+-            # decode_unicode=True decodes each transport chunk INDEPENDENTLY, so a
+-            # multi-byte UTF-8 sequence straddling a chunk boundary is split into
+-            # two broken halves - an em-dash (E2 80 94) becomes "\u00e2" plus
+-            # fragments. Most characters survive, which is why short probes look
+-            # clean and only long streamed replies are corrupted. The assembler
+-            # already decodes bytes itself, and a complete SSE line is always a
+-            # whole UTF-8 sequence, so hand it raw bytes instead.
+-            payload = assemble_streamed_chat_response(
+-                response.iter_lines(decode_unicode=False)
++            try:
++                response.raise_for_status()
++            except requests.HTTPError as exc:
++                detail = response.text.strip()
++                message = f"{exc}"
++                if detail:
++                    message += f" | response: {detail}"
++                raise requests.RequestException(message) from exc
++            if getattr(response, "status_code", 200) >= 400:
++                detail = response.text.strip()
++                message = f"{response.status_code} Error"
++                if detail:
++                    message += f" | response: {detail}"
++                raise requests.RequestException(message)
++            if payload.get("stream"):
++                # decode_unicode=True decodes each transport chunk INDEPENDENTLY, so a
++                # multi-byte UTF-8 sequence straddling a chunk boundary is split into
++                # two broken halves - an em-dash (E2 80 94) becomes "\u00e2" plus
++                # fragments. Most characters survive, which is why short probes look
++                # clean and only long streamed replies are corrupted. The assembler
++                # already decodes bytes itself, and a complete SSE line is always a
++                # whole UTF-8 sequence, so hand it raw bytes instead.
++                payload = assemble_streamed_chat_response(
++                    response.iter_lines(decode_unicode=False)
++                )
++            else:
++                payload = response.json()
++            choices = payload.get("choices", [])
++            if not choices:
++                detail = payload.get("error") or {
++                    k: v for k, v in payload.items() if k not in ("choices",)
++                }
++                raise requests.RequestException(
++                    f"server returned no choices | body: {str(detail)[:600]}"
++                )
++            _arc_paper_response_record(self, _arc_paper_call, response, payload)
++            choice = choices[0]
++            return _ChatCompletionResult(
++                message=_extract_leaked_tool_calls(choice.get("message", {})),
++                finish_reason=str(choice.get("finish_reason", "") or ""),
++                usage=payload.get("usage"),
++                served_by=str(payload.get("provider", "") or ""),
+             )
+-        else:
+-            payload = response.json()
+-        choices = payload.get("choices", [])
+-        if not choices:
+-            detail = payload.get("error") or {
+-                k: v for k, v in payload.items() if k not in ("choices",)
+-            }
+-            raise requests.RequestException(
+-                f"server returned no choices | body: {str(detail)[:600]}"
+-            )
+-        choice = choices[0]
+-        return _ChatCompletionResult(
+-            message=_extract_leaked_tool_calls(choice.get("message", {})),
+-            finish_reason=str(choice.get("finish_reason", "") or ""),
+-            usage=payload.get("usage"),
+-            served_by=str(payload.get("provider", "") or ""),
+-        )
++        except BaseException as _arc_paper_error:
++            _arc_paper_http_record(self, _arc_paper_call, 'response_error',
++                                   started_ns=_arc_paper_call.get('attempt_started_ns'),
++                                   ended_ns=time.monotonic_ns(),
++                                   error_type=type(_arc_paper_error).__name__,
++                                   usage=None if _arc_paper_call.get('response_accounted') else
++                                       _arc_paper_safe_usage(payload.get('usage') if isinstance(payload, dict) else None),
++                                   api_response_id=_arc_paper_safe_id(payload.get('id')) if isinstance(payload, dict) else None,
++                                   usage_recorded_in_response_parsed=bool(_arc_paper_call.get('response_accounted')),
++                                   api_usage_unavailable=not bool(_arc_paper_call.get('response_accounted')) and
++                                       _arc_paper_safe_usage(payload.get('usage') if isinstance(payload, dict) else None) is None)
++            raise
++
+ 
+     def _trim_tool_text(self, text: str) -> tuple[str, bool]:
+         """Keep both ends and drop the middle.

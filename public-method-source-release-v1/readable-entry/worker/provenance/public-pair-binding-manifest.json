@@ -1,0 +1,33 @@
+{
+  "actual_fleet_execution": false,
+  "adopted": false,
+  "bridge_sha256": "cda80c065ab28d41d8c276e20a64136ece4d58234be9597d6728869e48226bb4",
+  "callsite_recipe_sha256": "e1da46f1fa8dfdc5be2b71b9be3cffb310881c824f28047cea2ddbf97d6813c1",
+  "data_only_load_returncode": 0,
+  "existing_source_dependencies_sha256": {
+    "allocation.py": "661f17f8b5636f63af8dcf4fc3bbbfc9aaf37bd4241c2f649d7640d8dc407bd7",
+    "franzen_fleet_admission.py": "9091e8ada88dbe626793ed0a2402ddfa83f773b9bf63d8ade8bc625e56ccd4f4",
+    "franzen_fleet_admission_reset_prefix_v1.py": "7683e151dec0e029f84b2a6a1ca7d7eaf4f3db5072ac441a676ca35ae153f8b6",
+    "paired_model_loader.py": "c491a1046ad727c3c705d065ad5ebb54211b17ef2147b9764bd81acc4e7aee54",
+    "reset_prefix_arm_loader_v1.py": "32ac65e22baacce6434d8cfb0abf961ab9c642198b8708283360a6c778772e54"
+  },
+  "intended_arms": [
+    "A1",
+    "P"
+  ],
+  "launch_authorized": false,
+  "license": "MIT-0",
+  "namespace": "official-public-pair-binding-source-v1",
+  "original_scientific_functions_unchanged": true,
+  "published_association_sha256": "cbfda2a62341ff1b9e0038b41a8dbf8f9edfa76140bdbded88c7c0986644fe89",
+  "published_pair_sha256": "cccc2ffbaaf223ce1a284af1afd2405f58fca4cafeee4b12692678bd33f4b6ed",
+  "raw_rows_private_inspection_account_data_included": false,
+  "refitted": false,
+  "schema_version": 1,
+  "source_only": true,
+  "source_predecessor": {
+    "bridge_sha256": "07bc74e5e535797474759e5ef89c18c9995dea84e4fd1f65b3b88d5d426b8a42",
+    "official_package_closure_sha256": "002c1263e948be45812a72b07c6cd1a3449b9df29455a1aac5bea9e914c498dc",
+    "outer_closure_sha256": "7e51053d346cd8db675b6f232dbdd6c97f227e74abc4a4ddf7e8a5573cc11bdb"
+  }
+}

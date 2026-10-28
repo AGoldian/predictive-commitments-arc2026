@@ -1,0 +1,75 @@
+{
+  "snapshot_utc": "2026-10-28T18:30:22Z",
+  "status": "preliminary_research_draft_not_submitted_or_published",
+  "author": "Alexander Serov",
+  "affiliation": "Independent Researcher",
+  "collection": {
+    "complete_windows": 16,
+    "negative_endpoints": 13,
+    "positive_endpoints": 3,
+    "positive_game_episode_count": 1,
+    "fit_count": 1,
+    "parameter_pair_sha256": "cccc2ffbaaf223ce1a284af1afd2405f58fca4cafeee4b12692678bd33f4b6ed"
+  },
+  "B0": {
+    "original_reader_eligible": true,
+    "known_requests": 215,
+    "accepted_target_output_tokens": 446084,
+    "phases": {
+      "before_gameplay": 0,
+      "gameplay": 427632,
+      "late_drain": 18452,
+      "unavailable": 0
+    },
+    "observed_unknown_attempts": 0,
+    "observed_pending_attempts": 0,
+    "games": [
+      {
+        "game_id": "g50t-5849a774",
+        "state": "crashed",
+        "levels_completed": 2,
+        "number_of_levels": 7,
+        "descriptive_score": null
+      },
+      {
+        "game_id": "dc22-fdcac232",
+        "state": "crashed",
+        "levels_completed": 2,
+        "number_of_levels": 6,
+        "descriptive_score": null
+      },
+      {
+        "game_id": "ft09-0d8bbf25",
+        "state": "won",
+        "levels_completed": 6,
+        "number_of_levels": 6,
+        "descriptive_score": 100.0
+      },
+      {
+        "game_id": "ls20-9607627b",
+        "state": "crashed",
+        "levels_completed": 1,
+        "number_of_levels": 7,
+        "descriptive_score": null
+      }
+    ],
+    "four_game_score": null,
+    "score_failure_codes": [
+      "one_or_more_game_score_joins_incomplete"
+    ]
+  },
+  "pending": [
+    "B1 actual readout",
+    "A1 and P inference",
+    "five-game held-out progress calibration",
+    "ten-game three-seed four-arm audit",
+    "separate published-policy baseline reproduction",
+    "corresponding official P result and public notebook",
+    "final Paper Track submission"
+  ],
+  "interpretation": "No demonstrated allocation benefit, hidden-test generalization or complete upstream reproduction. Unknown measurements are unavailable, not zero.",
+  "source_sha256": {
+    "artifacts/kaggle/tier1-v6-b0/reader-inspection-v1.json": "1c2afb3e7a104502a20b3b710c83411f219225c3d2fe3415a42284dcd12e9344",
+    "artifacts/kaggle/tier1-v6-b0/descriptive-dev-score-v1.json": "16595a9f3fe2e22cd6bbc3c7142650994bafc972dab6a3ac913ce73786325d4f"
+  }
+}

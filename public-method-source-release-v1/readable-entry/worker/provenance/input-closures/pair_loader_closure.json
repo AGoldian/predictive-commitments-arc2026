@@ -1,0 +1,13 @@
+{
+  "files_sha256": {
+    "PREPARATION.md": "5d17ce513024b38fd21f0f71803bb3e84b0a1363c7199f2fd72a9d710f45a580",
+    "candidate-manifest.json": "97627db3fffbd685a5b59cabe1d43ecb83d58f680e8a6ec689ed845c07e8a0c5",
+    "paired_model_loader.py": "bfeb57d74d16067bfd104bf3db4e23e36fb1561b19e9891deab34e2b747c4129",
+    "sourcehashrefs.json": "e4412f977d65d2de44fb9b73c1bb5004a7d268eaaf9e57beaf8a3914fe072705",
+    "test-attempt-1.json": "472ec2092ed6843ae365c659e013b1f996289b8c828375a95869b369e957dca9",
+    "tests-attempt-1.stderr": "fbaf54fff64a47470ae6ea6c12d5e873580eef3a60a6bb897463e97539d32cde",
+    "tests-attempt-1.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tests/test_loader.py": "98b6f8af1f6ab86ff481cc202df77be91aaa00ae015ede72f771ba989ae42eba"
+  },
+  "schema_version": 1
+}

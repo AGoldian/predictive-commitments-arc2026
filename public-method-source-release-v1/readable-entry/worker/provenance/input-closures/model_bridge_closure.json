@@ -1,0 +1,14 @@
+{
+  "files_sha256": {
+    "PREPARATION.md": "f70487198c9a7fcbbaf844a4e116bf29de3dd7c7e0830f6c96b7cf7d5564c4dd",
+    "candidate-manifest.json": "7cfff0ef1ab9e46aa8e59bc784e9236b43f349d2ba4c842eef0ae38ac2d9ec3c",
+    "learned_host_model_binding_v1.py": "df2d6a78cccfde8c3506e1c2c2fd63d6df5c84001e3af0802c77e0c5c1034d55",
+    "sourcehashrefs.json": "d0d60359f8a710af9a7a757c082e083be1c39ed9bc8bfe205921ca196b15f561",
+    "test-attempt-1.json": "fcaecd61d8047947b936ddd6a1529477d3fd41fa9498fddfec4b88cf72285c7b",
+    "tests-attempt-1.stderr": "445db0d4dcfd7857155e81461ee2d5d099af7869e653d2c2ae655dc5a521a5de",
+    "tests-attempt-1.stdout": "dbdca15b85bd2e52f41895a42e226e5ca8d8c133f2f5d722ab1996b3355c3e6b",
+    "tests/build_owned_fit.py": "2c26fb9f04d2f0c20e2cb2082b7a1ae38e3c29d903f32ce99e43df00fcbb324e",
+    "tests/test_binding.py": "944637cc860bcc4620abf6c3511ff80abb741d3f2ced6570078c5de013bf5b3a"
+  },
+  "schema_version": 1
+}

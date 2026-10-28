@@ -1,0 +1,823 @@
+--- a/ARC3-Inference/inference/agent/prompts.py
++++ b/ARC3-Inference/inference/agent/prompts.py
+@@ -344,3 +344,13 @@
+     "leave out is gone.\n"
+     "Length is not a problem here; leaving something out is."
+ )
++
++
++# Matched B1/A1/P instrumentation; B0 keeps the published prompt and batches.
++from arc_paper.prediction_adapter import PREDICTION_PROMPT
++_ARC_PREDICTION_GUIDANCE = (
++    "\n\nPrediction pilot tool rule (takes precedence over earlier batching guidance):\n"
++    "Use action(single_action, prediction=prediction_object). One real action per call.\n"
++    + PREDICTION_PROMPT
++)
++COMPACT_TOOL_SESSION_ADDENDUM += _ARC_PREDICTION_GUIDANCE
+--- a/ARC3-Inference/inference/agent/python_tool_sandbox.py
++++ b/ARC3-Inference/inference/agent/python_tool_sandbox.py
+@@ -2,6 +2,8 @@
+ from __future__ import annotations
+ 
+ import inspect
++import hashlib
++from arc_paper.receipt_integrity import verify_child_receipts
+ import json
+ import logging
+ import os
+@@ -69,6 +71,237 @@
+         "statistics",
+         "string",
+     }
++    # Original enforcement additions: MIT-0; exact CPU-probed source subset.
++    import ctypes
++
++    import errno
++
++    import mmap
++
++    import os
++
++    import platform
++
++    import stat
++
++    POLICY_VERSION = "synthetic-cpu-v1"
++
++    SCMP_ACT_ALLOW = 0x7FFF0000
++
++    SCMP_ACT_ERRNO_EPERM = 0x00050000 | errno.EPERM
++
++    SCMP_ACT_KILL_PROCESS = 0x80000000
++
++    SCMP_CMP_EQ = 4
++
++    SCMP_CMP_MASKED_EQ = 7
++
++    SCMP_FLTATR_ACT_BADARCH = 2
++
++    SCMP_FLTATR_CTL_NNP = 3
++
++    SCMP_FLTATR_CTL_TSYNC = 4
++
++    PR_SET_NO_NEW_PRIVS = 38
++
++    PR_GET_NO_NEW_PRIVS = 39
++
++    TRUSTED_SAFE_MODULES = (
++        "bisect", "collections", "copy", "difflib", "fractions", "functools", "heapq",
++        "itertools", "json", "math", "operator", "random", "re", "statistics", "string",
++    )
++
++    COMPUTATION_SYSCALLS = (
++        "brk", "munmap", "mremap", "madvise", "futex", "rt_sigaction",
++        "rt_sigprocmask", "rt_sigreturn", "sigaltstack", "clock_gettime",
++        "clock_getres", "restart_syscall", "sched_yield", "close", "exit", "exit_group",
++    )
++
++    class PolicyFailure(RuntimeError):
++        def __init__(self, stage: str, error: int | None = None):
++            super().__init__(stage)
++            self.stage, self.error = stage, error
++
++        def record(self) -> dict:
++            result = {"stage": self.stage}
++            if self.error is not None:
++                result.update(errno=int(self.error), errno_name=errno.errorcode.get(self.error, "UNKNOWN"))
++            return result
++
++    class ArgCompare(ctypes.Structure):
++        _fields_ = [("arg", ctypes.c_uint), ("op", ctypes.c_int),
++                    ("datum_a", ctypes.c_uint64), ("datum_b", ctypes.c_uint64)]
++
++    class LibVersion(ctypes.Structure):
++        _fields_ = [("major", ctypes.c_uint), ("minor", ctypes.c_uint), ("micro", ctypes.c_uint)]
++
++    def policy_rules() -> list[tuple[str, list[tuple[int, int, int, int]]]]:
++        '''Declarative rules; syscall numbers are resolved by the loaded library.'''
++        rules = [("read", [(0, SCMP_CMP_EQ, 0, 0)]),
++                 ("write", [(0, SCMP_CMP_EQ, 1, 0)]),
++                 ("write", [(0, SCMP_CMP_EQ, 2, 0)])]
++        rules.extend((name, []) for name in COMPUTATION_SYSCALLS)
++        # Anonymous maps only, no executable mappings, and no file descriptor.
++        rules.append(("mmap", [(2, SCMP_CMP_MASKED_EQ, mmap.PROT_EXEC, 0),
++                               (3, SCMP_CMP_MASKED_EQ, mmap.MAP_ANONYMOUS, mmap.MAP_ANONYMOUS),
++                               (4, SCMP_CMP_MASKED_EQ, 0xFFFFFFFF, 0xFFFFFFFF)]))
++        rules.append(("mprotect", [(2, SCMP_CMP_MASKED_EQ, mmap.PROT_EXEC, 0)]))
++        return rules
++
++    def _configure_library(lib):
++        signatures = {
++            "seccomp_init": ([ctypes.c_uint32], ctypes.c_void_p),
++            "seccomp_release": ([ctypes.c_void_p], None),
++            "seccomp_attr_set": ([ctypes.c_void_p, ctypes.c_int, ctypes.c_uint32], ctypes.c_int),
++            "seccomp_syscall_resolve_name": ([ctypes.c_char_p], ctypes.c_int),
++            "seccomp_rule_add_array": ([ctypes.c_void_p, ctypes.c_uint32, ctypes.c_int,
++                                        ctypes.c_uint, ctypes.POINTER(ArgCompare)], ctypes.c_int),
++            "seccomp_load": ([ctypes.c_void_p], ctypes.c_int),
++            "seccomp_arch_native": ([], ctypes.c_uint32),
++            "seccomp_version": ([], ctypes.POINTER(LibVersion)),
++        }
++        try:
++            for name, (args, returns) in signatures.items():
++                function = getattr(lib, name)
++                function.argtypes, function.restype = args, returns
++        except AttributeError:
++            raise PolicyFailure("libseccomp_required_symbol_missing") from None
++
++    def load_libseccomp():
++        if platform.system() != "Linux":
++            raise PolicyFailure("unsupported_os")
++        if ctypes.sizeof(ctypes.c_void_p) != 8 or ctypes.sizeof(ctypes.c_long) != 8:
++            raise PolicyFailure("unsupported_32_bit_abi")
++        for name in ("libseccomp.so.2", "libseccomp.so"):
++            try:
++                lib = ctypes.CDLL(name, use_errno=True)
++            except OSError:
++                continue
++            _configure_library(lib)
++            return lib, name
++        raise PolicyFailure("libseccomp_not_loadable")
++
++    def _checked_return(value: int, stage: str):
++        if value != 0:
++            raise PolicyFailure(stage, -int(value) if value < 0 else int(value))
++
++    def build_filter(lib) -> tuple[object, dict]:
++        context = lib.seccomp_init(SCMP_ACT_ERRNO_EPERM)
++        if not context:
++            raise PolicyFailure("seccomp_init_failed", ctypes.get_errno() or None)
++        details = {"default_action": "ERRNO(EPERM)", "native_arch_token": int(lib.seccomp_arch_native()),
++                   "resolved_rules": [], "unsupported_optional_syscalls": [],
++                   "tsync_requested": True, "no_new_privs_requested": True}
++        try:
++            for attribute, value in ((SCMP_FLTATR_ACT_BADARCH, SCMP_ACT_KILL_PROCESS),
++                                     (SCMP_FLTATR_CTL_NNP, 1), (SCMP_FLTATR_CTL_TSYNC, 1)):
++                _checked_return(lib.seccomp_attr_set(context, attribute, value), "seccomp_attribute_failed")
++            for name, comparisons in policy_rules():
++                number = int(lib.seccomp_syscall_resolve_name(name.encode("ascii")))
++                if number < 0:
++                    if name in {"read", "write", "exit", "exit_group", "mmap", "mprotect"}:
++                        raise PolicyFailure("required_syscall_unresolved")
++                    details["unsupported_optional_syscalls"].append(name)
++                    continue
++                array = (ArgCompare * len(comparisons))(*(ArgCompare(*item) for item in comparisons))
++                _checked_return(lib.seccomp_rule_add_array(
++                    context, SCMP_ACT_ALLOW, number, len(comparisons), array if comparisons else None),
++                    "seccomp_rule_add_failed")
++                details["resolved_rules"].append({"syscall": name, "native_number": number,
++                                                   "comparisons": [list(item) for item in comparisons]})
++        except BaseException:
++            lib.seccomp_release(context)
++            raise
++        version = lib.seccomp_version()
++        details["libseccomp_version"] = (f"{version.contents.major}.{version.contents.minor}."
++                                        f"{version.contents.micro}" if version else None)
++        return context, details
++
++    def close_inherited_descriptors() -> dict:
++        '''Trusted single-thread setup: inspect fd numbers only, never fd targets.'''
++        try:
++            if len(os.listdir("/proc/self/task")) != 1:
++                raise PolicyFailure("preload_created_threads")
++            if not all(stat.S_ISFIFO(os.fstat(fd).st_mode) for fd in (0, 1, 2)):
++                raise PolicyFailure("stdio_must_be_parent_pipes")
++            closed = 0
++            for name in os.listdir("/proc/self/fd"):
++                fd = int(name)
++                if fd > 2:
++                    try:
++                        os.close(fd)
++                        closed += 1
++                    except OSError as exc:
++                        if exc.errno != errno.EBADF:
++                            raise
++            # listdir's temporary directory fd is already closed before this loop.
++            for name in os.listdir("/proc/self/fd"):
++                fd = int(name)
++                if fd > 2:
++                    try:
++                        os.fstat(fd)
++                    except OSError as exc:
++                        if exc.errno == errno.EBADF:
++                            continue
++                        raise
++                    raise PolicyFailure("descriptor_cleanup_incomplete")
++        except OSError as exc:
++            raise PolicyFailure("descriptor_setup_failed", exc.errno) from None
++        return {"closed_fd_count": closed, "remaining_fd_above_2": 0,
++                "stdio_verified_as_pipes": True, "single_thread_verified": True}
++
++    def install_filter_in_child(lib, context) -> dict:
++        '''Private entry point called only after trusted preload in --_child.'''
++        libc = ctypes.CDLL(None, use_errno=True)
++        try:
++            prctl = libc.prctl
++        except AttributeError:
++            raise PolicyFailure("prctl_unavailable") from None
++        prctl.argtypes = [ctypes.c_int, ctypes.c_ulong, ctypes.c_ulong, ctypes.c_ulong, ctypes.c_ulong]
++        prctl.restype = ctypes.c_int
++        if prctl(PR_SET_NO_NEW_PRIVS, 1, 0, 0, 0) != 0:
++            raise PolicyFailure("no_new_privs_set_failed", ctypes.get_errno())
++        if prctl(PR_GET_NO_NEW_PRIVS, 0, 0, 0, 0) != 1:
++            raise PolicyFailure("no_new_privs_verification_failed", ctypes.get_errno() or None)
++        _checked_return(lib.seccomp_load(context), "seccomp_load_failed")
++        return {"policy_installed": True, "no_new_privs_verified_before_load": True}
++
++    _ARC_POLICY_SOURCE_SHA256 = 'a8412effd96184841e5db36f1eebc2498c897063537c6c2b1a05f51237eb4251'
++    _ARC_POLICY_FRAGMENT_SHA256 = '2128ea88d37b9d17e1cf0b25d8ff195c173e05b8faf83ff163bbee984c376b1e'
++
++    def _arc_preload_and_install_policy():
++        context, library = None, None
++        try:
++            if tuple(sorted(SAFE_MODULES)) != TRUSTED_SAFE_MODULES:
++                raise PolicyFailure("safe_module_inventory_differs")
++            for name in TRUSTED_SAFE_MODULES:
++                builtins.__import__(name)
++            # Complete trusted codec/JSON/native setup before any retained code.
++            json.loads(json.dumps({"public_setup_warmup": True}))
++            library, library_name = load_libseccomp()
++            context, details = build_filter(library)
++            descriptor_setup = close_inherited_descriptors()
++            installed = install_filter_in_child(library, context)
++            library.seccomp_release(context)
++            context = None
++            return {"schema_version": 1, "status": "installed_before_untrusted_code",
++                    "phase": "before_restore_and_exec", "policy_version": POLICY_VERSION,
++                    "policy_source_sha256": _ARC_POLICY_SOURCE_SHA256,
++                    "policy_fragment_sha256": _ARC_POLICY_FRAGMENT_SHA256,
++                    "trusted_safe_modules_preloaded": list(TRUSTED_SAFE_MODULES),
++                    "library": library_name, "policy": details,
++                    "descriptor_setup": descriptor_setup, **installed,
++                    "isolation_certified": False}
++        except BaseException as exc:
++            failure = (exc.record() if isinstance(exc, PolicyFailure) else
++                       {"stage": "unexpected_trusted_setup_failure", "exception_type": type(exc).__name__})
++            if context is not None and library is not None:
++                library.seccomp_release(context)
++            _send({"type": "confinement_failed", "failure": failure,
++                   "policy_source_sha256": _ARC_POLICY_SOURCE_SHA256,
++                   "policy_fragment_sha256": _ARC_POLICY_FRAGMENT_SHA256})
++            os._exit(72)
++
+     SAFE_BUILTINS = {
+         # Exception types. Only four were present, so anything narrower than
+         # `except Exception` failed at the except clause and took the snippet
+@@ -349,6 +582,8 @@
+         if sandbox_cwd:
+             os.chdir(sandbox_cwd)
+         _set_limits(timeout_seconds)
++        _arc_confinement = _arc_preload_and_install_policy()
++        _send({"type": "confinement_ready", "confinement": _arc_confinement})
+ 
+         action_results = []
+         stdout = io.StringIO()
+@@ -486,13 +721,16 @@
+             ),
+         }
+ 
+-        def action(actions):
++        def action(actions, *, prediction=None):
+             if _terminal_state:
+                 raise TerminalStateActionError(_TERMINAL_DETAIL[_terminal_state[0]])
+             normalized_actions = _normalize_actions(actions)
++            if len(normalized_actions) != 1:
++                raise ValueError('Prediction pilot accepts exactly one action per call.')
+             _send({
+                 "type": "action",
+                 "actions": normalized_actions,
++                "prediction": prediction,
+                 # the solver decides precedence: a known death or a known no-op
+                 # is a sharper message than "your state may be stale", and it
+                 # carries a concrete override
+@@ -741,6 +979,46 @@
+ )
+ 
+ 
++_ARC_POLICY_SOURCE_SHA256 = 'a8412effd96184841e5db36f1eebc2498c897063537c6c2b1a05f51237eb4251'
++_ARC_POLICY_FRAGMENT_SHA256 = '2128ea88d37b9d17e1cf0b25d8ff195c173e05b8faf83ff163bbee984c376b1e'
++_ARC_CHILD_BOOTSTRAP_SHA256 = 'e4fe7b2aa6944e1fd940459e00d50d04bd85e2faf0116977e560bbfc4d5941f2'
++
++def _arc_confinement_ready_record(message):
++    record = message.get("confinement")
++    if not isinstance(record, dict):
++        return None
++    descriptors = record.get("descriptor_setup")
++    policy = record.get("policy")
++    if not isinstance(descriptors, dict) or not isinstance(policy, dict):
++        return None
++    if not (record.get("status") == "installed_before_untrusted_code"
++            and record.get("phase") == "before_restore_and_exec"
++            and record.get("policy_source_sha256") == _ARC_POLICY_SOURCE_SHA256
++            and record.get("policy_fragment_sha256") == _ARC_POLICY_FRAGMENT_SHA256
++            and record.get("policy_version") == "synthetic-cpu-v1"
++            and policy.get("default_action") == "ERRNO(EPERM)"
++            and policy.get("tsync_requested") is True
++            and policy.get("no_new_privs_requested") is True
++            and record.get("policy_installed") is True
++            and record.get("no_new_privs_verified_before_load") is True
++            and record.get("isolation_certified") is False
++            and type(descriptors.get("remaining_fd_above_2")) is int
++            and descriptors.get("remaining_fd_above_2") == 0
++            and descriptors.get("stdio_verified_as_pipes") is True
++            and descriptors.get("single_thread_verified") is True):
++        return None
++    # The first pipe message is emitted by trusted bootstrap code before any
++    # retained-function restoration. It is a setup report, not a certificate.
++    return {"policy_version": record["policy_version"],
++            "phase": record["phase"], "library": record.get("library"),
++            "libseccomp_version": policy.get("libseccomp_version"),
++            "native_arch_token": policy.get("native_arch_token"),
++            "descriptor_setup": {key: descriptors.get(key) for key in
++                ("closed_fd_count", "remaining_fd_above_2", "stdio_verified_as_pipes", "single_thread_verified")},
++            "no_new_privs_verified_before_load": True,
++            "trusted_safe_modules_preloaded": list(record.get("trusted_safe_modules_preloaded") or [])}
++
++
+ log = logging.getLogger(__name__)
+ 
+ 
+@@ -763,13 +1041,15 @@
+ 
+ 
+ def _sandbox_env() -> dict[str, str]:
++    # Fixed public values only; do not read or copy parent environment entries.
++    # -I ignores Python environment controls, including PYTHONHASHSEED. Keep
++    # the baseline isolation flags and do not claim effective hash determinism.
+     return {
+-        "PYTHONUNBUFFERED": "1",
+-        "PYTHONIOENCODING": "utf-8",
+-        "PYTHONDONTWRITEBYTECODE": "1",
+-        "HOME": "/tmp",
+-        "TMPDIR": "/tmp",
+-        "PATH": os.environ.get("PATH", ""),
++        "PYTHONUNBUFFERED": "1", "PYTHONIOENCODING": "utf-8",
++        "PYTHONDONTWRITEBYTECODE": "1", "PYTHONHASHSEED": "0",
++        "HOME": "/tmp", "TMPDIR": "/tmp", "PATH": "/usr/bin:/bin",
++        "LC_ALL": "C.UTF-8", "OPENBLAS_NUM_THREADS": "1", "OMP_NUM_THREADS": "1",
++        "MKL_NUM_THREADS": "1", "NUMEXPR_NUM_THREADS": "1",
+     }
+ 
+ 
+@@ -814,6 +1094,28 @@
+     retain_imports: bool = False,
+     repair_hints: bool = False,
+ ) -> dict[str, Any]:
++    host_confinement_record = {
++        "schema_version": 1, "required": True, "gate_passed": False,
++        "status": "awaiting_ready_report", "isolation_certified": False,
++        "policy_source_sha256": _ARC_POLICY_SOURCE_SHA256,
++        "policy_fragment_sha256": _ARC_POLICY_FRAGMENT_SHA256,
++        "child_environment": "fixed_public_whitelist",
++        "python_hash_seed_control_effective": False,
++    }
++
++    def _arc_confinement_result(payload):
++        record = dict(host_confinement_record)
++        if record["status"] == "awaiting_ready_report":
++            record["status"] = "missing_ready_report"
++        record["tool_error"] = bool(payload.get("error"))
++        log.info("ARC_PAPER_CHILD_CONFINEMENT %s", json.dumps(record, sort_keys=True, allow_nan=False))
++        return {**payload, "confinement": record}
++
++    if hashlib.sha256(_SANDBOX_BOOTSTRAP.encode("utf-8")).hexdigest() != _ARC_CHILD_BOOTSTRAP_SHA256:
++        host_confinement_record["status"] = "child_bootstrap_source_mismatch"
++        return _arc_confinement_result({"error": "Sandbox child bootstrap source hash differs.",
++                                        "stdout": "", "action_results": []})
++
+     with tempfile.TemporaryDirectory(prefix="rgb_python_tool_") as sandbox_dir:
+         host_action_results: list[dict[str, Any]] = []
+         try:
+@@ -827,13 +1129,14 @@
+                 cwd=sandbox_dir,
+                 env=_sandbox_env(),
+                 start_new_session=True,
++                close_fds=True,
+             )
+         except OSError:
+-            return {
++            return _arc_confinement_result({
+                 "error": "Sandbox process could not start.",
+                 "stdout": "",
+                 "action_results": [],
+-            }
++            })
+         assert process.stdin is not None
+         assert process.stdout is not None
+         assert process.stderr is not None
+@@ -869,11 +1172,11 @@
+             if remaining <= 0:
+                 _kill_process_group(process)
+                 _wait_for_process_exit(process)
+-                return {
++                return _arc_confinement_result({
+                     "error": f"Tool timed out after {timeout_seconds}s",
+                     "stdout": "",
+                     "action_results": list(host_action_results),
+-                }
++                })
+ 
+             try:
+                 line = stdout_queue.get(timeout=remaining)
+@@ -882,25 +1185,54 @@
+             if line is None:
+                 stderr = process.stderr.read()
+                 _wait_for_process_exit(process)
+-                return {
++                return _arc_confinement_result({
+                     "error": _sanitize_host_error_text(stderr),
+                     "stdout": "",
+                     "action_results": list(host_action_results),
+-                }
++                })
+ 
+             try:
+                 message = json.loads(line)
+             except json.JSONDecodeError:
++                _kill_process_group(process)
+                 stderr = process.stderr.read()
+-                _kill_process_group(process)
+                 _wait_for_process_exit(process)
+-                return {
++                return _arc_confinement_result({
+                     "error": "Sandbox process returned an invalid response.",
+                     "stdout": "",
+                     "action_results": list(host_action_results),
+-                }
+-
++                })
++
++            if not isinstance(message, dict):
++                _kill_process_group(process)
++                _wait_for_process_exit(process)
++                host_confinement_record["status"] = "invalid_message_object"
++                return _arc_confinement_result({"error": "Sandbox confinement gate failed.",
++                                                "stdout": "", "action_results": []})
+             msg_type = str(message.get("type", "")).strip()
++            if not host_confinement_record["gate_passed"]:
++                ready = (_arc_confinement_ready_record(message)
++                         if msg_type == "confinement_ready" else None)
++                if ready is None:
++                    _kill_process_group(process)
++                    _wait_for_process_exit(process)
++                    host_confinement_record["status"] = "mandatory_child_setup_failed"
++                    failure = message.get("failure") if msg_type == "confinement_failed" else None
++                    if isinstance(failure, dict):
++                        host_confinement_record["failure"] = {
++                            key: failure[key] for key in ("stage", "errno", "errno_name", "exception_type")
++                            if key in failure and isinstance(failure[key], (str, int))}
++                    return _arc_confinement_result({"error": "Sandbox confinement gate failed.",
++                                                    "stdout": "", "action_results": []})
++                host_confinement_record.update(status="trusted_bootstrap_ready_report_received",
++                                                gate_passed=True, trusted_setup_report=ready)
++                continue
++            if msg_type in {"confinement_ready", "confinement_failed"}:
++                _kill_process_group(process)
++                _wait_for_process_exit(process)
++                host_confinement_record["status"] = "unexpected_duplicate_setup_message"
++                return _arc_confinement_result({"error": "Sandbox returned a duplicate setup message.",
++                                                "stdout": "", "action_results": list(host_action_results)})
+             if msg_type == "animation":
+                 if animation_handler is None:
+                     _send_json_line(
+@@ -931,6 +1263,7 @@
+                     action_result_payload = action_handler(
+                         list(message.get("actions") or []),
+                         stale_after=message.get("stale_after"),
++                        prediction=message.get("prediction"),
+                     )
+                 except Exception:  # noqa: BLE001
+                     _send_json_line(
+@@ -956,19 +1289,24 @@
+ 
+             if msg_type in {"final", "error"}:
+                 _wait_for_process_exit(process)
+-                return {
++                verified = verify_child_receipts(message.get("action_results"), host_action_results)
++                if not verified["valid"]:
++                    return _arc_confinement_result({"stdout": "", "result": None, "error": verified["error"],
++                            "action_results": verified["action_results"], "keepable_functions": [],
++                            "receipt_integrity_error": True})
++                return _arc_confinement_result({
+                     "stdout": str(message.get("stdout", "") or ""),
+                     "result": message.get("result"),
+                     "error": str(message.get("error", "") or ""),
+-                    "action_results": list(message.get("action_results") or host_action_results),
++                    "action_results": verified["action_results"],
+                     "keepable_functions": list(message.get("keepable_functions") or []),
+                     **({"retention_rejected": message.get("retention_rejected", [])}
+                        if kept_functions is not None else {}),
+-                }
++                })
+ 
+             _wait_for_process_exit(process)
+-            return {
++            return _arc_confinement_result({
+                 "error": "Sandbox process returned an unknown message type.",
+                 "stdout": "",
+                 "action_results": list(host_action_results),
+-            }
++            })
+--- a/ARC3-Inference/inference/agent/tool_agent.py
++++ b/ARC3-Inference/inference/agent/tool_agent.py
+@@ -3457,6 +3457,88 @@
+     served_by: str = ""
+ 
+ 
++# ARC paper additive host request accounting; our additions MIT-0.
++import uuid as _arc_paper_uuid
++_ARC_PAPER_HTTP_LOCK = threading.Lock()
++
++def _arc_paper_safe_usage(payload):
++    if not isinstance(payload, dict):
++        return None
++    result = {}
++    for name in ('prompt_tokens', 'completion_tokens', 'total_tokens', 'input_tokens',
++                 'output_tokens', 'generated_tokens', 'reasoning_tokens'):
++        value = payload.get(name)
++        if type(value) is int and value >= 0:
++            result[name] = value
++    for group, names in (
++        ('prompt_tokens_details', ('cached_tokens', 'image_tokens')),
++        ('completion_tokens_details', ('reasoning_tokens', 'accepted_prediction_tokens', 'rejected_prediction_tokens')),
++    ):
++        values = payload.get(group)
++        if isinstance(values, dict):
++            kept = {name: values[name] for name in names if type(values.get(name)) is int and values[name] >= 0}
++            if kept:
++                result[group] = kept
++    return result or None
++
++def _arc_paper_safe_id(value):
++    return value if isinstance(value, str) and re.fullmatch(r'[A-Za-z0-9_.:-]{1,256}', value) else None
++
++def _arc_paper_http_record(agent, context, event, **fields):
++    if not agent._save_request_logs:
++        return
++    path = getattr(agent, '_arc_paper_http_log_path', None)
++    if path is None:
++        raise RuntimeError('Host HTTP accounting requires an initialized episode.')
++    row = {
++        'schema_version': 1, 'event': event, 'monotonic_ns': time.monotonic_ns(),
++        'host_agent_id': agent._arc_paper_agent_id,
++        'host_episode_id': agent._arc_paper_episode_id,
++        'game_alias': _arc_paper_safe_id(getattr(agent, '_diag_name', None)),
++        'host_call_id': context['call_id'],
++        'host_attempt_id': context.get('attempt_id'),
++        'attempt_ordinal': context.get('attempt_ordinal', 0),
++        **fields,
++    }
++    encoded = json.dumps(row, sort_keys=True, allow_nan=False) + '\n'
++    with _ARC_PAPER_HTTP_LOCK:
++        path.parent.mkdir(parents=True, exist_ok=True)
++        with path.open('a', encoding='utf-8') as stream:
++            stream.write(encoded)
++
++def _arc_paper_http_attempt(agent, context, send, *, streamed):
++    context['attempt_id'] = _arc_paper_uuid.uuid4().hex
++    context['attempt_ordinal'] = context.get('attempt_ordinal', 0) + 1
++    started = time.monotonic_ns()
++    context['attempt_started_ns'] = started
++    context['response_accounted'] = False
++    _arc_paper_http_record(agent, context, 'attempt_started', started_ns=started, streamed=streamed)
++    try:
++        response = send()
++    except BaseException as exc:
++        _arc_paper_http_record(agent, context, 'attempt_error', started_ns=started,
++                              ended_ns=time.monotonic_ns(), error_type=type(exc).__name__,
++                              api_usage_unavailable=True)
++        raise
++    status = getattr(response, 'status_code', None)
++    _arc_paper_http_record(agent, context, 'http_return', started_ns=started,
++                          ended_ns=time.monotonic_ns(),
++                          http_status=status if type(status) is int else None,
++                          streamed=streamed, api_usage_unavailable=True)
++    # For streams this records header arrival; parsing completion is separate.
++    # Do not inspect JSON, consume the response, attach IDs, or modify headers.
++    return response
++
++def _arc_paper_response_record(agent, context, response, payload):
++    usage = _arc_paper_safe_usage(payload.get('usage') if isinstance(payload, dict) else None)
++    _arc_paper_http_record(agent, context, 'response_parsed',
++                          started_ns=context.get('attempt_started_ns'), ended_ns=time.monotonic_ns(),
++                          api_response_id=_arc_paper_safe_id(payload.get('id')) if isinstance(payload, dict) else None,
++                          usage=usage, api_usage_unavailable=usage is None,
++                          http_status=getattr(response, 'status_code', None))
++    context['response_accounted'] = True
++
++
+ class ToolAgent:
+     """Direct tool-calling analyzer compatible with OpenAI-style endpoints."""
+ 
+@@ -3499,6 +3581,10 @@
+         self._tool_output_tokens = max(64, _LOCAL_ANALYZER_TOOL_OUTPUT_TOKENS)
+         self._tool_output_chars = max(256, self._tool_output_tokens * 4)
+         self._save_request_logs = bool(save_request_logs)
++        self._arc_paper_agent_id = _arc_paper_uuid.uuid4().hex
++        self._arc_paper_episode_id = None
++        self._arc_paper_state_path = None
++        self._arc_paper_http_log_path = None
+         self._system_prompt = _build_system_prompt(
+             tool_output_tokens=self._tool_output_tokens,
+         )
+@@ -3603,6 +3689,12 @@
+         )
+ 
+     def _ensure_session(self, state_path: Path) -> None:
++        if self._arc_paper_state_path != state_path:
++            self._arc_paper_state_path = state_path
++            self._arc_paper_episode_id = _arc_paper_uuid.uuid4().hex
++            self._arc_paper_http_log_path = _resolve_named_run_artifact(
++                state_path, default_name='host_http_requests.jsonl',
++                per_game_suffix='_host_http_requests.jsonl')
+         runtime_dir = state_path.parent
+         if self._session_runtime_dir != runtime_dir:
+             self._session_runtime_dir = runtime_dir
+@@ -5262,8 +5354,10 @@
+                 evicted=getattr(self, "_has_evicted", False),
+             )
+         )
++        _arc_paper_call = {'call_id': _arc_paper_uuid.uuid4().hex}
+         def post_chat(request_payload: dict[str, Any]) -> requests.Response:
+-            return requests.post(
++            return _arc_paper_http_attempt(
++                self, _arc_paper_call, lambda: requests.post(
+                 f"{self._model.base_url.rstrip('/')}/chat/completions",
+                 headers=self._headers(),
+                 json=request_payload,
+@@ -5275,6 +5369,7 @@
+                     request_timeout_seconds if request_timeout_seconds is not None else self._timeout,
+                 ),
+                 stream=bool(request_payload.get("stream")),
++            ), streamed=bool(request_payload.get('stream')),
+             )
+ 
+         # Per agent, not per process: every game meets the cold server on its
+@@ -5297,47 +5392,62 @@
+             # the server coming up, and by now it either did or will not
+             self._http_initial_grace_used = True
+         try:
+-            response.raise_for_status()
+-        except requests.HTTPError as exc:
+-            detail = response.text.strip()
+-            message = f"{exc}"
+-            if detail:
+-                message += f" | response: {detail}"
+-            raise requests.RequestException(message) from exc
+-        if getattr(response, "status_code", 200) >= 400:
+-            detail = response.text.strip()
+-            message = f"{response.status_code} Error"
+-            if detail:
+-                message += f" | response: {detail}"
+-            raise requests.RequestException(message)
+-        if payload.get("stream"):
+-            # decode_unicode=True decodes each transport chunk INDEPENDENTLY, so a
+-            # multi-byte UTF-8 sequence straddling a chunk boundary is split into
+-            # two broken halves - an em-dash (E2 80 94) becomes "\u00e2" plus
+-            # fragments. Most characters survive, which is why short probes look
+-            # clean and only long streamed replies are corrupted. The assembler
+-            # already decodes bytes itself, and a complete SSE line is always a
+-            # whole UTF-8 sequence, so hand it raw bytes instead.
+-            payload = assemble_streamed_chat_response(
+-                response.iter_lines(decode_unicode=False)
++            try:
++                response.raise_for_status()
++            except requests.HTTPError as exc:
++                detail = response.text.strip()
++                message = f"{exc}"
++                if detail:
++                    message += f" | response: {detail}"
++                raise requests.RequestException(message) from exc
++            if getattr(response, "status_code", 200) >= 400:
++                detail = response.text.strip()
++                message = f"{response.status_code} Error"
++                if detail:
++                    message += f" | response: {detail}"
++                raise requests.RequestException(message)
++            if payload.get("stream"):
++                # decode_unicode=True decodes each transport chunk INDEPENDENTLY, so a
++                # multi-byte UTF-8 sequence straddling a chunk boundary is split into
++                # two broken halves - an em-dash (E2 80 94) becomes "\u00e2" plus
++                # fragments. Most characters survive, which is why short probes look
++                # clean and only long streamed replies are corrupted. The assembler
++                # already decodes bytes itself, and a complete SSE line is always a
++                # whole UTF-8 sequence, so hand it raw bytes instead.
++                payload = assemble_streamed_chat_response(
++                    response.iter_lines(decode_unicode=False)
++                )
++            else:
++                payload = response.json()
++            choices = payload.get("choices", [])
++            if not choices:
++                detail = payload.get("error") or {
++                    k: v for k, v in payload.items() if k not in ("choices",)
++                }
++                raise requests.RequestException(
++                    f"server returned no choices | body: {str(detail)[:600]}"
++                )
++            _arc_paper_response_record(self, _arc_paper_call, response, payload)
++            choice = choices[0]
++            return _ChatCompletionResult(
++                message=_extract_leaked_tool_calls(choice.get("message", {})),
++                finish_reason=str(choice.get("finish_reason", "") or ""),
++                usage=payload.get("usage"),
++                served_by=str(payload.get("provider", "") or ""),
+             )
+-        else:
+-            payload = response.json()
+-        choices = payload.get("choices", [])
+-        if not choices:
+-            detail = payload.get("error") or {
+-                k: v for k, v in payload.items() if k not in ("choices",)
+-            }
+-            raise requests.RequestException(
+-                f"server returned no choices | body: {str(detail)[:600]}"
+-            )
+-        choice = choices[0]
+-        return _ChatCompletionResult(
+-            message=_extract_leaked_tool_calls(choice.get("message", {})),
+-            finish_reason=str(choice.get("finish_reason", "") or ""),
+-            usage=payload.get("usage"),
+-            served_by=str(payload.get("provider", "") or ""),
+-        )
++        except BaseException as _arc_paper_error:
++            _arc_paper_http_record(self, _arc_paper_call, 'response_error',
++                                   started_ns=_arc_paper_call.get('attempt_started_ns'),
++                                   ended_ns=time.monotonic_ns(),
++                                   error_type=type(_arc_paper_error).__name__,
++                                   usage=None if _arc_paper_call.get('response_accounted') else
++                                       _arc_paper_safe_usage(payload.get('usage') if isinstance(payload, dict) else None),
++                                   api_response_id=_arc_paper_safe_id(payload.get('id')) if isinstance(payload, dict) else None,
++                                   usage_recorded_in_response_parsed=bool(_arc_paper_call.get('response_accounted')),
++                                   api_usage_unavailable=not bool(_arc_paper_call.get('response_accounted')) and
++                                       _arc_paper_safe_usage(payload.get('usage') if isinstance(payload, dict) else None) is None)
++            raise
++
+ 
+     def _trim_tool_text(self, text: str) -> tuple[str, bool]:
+         """Keep both ends and drop the middle.
+@@ -5775,12 +5885,14 @@
+             return build_animation_view(record)
+ 
+         def _handle_action(
+-            actions: list[dict[str, Any]], *, stale_after: str | None = None
++            actions: list[dict[str, Any]], *, stale_after: str | None = None, prediction: Any = None
+         ) -> dict[str, Any]:
+             nonlocal terminal_action_result, snippet_executed_actions
+             if self._step_env_callback is None:
+                 raise RuntimeError("action(actions) is not available in this session.")
+             normalized_actions = self._normalize_python_actions(actions)
++            if len(normalized_actions) != 1:
++                raise ValueError("Prediction pilot accepts exactly one action per call.")
+             if terminal_action_result is not None:
+                 reason = _terminal_action_reason(terminal_action_result) or "terminal_state"
+                 compact_payload = {
+@@ -5840,7 +5952,7 @@
+             # places consumed the override slot twice - the pre-check armed it,
+             # the retry cleared it, and the hook then blocked the very action
+             # the model had been invited to repeat.
+-            step_arguments: dict[str, Any] = {"actions": normalized_actions}
++            step_arguments: dict[str, Any] = {"actions": normalized_actions, "prediction": prediction}
+             if stale_after:
+                 # forwarded as an argument so the solver can weigh it AFTER its
+                 # own per-position guards, which name a specific action and
+@@ -5904,6 +6016,8 @@
+             repair_hints=_get_env_bool("ARC3_PERSISTENT_FUNCTIONS_REPAIR_HINTS", False),
+         )
+ 
++        if sandbox_result.get("receipt_integrity_error") and self._step_env_callback is not None:
++            self._step_env_callback({"query": "prediction_integrity_error"})
+         action_results = [
+             item
+             for item in sandbox_result.get("action_results") or []
+--- a/ARC3-Inference/inference/framework/solver.py
++++ b/ARC3-Inference/inference/framework/solver.py
+@@ -21,6 +21,7 @@
+ from typing import Any, Callable
+ 
+ import arcengine
++from arc_paper.franzen_prediction_runtime import prediction_step_env, prediction_game_action
+ import taaf.game
+ from taaf.solver import Solver
+ 
+@@ -992,6 +993,9 @@
+         }
+ 
+     def step_env(self, arguments: dict[str, Any]) -> dict[str, Any]:
++        return prediction_step_env(self, arguments, self._arc_paper_original_step_env)
++
++    def _arc_paper_original_step_env(self, arguments: dict[str, Any]) -> dict[str, Any]:
+         if str(arguments.get("query") or "").strip() == "animation":
+             # Routed through step_env so no analyzer-protocol signature has to
+             # change. Executes nothing and spends no action budget.
+@@ -1248,8 +1252,8 @@
+             generated_tokens = max(0, current_tokens - self.token_baseline)
+             self.token_baseline = current_tokens
+ 
+-        new_state = self.game.execute_action(
+-            action, generated_tokens=generated_tokens, uncached_input_tokens=0
++        new_state = prediction_game_action(
++            self, action, generated_tokens=generated_tokens, automatic=automatic
+         )
+         self.last_engine_action = action.id.name
+         action_display = _format_action_display(action.id.name, dict(action.data))

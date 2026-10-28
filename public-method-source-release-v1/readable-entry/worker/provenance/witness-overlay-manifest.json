@@ -1,0 +1,20 @@
+{
+  "base": "artifacts/reviews/learned-runtime-assembly-v1-source/package-candidate-2",
+  "base_closure_sha256": "c945d74d300a56ec517200de2652aa6e880b9682b9b223bcf8c79cd51f240d59",
+  "files_sha256": {
+    "runtime-manifest.json": "76a3a7bb9f61e993f4b2ff0baac8c1d0fe5871882702216e9eacd94be23785e8",
+    "runtime-profiles/A1.json": "496be75af337e5745498ce6302a971f9f5c24a22da32da6b74665485cdfb65cb",
+    "runtime-profiles/B1.json": "8364432c7639656b18c2fda1c9a7a00c4426b3d98460e2892b205cb6a78b892d",
+    "runtime-profiles/P.json": "f7c1ce8444f1f8afe201066f1db159b014b29077d21ca06e88998f6f5713d566",
+    "runtime/final-source/ARC3-Inference/inference/agent/python_tool_sandbox.py": "21bdada07e805f03822fb53bf5c1c4259aa534d85ca5f8f46e8c642ed47a2d19",
+    "runtime/final-source/ARC3-Inference/inference/agent/tool_agent.py": "f8a9b7f54f91c39b9d234ab20dc0f1232fb085a7296aad349c0351628345cd5c",
+    "runtime/host-package/arc_paper/inference_child_witness_v1.py": "cc49e52e7791290ceb2a01d6a2a507f2823700de1ed27fecb72ab01c6e2d9df2",
+    "runtime/host-package/arc_paper/learned_host_model_binding_v1.py": "345ac65c0386424bfec915ea4a6121033e0997a3897255a94adba747201ecbe9",
+    "runtime/host-package/arc_paper/reset_prefix_arm_loader_v1.py": "78628d0466ff2099d518e412a7d7a39f6244a66362c392d76ebad1af99f7f924"
+  },
+  "kind": "learned",
+  "new_code_license": "MIT-0",
+  "schema_version": 1,
+  "source_only": true,
+  "upstream_license": "Apache-2.0"
+}

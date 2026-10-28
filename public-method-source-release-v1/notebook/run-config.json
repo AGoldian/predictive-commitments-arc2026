@@ -1,0 +1,41 @@
+{
+  "aggregate_target_token_bank": null,
+  "arm": "P",
+  "fit": {
+    "association_path": "/kaggle/arc26-public-pair-v1-trusted/fit/association.json",
+    "expected_association_sha256": "cbfda2a62341ff1b9e0038b41a8dbf8f9edfa76140bdbded88c7c0986644fe89",
+    "expected_pair_sha256": "cccc2ffbaaf223ce1a284af1afd2405f58fca4cafeee4b12692678bd33f4b6ed",
+    "pair_path": "/kaggle/arc26-public-pair-v1-trusted/fit/paired-models.json"
+  },
+  "maximum_capacity": 2,
+  "namespace": "official-public-pair-entry-config-v1",
+  "package_manifest_sha256": "8f22c35ecec4f08583f8094cfab9f65f03c652970990e0ea952abc64c5c0e126",
+  "protocol_sha256": "e5a3ec9c60f93b9f8d39737ec638f1be03f7d84551b4fb12037744a342aba5e5",
+  "requests": {
+    "http_timeout_seconds": 120,
+    "main_max_output_tokens": 12288,
+    "summary_max_output_tokens": 8192,
+    "tail_default_max_output_tokens": 12288
+  },
+  "runtime_manifest_sha256": "98a4374fb3c1f3db34f9a29369bd54eb1995a7d6733f52bffe99a3b235d87fc2",
+  "runtime_profile_sha256": "8606526f79bd4dc2e58ecdbe27b18e33c4cb65bebab62354d759f3e15ce5e089",
+  "saved_game_ids": [
+    "g50t-5849a774",
+    "dc22-fdcac232",
+    "ft09-0d8bbf25",
+    "ls20-9607627b"
+  ],
+  "schema_version": 1,
+  "seed": 101,
+  "timing": {
+    "drain_seconds": 150,
+    "gameplay_seconds": 27300,
+    "outer_cleanup_seconds": 30,
+    "startup_seconds": 3600,
+    "teardown_seconds": 120,
+    "whole_seconds": 31800,
+    "worker_readiness_seconds": 60,
+    "worker_work_seconds": 31770
+  },
+  "worker_sha256": "cc0d58a5a09fe1215565ccfea1598f591a4ceb73eba5dddcbc2a56b03878d96c"
+}

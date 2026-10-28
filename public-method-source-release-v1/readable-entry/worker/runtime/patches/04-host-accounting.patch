@@ -1,0 +1,174 @@
+--- a/ARC3-Inference/inference/agent/tool_agent.py
++++ b/ARC3-Inference/inference/agent/tool_agent.py
+@@ -1,5 +1,6 @@
+ """Direct OpenAI-compatible tool-calling analyzer for ARC puzzle runs."""
+ from __future__ import annotations
++from arc_paper.franzen_host_accounting import (host_accounted_chat, host_accounted_tool, before_physical_send, account_response)
+ 
+ import base64
+ import heapq
+@@ -3512,21 +3513,32 @@
+     started = time.monotonic_ns()
+     context['attempt_started_ns'] = started
+     context['response_accounted'] = False
++    before_physical_send(agent, context, context['host_purpose'])
+     _arc_paper_http_record(agent, context, 'attempt_started', started_ns=started, streamed=streamed)
+     try:
+         response = send()
+     except BaseException as exc:
++        account_response(agent, context, None, error_type='TransportError')
+         _arc_paper_http_record(agent, context, 'attempt_error', started_ns=started,
+                               ended_ns=time.monotonic_ns(), error_type=type(exc).__name__,
+                               api_usage_unavailable=True)
+         raise
+     status = getattr(response, 'status_code', None)
++    # Settle actual error-body usage BEFORE legacy logging/original retry.
++    # HTTP status never proves zero accepted tokens.
++    if type(status) is int and status >= 400:
++        try:
++            error_payload = response.json()
++        except BaseException:
++            account_response(agent, context, None, error_type='ParseError')
++            raise
++        account_response(agent, context, error_payload.get('usage') if isinstance(error_payload, dict) else None, error_type='HTTPError')
+     _arc_paper_http_record(agent, context, 'http_return', started_ns=started,
+                           ended_ns=time.monotonic_ns(),
+                           http_status=status if type(status) is int else None,
+                           streamed=streamed, api_usage_unavailable=True)
+     # For streams this records header arrival; parsing completion is separate.
+-    # Do not inspect JSON, consume the response, attach IDs, or modify headers.
++    # The host usage hook reads error-body counts; legacy logging stays header-only.
+     return response
+ 
+ def _arc_paper_response_record(agent, context, response, payload):
+@@ -5307,6 +5319,7 @@
+             kwargs["reasoning_effort"] = ladder[rung]
+         return kwargs
+ 
++    @host_accounted_chat
+     def _chat_completion(
+         self,
+         messages: list[dict[str, Any]],
+@@ -5315,6 +5328,7 @@
+         request_timeout_seconds: float | None = None,
+         max_tokens: int | None = None,
+         enable_thinking: bool | None = None,
++        _arc_paper_purpose: str = "main",
+     ) -> _ChatCompletionResult:
+         payload = build_chat_payload(
+             provider=self._model.provider,
+@@ -5354,7 +5368,7 @@
+                 evicted=getattr(self, "_has_evicted", False),
+             )
+         )
+-        _arc_paper_call = {'call_id': _arc_paper_uuid.uuid4().hex}
++        _arc_paper_call = {'call_id': _arc_paper_uuid.uuid4().hex, 'host_purpose': _arc_paper_purpose}
+         def post_chat(request_payload: dict[str, Any]) -> requests.Response:
+             return _arc_paper_http_attempt(
+                 self, _arc_paper_call, lambda: requests.post(
+@@ -5419,6 +5433,7 @@
+                 )
+             else:
+                 payload = response.json()
++            account_response(self, _arc_paper_call, payload.get('usage') if isinstance(payload, dict) else None)
+             choices = payload.get("choices", [])
+             if not choices:
+                 detail = payload.get("error") or {
+@@ -5436,6 +5451,7 @@
+                 served_by=str(payload.get("provider", "") or ""),
+             )
+         except BaseException as _arc_paper_error:
++            account_response(self, _arc_paper_call, payload.get('usage') if isinstance(payload, dict) else None, error_type='ParseError')
+             _arc_paper_http_record(self, _arc_paper_call, 'response_error',
+                                    started_ns=_arc_paper_call.get('attempt_started_ns'),
+                                    ended_ns=time.monotonic_ns(),
+@@ -6067,6 +6083,7 @@
+             made_progress=made_progress,
+         )
+ 
++    @host_accounted_tool
+     def _dispatch_tool(self, state_path: Path, name: str, arguments: dict[str, Any]) -> _ToolDispatchResult:
+         self._ensure_session(state_path)
+         if name == "python":
+@@ -6199,6 +6216,7 @@
+                 tools=tools,
+                 max_tokens=_summary_max_gen_tokens(self._max_output_tokens),
+                 enable_thinking=_summary_enable_thinking(),
++                _arc_paper_purpose="summary",
+                 request_timeout_seconds=request_timeout_seconds,
+             )
+         except BaseException as exc:  # a failed summary must not end the turn
+--- a/ARC3-Inference/inference/framework/solver.py
++++ b/ARC3-Inference/inference/framework/solver.py
+@@ -21,7 +21,8 @@
+ from typing import Any, Callable
+ 
+ import arcengine
+-from arc_paper.franzen_prediction_runtime import prediction_step_env, prediction_game_action
++from arc_paper.franzen_prediction_runtime import prediction_step_env
++from arc_paper.franzen_host_accounting import accounted_prediction_game_action, bind_session, host_accounted_session_play
+ import taaf.game
+ from taaf.solver import Solver
+ 
+@@ -601,6 +602,7 @@
+         untrimmed priority band so games do not all queue at one value."""
+         return max(0, int(self.game_index)) * 100 + max(0, int(self.pass_index))
+ 
++    @host_accounted_session_play
+     def play(self) -> None:
+         run = self.game.game_run
+         assert run is not None, "TAAF starts games before invoking the solver."
+@@ -1252,7 +1254,7 @@
+             generated_tokens = max(0, current_tokens - self.token_baseline)
+             self.token_baseline = current_tokens
+ 
+-        new_state = prediction_game_action(
++        new_state = accounted_prediction_game_action(
+             self, action, generated_tokens=generated_tokens, automatic=automatic
+         )
+         self.last_engine_action = action.id.name
+@@ -1885,6 +1887,7 @@
+                 stop_event=self._stop_event,
+                 viewer_data_path=viewer_data_path,
+             )
++            bind_session(session)
+             session.play()
+         except Exception as exc:
+             self._finish_after_error(game, exc)
+--- a/tufa-arc-agi-framework/src/taaf/game.py
++++ b/tufa-arc-agi-framework/src/taaf/game.py
+@@ -6,6 +6,7 @@
+ """
+ 
+ from __future__ import annotations
++from arc_paper.franzen_host_accounting import host_accounted_game_start
+ 
+ import asyncio
+ import copy
+@@ -456,6 +457,7 @@
+         assert self._current_state is not None, "current_state requires start_game()"
+         return self._current_state
+ 
++    @host_accounted_game_start
+     def start_game(self, session: RunSession | None = None) -> GameState:
+         """Start the game, populate basic info, return initial state (R11.03).
+ 
+--- a/tufa-arc-agi-framework/src/taaf/game_api.py
++++ b/tufa-arc-agi-framework/src/taaf/game_api.py
+@@ -4,6 +4,7 @@
+ """
+ 
+ from __future__ import annotations
++from arc_paper.franzen_host_accounting import host_make
+ 
+ import copy
+ import logging
+@@ -201,7 +202,7 @@
+             self._scorecard_id = arcade.create_scorecard()
+ 
+         try:
+-            env = arcade.make(self.env_name, scorecard_id=self._scorecard_id)
++            env = host_make(self, arcade.make, self.env_name, scorecard_id=self._scorecard_id)
+         except Exception:
+             if competition_scorecard is not None and scorecard_opened:
+                 competition_scorecard.finish_run()

@@ -1,0 +1,37 @@
+{
+  "Linux_RLIMIT_AS_or_native_pass_established": false,
+  "amendment_sha256": "0638f041ff041f50a4ba82fdd055438d2c88efa301793aa9635b8ab7d8bbc97d",
+  "base": {
+    "closure": "97577454a3a03dd85a8ca4df9153b4b38e43a0a4fef72841e7cfdc477ba83bdd",
+    "closure_name": "package-checksums.json",
+    "count": 90,
+    "path": "external/inference-witness-worker-integration-candidate-v1/packages-candidate-1/learned",
+    "source": "runtime/final-source/"
+  },
+  "bootstrap_sha256": "27de5d1b31740b087ebdd8ea3ddeb978f5badeafda52dd71c344954a5b6edd84",
+  "bounds_sha256": "22dcf677a5eab3aca6a902919fa7bca2988d1cd4d4be2507c61213d6516419aa",
+  "design_closure_sha256": "40a2e067cd601a91c82c14db232fd26555404469fcbb1e26840d23567053b8e5",
+  "development_profile_sha256": "7a0ffd3305f144cc3e17e01aeabe89bc04cfa52b651ce5efe24d1b490db35301",
+  "family": "learned",
+  "files_sha256": {
+    "learned_worker_control.py": "2c21cea6f3e94716adafece03d22eb477e462f0d3293f5d18cd99cfc0ece223d",
+    "runtime-manifest.json": "9cccb473daf71b354d4c2024213b1a84bbebbf01de5e861498252333488f325b",
+    "runtime-profiles/A1.json": "6d6074ea7411774d4674aea35c34482b40f3a0e6790faecc097d6836c052d95e",
+    "runtime-profiles/B1.json": "539ba656d0d8e47d46624f5b1cefb5f952ab7deb9c51cc4167410e26d1e21bca",
+    "runtime-profiles/P.json": "7b826edf46f95ee6b67825e5670d85557942906d4dcdaa5853d16c0c3c6e48be",
+    "runtime/child-bootstrap/python_tool_bootstrap.py": "27de5d1b31740b087ebdd8ea3ddeb978f5badeafda52dd71c344954a5b6edd84",
+    "runtime/final-source/ARC3-Inference/inference/agent/python_tool_sandbox.py": "f75152a03fee9192492e7c9068567f2ac86af9b39169c065112400913936d3ec",
+    "runtime/host-package/arc_paper/bounded_child_io.py": "22dcf677a5eab3aca6a902919fa7bca2988d1cd4d4be2507c61213d6516419aa",
+    "runtime/host-package/arc_paper/learned_host_model_binding_v1.py": "4f86cdb71f8256990aa06f9640894e90712c5b1969af7a7caf08b17d6f51ee48",
+    "runtime/host-package/arc_paper/reset_prefix_arm_loader_v1.py": "f29d34edf673343205df9a2475b261000f5eca1c58824b578e5f3a80f25e54bd"
+  },
+  "native_policy_fragment_sha256": "2128ea88d37b9d17e1cf0b25d8ff195c173e05b8faf83ff163bbee984c376b1e",
+  "native_policy_source_sha256": "a8412effd96184841e5db36f1eebc2498c897063537c6c2b1a05f51237eb4251",
+  "new_max_json_nodes": 2097152,
+  "old_max_json_nodes": 100000,
+  "receipt_integrity_sha256": "19030d18d92e1a712084724376cad56bfc0d9e55f68a79508ff7517baf2a1046",
+  "sandbox_sha256": "f75152a03fee9192492e7c9068567f2ac86af9b39169c065112400913936d3ec",
+  "schema_version": 1,
+  "source_only": true,
+  "transport_profile": "bounded-json-byte-derived-nodes-v2"
+}

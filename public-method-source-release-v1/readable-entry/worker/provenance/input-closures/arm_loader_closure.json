@@ -1,0 +1,19 @@
+{
+  "files_sha256": {
+    "PREPARATION.md": "7e8b8481293a1d789dd247668edd00e839bad4d6f7ef7680fa801bdedd982abd",
+    "candidate-manifest.json": "ab3c6c015ffae0265f193b71480e4b38cbf3465eb41d0b65fe08f9dd4c7d8605",
+    "reset_prefix_arm_loader_v1.py": "7d98769d3ee2be84dda1b449a929f1f6cd7bc75e92ecad8d1d289ed42ff559ca",
+    "source-delta.json": "6f89f49d09a21cc2b818939c9ed753ef9d015f52722263f86aa12c0e86e97dbb",
+    "source-delta.patch": "07590d5c313f278956cf5fb5abd2f344dbc72537ecb60605350e1a93346a6e08",
+    "sourcehashrefs.json": "ece6607e101ee63522f97e5ebe5642563842c746b43ee3de396a6471b8d53c33",
+    "test-attempt-1.json": "2eada24e91b333baef5ea4fba71200aa9a708406ca49e1c34928d87f7b0c5adb",
+    "test-attempt-2.json": "246d154d3691b10f9d3b4db5a57cc1ef5e2a7bb9114078ecbeab79778d374780",
+    "tests-attempt-1-source.py": "6fabd8fa8e1c781d45e2bd2c4a033d551da3dca6a8966d47ef7d436b04c9595a",
+    "tests-attempt-1.stderr": "a9b1f491e2646622d6d2bfbf3c9edf5f99b73a430c4d45c95d864ef27e6666cc",
+    "tests-attempt-1.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tests-attempt-2.stderr": "02349bf1a6f898e235e3fd0eef5beb9a261b26d43d87b4e5ecf9c0b942b5b1f2",
+    "tests-attempt-2.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tests/test_arm_loader.py": "f6740343f5da1eb5cc6e461da47ede5d9aa5199eb4ad33f6953286aaabaf6463"
+  },
+  "schema_version": 1
+}

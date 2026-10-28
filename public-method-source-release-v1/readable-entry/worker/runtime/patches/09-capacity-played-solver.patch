@@ -1,0 +1,18 @@
+--- a/tufa-arc-agi-framework/src/taaf/benchmark.py
++++ b/tufa-arc-agi-framework/src/taaf/benchmark.py
+@@ -2,6 +2,7 @@
+ lives in ``taaf.deploy*``."""
+ 
+ from __future__ import annotations
++from arc_paper.capacity_runtime import capacity_played_solver_ready
+ 
+ import asyncio
+ import copy
+@@ -130,6 +131,7 @@
+         self.solver.minimal_diagnostics = minimal_diagnostics
+         played_solver = copy.deepcopy(self.solver)
+         played_solver.setup()
++        soft_end_time = capacity_played_solver_ready(self, played_solver, soft_end_time)
+         self.solver_label = played_solver.label
+ 
+         self.games = [copy.deepcopy(g) for g in self.games]

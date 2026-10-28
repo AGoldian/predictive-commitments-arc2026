@@ -1,0 +1,53 @@
+Testing Predictive Commitments in Interactive Reasoning
+A controlled ARC-AGI-3 study of prediction errors and shared inference allocation
+Alexander Serov — Independent Researcher
+
+RESEARCH DRAFT — October 28, 2026. The method and preliminary observations are available; the allocator comparison and corresponding official method result remain incomplete. This version is not a completed competition submission.
+
+Question
+
+Interactive reasoning agents must decide both what to do and where to spend their next inference request. We study whether recent prediction errors help allocate shared inference effort beyond an existing progress-aware scheduler. Our intervention is a fixed representation of paired prediction errors in a learned progress model. The central comparison keeps the prediction interface, observations, probability/outcome moments and fitting procedure matched.
+
+We build on Daniel Franzen's ARC-AGI-3 Milestone 2 solution and Tufa Labs' Duck harness [1,2]. Existing executable-world-model and transition-verification work already checks predictions against observations [3,4]. A public project plan also proposes calibration-conditioned priority [5]. We therefore make no novelty claim for prediction checking, shared scheduling or multi-agent review. Our question concerns the incremental behavior of the specified paired-error representation under fixed regularization.
+
+Method
+
+Before one real action is dispatched, the model supplies probabilities for three next-action events: frame change, level completion and attempt failure. A trusted host binds the immutable prediction to the action and payload, then resolves it once against permitted returned observations. RESET and undo are recorded separately. A refused action has no executed target. Unavailable labels remain missing. Solver logic receives permitted observations/actions; it uses no environment implementation, hidden state, future answers or game-specific solution rules.
+
+For each event, the history retains the last eight eligible actions and computes mean squared prediction error only over valid observable pairs. Common features include progress, accepted target tokens, action history, observation novelty, prediction availability and mean probability, squared probability and outcome on that same pair set.
+
+A1 uses those common features. P adds the three event Brier means. Both logistic progress models predict completion of the current level before the first of 8,192 additional target-output tokens or 20 real nonautomatic actions. Censored windows remain unavailable. These labels describe progress under collection policy rather than the causal value of additional computation. The same completed rows, standardization, missingness handling, equal weights, L2 coefficient 1.0 and 2,000 full-gradient steps train both models. Their predicted progress probability multiplies baseline priority by 0.5 plus that probability. The maximum scheduling capacity is two complete request/tool exchanges. If all event residuals are missing, P uses the predeclared A1 fallback and records its frequency.
+
+Two additional controls interpret the practical intervention. B0 retains baseline prompts and batch policy under common accounting/admission. B1 uses the prediction interface and baseline priority. P versus A1 is the mechanism contrast; B1 versus B0 describes the total instrumentation treatment, and P versus B0 describes the complete method under the matched limits.
+
+Why the representation controls matter
+
+Brier equals mean(p-squared) plus mean(y) minus twice mean(p-times-y). With the common marginal moments, it can reveal pairing information. Fixed L2 nevertheless depends on feature basis. Replacing every probability by a constant q gives q-squared plus (1 minus 2q) times mean(y). Under our preprocessing, q=0.5 adds zero standardized columns; q=0.25 and 0.75 add signed duplicates of outcome columns where outcomes vary. A duplicate can change shrinkage and fixed-step optimization while adding no information. These controls make representation sensitivity explicit. They are development fitting diagnostics, rather than policy performance estimates.
+
+Evidence and evaluation
+
+One prospectively corrected four-game collection retained all 16 planned windows: 13 negative and three positive endpoints, with all positives from one game and episode. Both fitted artifacts are fixed. This small, concentrated development sample limits interpretation. The previous failed collection and inference attempts remain in the evidence record. One failed B0 attempt identified a source-level transport timeout clamp at the gameplay cutoff; the prospectively corrected source closes new admission while allowing already admitted requests to settle within the reserved drain. Unknown terminal usage still invalidates the comparison.
+
+The prospectively amended B0/B1/A1/P study fixes four public development games, seed 101, capacity two, 1,800 seconds gameplay and 6,000 seconds from first code per arm, including a shared 3,600-second startup ceiling. It retains complete original outputs, source/version checksums, clocks, action receipts, all known costs and failures. Valid prediction-packet coverage must reach 50% separately in each instrumented arm. Equal ceilings do not establish equal consumed computation. Unsupported draft work and GPU-FLOPs remain unavailable.
+
+The corrected B0 run completed and passed the frozen evidence, accounting and cleanup checks. Its 215 observed requests retained 446,084 accepted target-output tokens: 427,632 during gameplay and 18,452 during late drain, with no observed unknown or pending attempts. One game won all six levels; three retained incomplete or crashed terminal records. The descriptive four-game score is unavailable, and no subset aggregate is reported. B1 has been launched; A1 and P results remain pending. These are baseline observations, not evidence for an allocation benefit.
+
+The separate ten-game, three-seed, four-arm audit has not been executed. Its results and the five-game held-out progress-calibration study remain pending; development results do not substitute for either.
+
+No official P submission result is available. The separate earlier B1/C1 engineering score of 0.00 does not evaluate P. A prepared ordinary Save placeholder does not establish method execution. Final competition submission requires the actual corresponding code entry and public notebook association.
+
+The planned public development comparison has one fleet per arm and coupled scheduling across games. Its results would supply descriptive feasibility evidence. Public-game exposure, concentrated training labels, missing predictions, fixed feature basis and policy shift limit broader interpretation. The separate audit uses the same ten games, three paired seeds and all four B0/B1/A1/P arms; development results cannot be relabelled as that audit. Any final claim will follow the observed P versus A1 contrast and its resource vector. An unfavorable result will narrow the mechanism claim.
+
+Reproducibility and disclosure
+
+The accompanying draft package includes the manuscript, this writeup, a conceptual cover, and the exact frozen coefficient pair with its portable metadata and notices. Public source/notebook links and the corresponding code result will be added after actual publication. The parameter artifact alone is not a runnable solver.
+
+Our code and fitted allocation parameters use MIT-0; upstream components retain their own licenses. Qwen target/draft assets and runtime dependencies are referenced at exact versions. This manuscript and writeup use CC BY 4.0. LLM assistants supported research, implementation, criticism and editing; advisor roles from one model family are not independent model families. The human author is responsible for final verification. All work uses free/local resources, including free Kaggle allocation.
+
+References
+
+[1] https://github.com/da-fr/arc-agi-3-solution
+[2] https://github.com/Tufalabs/duck-harness
+[3] https://arxiv.org/abs/2605.05138v2
+[4] https://arxiv.org/abs/2610.00834v1
+[5] https://github.com/dcw06/ARC-AGI-3/blob/54e129671e1583e958dbde2c34aede1a7d341b72/docs/ARC-AGI-3_Project_Plan_7.md

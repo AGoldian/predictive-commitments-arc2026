@@ -1,0 +1,417 @@
+{
+  "allowed_arms": [
+    "B1",
+    "A1",
+    "P"
+  ],
+  "child_witness": {
+    "base_closure_sha256": "c945d74d300a56ec517200de2652aa6e880b9682b9b223bcf8c79cd51f240d59",
+    "maximum_rows": 100000,
+    "profile": "inference-source-child-witness-v1",
+    "source_only": true
+  },
+  "deployment_profile": "official-learned-dynamic-fleet-v1",
+  "development_profile_sha256": "7a0ffd3305f144cc3e17e01aeabe89bc04cfa52b651ce5efe24d1b490db35301",
+  "final_module_sha256": {
+    "arc_paper/__init__.py": "71f757b8d8d7ab55e6ec655f5281ca6a69bae4a44e17dae4f0cdc52fe5ab6c84",
+    "arc_paper/allocation.py": "661f17f8b5636f63af8dcf4fc3bbbfc9aaf37bd4241c2f649d7640d8dc407bd7",
+    "arc_paper/automatic_reset_prefix_v1.py": "63890808464c7df57e51cf0d97ce0a2a27ca65e10e1e71840626a8e309c79fb6",
+    "arc_paper/bounded_child_io.py": "22dcf677a5eab3aca6a902919fa7bca2988d1cd4d4be2507c61213d6516419aa",
+    "arc_paper/capacity_runtime.py": "55d297806c1bc98dc46fae2e2ba9f890c32e7e116652a766050fa07ad603fe98",
+    "arc_paper/common_fleet_governor_v2.py": "3cb63ac4dae7c69ec62a38d3eb7de84710d292774d1dded3e44799213c3fd26d",
+    "arc_paper/evidence_history.py": "b22c63db8226790ebc9aef7ca56e08fbf9940d600231c97b186d1484a98d4aae",
+    "arc_paper/fleet_gate.py": "87966601376cd0d34f958a0f462890efefd693ee1ac66490813ae2366b49ec28",
+    "arc_paper/franzen_fleet_admission.py": "9091e8ada88dbe626793ed0a2402ddfa83f773b9bf63d8ade8bc625e56ccd4f4",
+    "arc_paper/franzen_fleet_admission_reset_prefix_v1.py": "7683e151dec0e029f84b2a6a1ca7d7eaf4f3db5072ac441a676ca35ae153f8b6",
+    "arc_paper/franzen_fleet_admission_v2.py": "e67f95d927a72177e831dc813ff9ed239bc42d9ad01b4d1841225dcbb5a9307b",
+    "arc_paper/franzen_host_accounting.py": "982d6baed295a82af2437c09af1fc281f01977fec088f88cde46b9342cf3da6a",
+    "arc_paper/franzen_host_accounting_reset_prefix_v1.py": "926a223ee64cb28f83f602ec5f0aad5dedcdc9489bd0bd4fbd8462f7ae9bcee5",
+    "arc_paper/franzen_host_accounting_v2.py": "923eb121bb4f75ce4d23b685c5c11fae2a5589107261af54d14c10a5a26b3031",
+    "arc_paper/franzen_host_accounting_v3.py": "5d469872723420de6c60319de854cca671fef42ac2c642db8d8981f1b8889455",
+    "arc_paper/franzen_prediction_runtime.py": "2087dfe7785df934049544d7373b86d2e200ba23eb2f461832b1e5c5a288c336",
+    "arc_paper/governor_trace_v2.py": "9943fe4a860848b8a1a34b894f87044c96d226243b85e043623ebd0db0c6a968",
+    "arc_paper/host_accounting.py": "beabeae3ec4a97315601051f80a57bef7b65eafff268d133988b657222afd8d7",
+    "arc_paper/inference_child_witness_v1.py": "04c09b323d481d7eb10792709a6e1be6283d41abd5c030797d179e8631991730",
+    "arc_paper/learned_host_model_binding_v1.py": "da205ffbcffecf29eb360347faf973ec05d5bd590a78fbe9d321a6a8b9ca8086",
+    "arc_paper/paired_model_loader.py": "c491a1046ad727c3c705d065ad5ebb54211b17ef2147b9764bd81acc4e7aee54",
+    "arc_paper/prediction_adapter.py": "d560a2834ba0f032002faba33955516ab0b39e3cb18c0bdfadb9b937d97ff369",
+    "arc_paper/predictions.py": "ebd53fe1296e16832b497fdd8b4d6e2d1cfb0d1ba1cf9bac8f9729e8ff3d83fe",
+    "arc_paper/receipt_integrity.py": "19030d18d92e1a712084724376cad56bfc0d9e55f68a79508ff7517baf2a1046",
+    "arc_paper/reset_prefix_arm_loader_v1.py": "22b726de7aa2a7894c926fa0288c0154251fda12f27d9ae1130f54ec438d467e",
+    "arc_paper/reset_prefix_integrity_v1.py": "a171af6747f80ce392541cc8fa6f83b44ec69a56ea3c08a35a85e1951bd6934d"
+  },
+  "final_source_sha256": {
+    "ARC3-Inference/inference/agent/priority_pace_reference.json": "313c779a28988aac3ee66b01d0dea7cc3b105fdd45e4f7b8c41de6c23762fa9c",
+    "ARC3-Inference/inference/agent/priority_scheduler.py": "f9f8a4bd21a1066073bb97d50639be2c2410d481a97e5b1cab9d6214ebe70bbe",
+    "ARC3-Inference/inference/agent/prompts.py": "19ab584237c6b1d4e8f588755ba277e37791e7df025664801274aec82013c3c2",
+    "ARC3-Inference/inference/agent/python_tool_sandbox.py": "f75152a03fee9192492e7c9068567f2ac86af9b39169c065112400913936d3ec",
+    "ARC3-Inference/inference/agent/runtime_state.py": "371e211ac2e364829f44acd1bd9de85284c365445c8bb4669445ac4a7545ac73",
+    "ARC3-Inference/inference/agent/tool_agent.py": "caaaa496edb298fe0cdddcc971d0b9fe64473f16bf6988280fd257f32560ca97",
+    "ARC3-Inference/inference/framework/solver.py": "4993d46cfae2f372699019bbeb2ce7070ea91a86e3b3e942c0bdb10c3744789e",
+    "ARC3-Inference/inference/utils/frame_diff.py": "843be0ce9225ae19de91dd34409bd7b7cf69ebad1ff73e69759c506c161bdeee",
+    "ARC3-Inference/inference/utils/grid_utils.py": "2c96de5a6e0da2ae0390ab191b39a154784089b00fce8e2da98ebb3960715b67",
+    "ARC3-Inference/inference/utils/retained_functions.py": "9450d8c73fa5f84f40f7bd7bc3868ab63fadde2c68e4546de7b041b387be0b37",
+    "ARC3-Inference/inference/utils/segmentation.py": "1bd1346e4b87a8eca5f1b67df88237cb7527f96132de84772b2094de95353aed",
+    "tufa-arc-agi-framework/src/taaf/benchmark.py": "f4e7cb2c1d0d7bc7bcfc2cbe509d9252a202a956ad521df8db7d4cab8e3793fe",
+    "tufa-arc-agi-framework/src/taaf/game.py": "f707f593e340bf4a7d8f740736c829f2c26da9d7fd51920605b8d1401b68906c",
+    "tufa-arc-agi-framework/src/taaf/game_api.py": "43ced11639cc36ef836f1c5d21131f8815fe412765692f0c97df5d0f2039331d"
+  },
+  "input_closure_sha256": {
+    "provenance/input-closures/arm_loader_closure.json": "6fb8069db6e687a69e4921c3619b2d5f7964509a553cfc56136d59f47c9b336f",
+    "provenance/input-closures/host_closure.json": "604f271bc9a2261a2f0e0f37acfa935832ac3f60260e9a3c821056159bfa1fc1",
+    "provenance/input-closures/model_bridge_closure.json": "d8d0878f9118be8d21262daef800305a8d4f5a08467cd6b2422b8c9070da1a62",
+    "provenance/input-closures/pair_loader_closure.json": "f237c34f59f282c4ef0a2e8c8571dfdc0cc32e0c8d414a19b9ce8255bc6f5ff8",
+    "provenance/input-closures/physical_closure.json": "2da4bf5e7efaf3c99f83d417373672a0c32a3c0e8d45a0cdab6fd901fa06852d",
+    "provenance/input-closures/selected_closure.json": "2e75bf236099583606f01a41d1134d95dddaf91d8c5da5cd587803643e348809"
+  },
+  "input_source_refs": [
+    {
+      "bytes": 107628,
+      "path": "kaggle/franzen-capacity-c2-reset-prefix-v2/build-manifest.json",
+      "sha256": "83430aef0b90b9ce1bc29de1c721cc095b79a3ffadf0c8f2d4e767c7c92c2591"
+    },
+    {
+      "bytes": 23695,
+      "path": "kaggle/franzen-capacity-c2-reset-prefix-v2/package-checksums.json",
+      "sha256": "2e75bf236099583606f01a41d1134d95dddaf91d8c5da5cd587803643e348809"
+    },
+    {
+      "bytes": 6678,
+      "path": "artifacts/reviews/learned-prefix-loader-v1-source/reset_prefix_arm_loader_v1.py",
+      "sha256": "7d98769d3ee2be84dda1b449a929f1f6cd7bc75e92ecad8d1d289ed42ff559ca"
+    },
+    {
+      "bytes": 9793,
+      "path": "artifacts/reviews/learned-host-model-binding-v1-source/learned_host_model_binding_v1.py",
+      "sha256": "df2d6a78cccfde8c3506e1c2c2fd63d6df5c84001e3af0802c77e0c5c1034d55"
+    },
+    {
+      "bytes": 4296,
+      "path": "artifacts/reviews/learned-model-loader-v1-source/paired_model_loader.py",
+      "sha256": "bfeb57d74d16067bfd104bf3db4e23e36fb1561b19e9891deab34e2b747c4129"
+    },
+    {
+      "bytes": 39368,
+      "path": "external/learned-host-cleanup-candidate-v1/generated/franzen_host_accounting_reset_prefix_v1.py",
+      "sha256": "e53270184cdb5f8128b4e86419a73cc6d6b41a36c53e26cbb9448e788b4845fa"
+    },
+    {
+      "bytes": 32016,
+      "path": "external/learned-physical-close-candidate-v1/generated/franzen_fleet_admission.py",
+      "sha256": "091238cdc44707f24ea0b4ab5f9031cdf36c4609ad7954d21df4856477fd4f8b"
+    },
+    {
+      "bytes": 41757,
+      "path": "external/learned-physical-close-candidate-v1/generated/automatic_reset_prefix_v1.py",
+      "sha256": "b97da80cf4e41ce010be439cabffe11a64b7e3503a18b7fade5c5a87387d50f2"
+    },
+    {
+      "bytes": 1843,
+      "path": "external/learned-host-cleanup-candidate-v1/checksums-final.json",
+      "sha256": "604f271bc9a2261a2f0e0f37acfa935832ac3f60260e9a3c821056159bfa1fc1"
+    },
+    {
+      "bytes": 2930,
+      "path": "external/learned-physical-close-candidate-v1/checksums-final.json",
+      "sha256": "2da4bf5e7efaf3c99f83d417373672a0c32a3c0e8d45a0cdab6fd901fa06852d"
+    },
+    {
+      "bytes": 1409,
+      "path": "artifacts/reviews/learned-prefix-loader-v1-source/candidate-checksums.json",
+      "sha256": "6fb8069db6e687a69e4921c3619b2d5f7964509a553cfc56136d59f47c9b336f"
+    },
+    {
+      "bytes": 930,
+      "path": "artifacts/reviews/learned-host-model-binding-v1-source/candidate-checksums.json",
+      "sha256": "d8d0878f9118be8d21262daef800305a8d4f5a08467cd6b2422b8c9070da1a62"
+    },
+    {
+      "bytes": 819,
+      "path": "artifacts/reviews/learned-model-loader-v1-source/candidate-checksums.json",
+      "sha256": "f237c34f59f282c4ef0a2e8c8571dfdc0cc32e0c8d414a19b9ce8255bc6f5ff8"
+    },
+    {
+      "bytes": 1191,
+      "path": "LICENSE",
+      "sha256": "a8693da874d02f4a628a0ca919e4a576b88513a04542af92398f87dfdebd0242"
+    },
+    {
+      "bytes": 11358,
+      "path": "external/franzen-solution/LICENSE",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    {
+      "bytes": 74,
+      "path": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/host-package/arc_paper/__init__.py",
+      "sha256": "71f757b8d8d7ab55e6ec655f5281ca6a69bae4a44e17dae4f0cdc52fe5ab6c84"
+    },
+    {
+      "bytes": 13415,
+      "path": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/host-package/arc_paper/allocation.py",
+      "sha256": "661f17f8b5636f63af8dcf4fc3bbbfc9aaf37bd4241c2f649d7640d8dc407bd7"
+    },
+    {
+      "bytes": 39025,
+      "path": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/host-package/arc_paper/automatic_reset_prefix_v1.py",
+      "sha256": "e84fa01156793e8797d8d6184500c2b83f18b82599af48f4263c7cffb6d64c57"
+    },
+    {
+      "bytes": 13412,
+      "path": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/host-package/arc_paper/bounded_child_io.py",
+      "sha256": "ed824f1d777dd15252d2e51aef2c5f5cf933d45eab8670133b8f6a9655dab472"
+    },
+    {
+      "bytes": 3387,
+      "path": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/host-package/arc_paper/capacity_runtime.py",
+      "sha256": "55d297806c1bc98dc46fae2e2ba9f890c32e7e116652a766050fa07ad603fe98"
+    },
+    {
+      "bytes": 17832,
+      "path": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/host-package/arc_paper/common_fleet_governor_v2.py",
+      "sha256": "735e4b8b579597ff0bc88e98d546f37827bfed6281b108f9e2a844c808182106"
+    },
+    {
+      "bytes": 8377,
+      "path": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/host-package/arc_paper/evidence_history.py",
+      "sha256": "b22c63db8226790ebc9aef7ca56e08fbf9940d600231c97b186d1484a98d4aae"
+    },
+    {
+      "bytes": 28168,
+      "path": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/host-package/arc_paper/fleet_gate.py",
+      "sha256": "87966601376cd0d34f958a0f462890efefd693ee1ac66490813ae2366b49ec28"
+    },
+    {
+      "bytes": 28744,
+      "path": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/host-package/arc_paper/franzen_fleet_admission.py",
+      "sha256": "c5a93552e52fbc088f2bb178b3ab37bd20dce4aed99ae055041d24b37c5cf127"
+    },
+    {
+      "bytes": 4091,
+      "path": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/host-package/arc_paper/franzen_fleet_admission_reset_prefix_v1.py",
+      "sha256": "7683e151dec0e029f84b2a6a1ca7d7eaf4f3db5072ac441a676ca35ae153f8b6"
+    },
+    {
+      "bytes": 3406,
+      "path": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/host-package/arc_paper/franzen_fleet_admission_v2.py",
+      "sha256": "e67f95d927a72177e831dc813ff9ed239bc42d9ad01b4d1841225dcbb5a9307b"
+    },
+    {
+      "bytes": 30059,
+      "path": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/host-package/arc_paper/franzen_host_accounting.py",
+      "sha256": "468fdbbe63d618edf793706fcab5f1fe7c2bf94601ba4c494c908a92971e9df8"
+    },
+    {
+      "bytes": 38580,
+      "path": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/host-package/arc_paper/franzen_host_accounting_reset_prefix_v1.py",
+      "sha256": "169f60a80f3c4e9f92ec43590b10111542d2e3d83e7103f3fe73ee57c975c4a8"
+    },
+    {
+      "bytes": 33823,
+      "path": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/host-package/arc_paper/franzen_host_accounting_v2.py",
+      "sha256": "923eb121bb4f75ce4d23b685c5c11fae2a5589107261af54d14c10a5a26b3031"
+    },
+    {
+      "bytes": 38389,
+      "path": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/host-package/arc_paper/franzen_host_accounting_v3.py",
+      "sha256": "5d469872723420de6c60319de854cca671fef42ac2c642db8d8981f1b8889455"
+    },
+    {
+      "bytes": 7882,
+      "path": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/host-package/arc_paper/franzen_prediction_runtime.py",
+      "sha256": "2087dfe7785df934049544d7373b86d2e200ba23eb2f461832b1e5c5a288c336"
+    },
+    {
+      "bytes": 14764,
+      "path": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/host-package/arc_paper/governor_trace_v2.py",
+      "sha256": "d719a002172c85a7fe00500610ae8261486f47ea35d85c93c1708be30022f13d"
+    },
+    {
+      "bytes": 29141,
+      "path": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/host-package/arc_paper/host_accounting.py",
+      "sha256": "beabeae3ec4a97315601051f80a57bef7b65eafff268d133988b657222afd8d7"
+    },
+    {
+      "bytes": 26333,
+      "path": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/host-package/arc_paper/prediction_adapter.py",
+      "sha256": "d560a2834ba0f032002faba33955516ab0b39e3cb18c0bdfadb9b937d97ff369"
+    },
+    {
+      "bytes": 4526,
+      "path": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/host-package/arc_paper/predictions.py",
+      "sha256": "ebd53fe1296e16832b497fdd8b4d6e2d1cfb0d1ba1cf9bac8f9729e8ff3d83fe"
+    },
+    {
+      "bytes": 1485,
+      "path": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/host-package/arc_paper/receipt_integrity.py",
+      "sha256": "19030d18d92e1a712084724376cad56bfc0d9e55f68a79508ff7517baf2a1046"
+    },
+    {
+      "bytes": 33005,
+      "path": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/host-package/arc_paper/reset_prefix_integrity_v1.py",
+      "sha256": "a96f0795274d1733d699375b75c715ce4ed3f800e8d69f63005bcef9b1152913"
+    },
+    {
+      "bytes": 6582,
+      "path": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/host-package/arc_paper/reset_prefix_loader_v1.py",
+      "sha256": "44590de98b29ffafbfad3b5500074ba176bc1fcde45a7f1a57b703dfbd87c2ac"
+    },
+    {
+      "bytes": 700,
+      "path": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/patched-source/ARC3-Inference/inference/agent/priority_pace_reference.json",
+      "sha256": "313c779a28988aac3ee66b01d0dea7cc3b105fdd45e4f7b8c41de6c23762fa9c"
+    },
+    {
+      "bytes": 5792,
+      "path": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/patched-source/ARC3-Inference/inference/agent/priority_scheduler.py",
+      "sha256": "f9f8a4bd21a1066073bb97d50639be2c2410d481a97e5b1cab9d6214ebe70bbe"
+    },
+    {
+      "bytes": 28618,
+      "path": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/patched-source/ARC3-Inference/inference/agent/prompts.py",
+      "sha256": "667a9327d0a6d261eb8e031ecedb336fd5d75a55b172e31b8022122b70d630a0"
+    },
+    {
+      "bytes": 68043,
+      "path": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/patched-source/ARC3-Inference/inference/agent/python_tool_sandbox.py",
+      "sha256": "c9e41e9532cba616140f022d2ff9bf1c3647b18067d09317f0fcc666da9233ed"
+    },
+    {
+      "bytes": 3886,
+      "path": "external/franzen-runtime-audit/ARC3-Inference/inference/agent/runtime_state.py",
+      "sha256": "371e211ac2e364829f44acd1bd9de85284c365445c8bb4669445ac4a7545ac73"
+    },
+    {
+      "bytes": 351814,
+      "path": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/reset-prefix-source/ARC3-Inference/inference/agent/tool_agent.py",
+      "sha256": "18cc1d7d2f9e90367ef494b95a4a01ce43f43900975823871056951b631bf853"
+    },
+    {
+      "bytes": 82077,
+      "path": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/reset-prefix-source/ARC3-Inference/inference/framework/solver.py",
+      "sha256": "f040d034b1762297aa43f3cc8ef8a4989d674a7e82ae8cc362c7b793974844d0"
+    },
+    {
+      "bytes": 13626,
+      "path": "external/franzen-runtime-audit/ARC3-Inference/inference/utils/frame_diff.py",
+      "sha256": "843be0ce9225ae19de91dd34409bd7b7cf69ebad1ff73e69759c506c161bdeee"
+    },
+    {
+      "bytes": 662,
+      "path": "external/franzen-runtime-audit/ARC3-Inference/inference/utils/grid_utils.py",
+      "sha256": "2c96de5a6e0da2ae0390ab191b39a154784089b00fce8e2da98ebb3960715b67"
+    },
+    {
+      "bytes": 14928,
+      "path": "external/franzen-runtime-audit/ARC3-Inference/inference/utils/retained_functions.py",
+      "sha256": "9450d8c73fa5f84f40f7bd7bc3868ab63fadde2c68e4546de7b041b387be0b37"
+    },
+    {
+      "bytes": 10590,
+      "path": "external/franzen-runtime-audit/ARC3-Inference/inference/utils/segmentation.py",
+      "sha256": "1bd1346e4b87a8eca5f1b67df88237cb7527f96132de84772b2094de95353aed"
+    },
+    {
+      "bytes": 21550,
+      "path": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/patched-source/tufa-arc-agi-framework/src/taaf/benchmark.py",
+      "sha256": "ba3eed7b40acaefe1a5065116f446c02637d486b68da94672e442f5b5d758f66"
+    },
+    {
+      "bytes": 30121,
+      "path": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/reset-prefix-source/tufa-arc-agi-framework/src/taaf/game.py",
+      "sha256": "90d36aa13cfee0fab50e57abb21f775a06fd2127e1b4a7befbeb4fdd024073f6"
+    },
+    {
+      "bytes": 14831,
+      "path": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/reset-prefix-source/tufa-arc-agi-framework/src/taaf/game_api.py",
+      "sha256": "0dcccbac5898dc7cb0480a81654cbde43f8a20e2e49ac7c01141604d72b7d14f"
+    },
+    {
+      "bytes": 4745,
+      "path": "kaggle/franzen-capacity-c2-reset-prefix-v2/configs/automatic-reset-prefix-policy-v1.json",
+      "sha256": "eef252ac22a0a6a7da696c5fbbac607e4085b1b9434d8b834f78b64ea71b6165"
+    },
+    {
+      "bytes": 81916,
+      "path": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/patched-source/ARC3-Inference/inference/framework/solver.py",
+      "sha256": "13a9ec792526ab7a2cedc8857ff8331d9049df307d9a81ceb803287744b9642e"
+    },
+    {
+      "path": "external/collection-real-reader-candidate-v5/candidate-checksums.json",
+      "sha256": "b96fefa05b2eba74d761bd79aeb150a7215b9e165570db48cce2c7332b31b3c3"
+    },
+    {
+      "path": "configs/collection-eligibility-policy-v4.json",
+      "sha256": "84e62f4e332ff1a7381ac87038cb7fb0161a259fedfacc177c1b20d11e514d56"
+    }
+  ],
+  "launch_allowances_created": 0,
+  "model_artifacts_included": false,
+  "new_logic": "selected finite published-bind and physical-custody repair only; exact explicit profile/repins",
+  "origins": {
+    "configs/automatic-reset-prefix-policy-v1.json": "kaggle/franzen-capacity-c2-reset-prefix-v2/configs/automatic-reset-prefix-policy-v1.json",
+    "licenses/LICENSE-FRANZEN-APACHE-2.0.txt": "external/franzen-solution/LICENSE",
+    "licenses/LICENSE-MIT-0.txt": "LICENSE",
+    "provenance/input-closures/arm_loader_closure.json": "artifacts/reviews/learned-prefix-loader-v1-source/candidate-checksums.json",
+    "provenance/input-closures/host_closure.json": "external/learned-host-cleanup-candidate-v1/checksums-final.json",
+    "provenance/input-closures/model_bridge_closure.json": "artifacts/reviews/learned-host-model-binding-v1-source/candidate-checksums.json",
+    "provenance/input-closures/pair_loader_closure.json": "artifacts/reviews/learned-model-loader-v1-source/candidate-checksums.json",
+    "provenance/input-closures/physical_closure.json": "external/learned-physical-close-candidate-v1/checksums-final.json",
+    "provenance/input-closures/selected_closure.json": "kaggle/franzen-capacity-c2-reset-prefix-v2/package-checksums.json",
+    "runtime/final-source/ARC3-Inference/inference/agent/priority_pace_reference.json": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/patched-source/ARC3-Inference/inference/agent/priority_pace_reference.json",
+    "runtime/final-source/ARC3-Inference/inference/agent/priority_scheduler.py": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/patched-source/ARC3-Inference/inference/agent/priority_scheduler.py",
+    "runtime/final-source/ARC3-Inference/inference/agent/prompts.py": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/patched-source/ARC3-Inference/inference/agent/prompts.py",
+    "runtime/final-source/ARC3-Inference/inference/agent/python_tool_sandbox.py": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/patched-source/ARC3-Inference/inference/agent/python_tool_sandbox.py",
+    "runtime/final-source/ARC3-Inference/inference/agent/runtime_state.py": "external/franzen-runtime-audit/ARC3-Inference/inference/agent/runtime_state.py",
+    "runtime/final-source/ARC3-Inference/inference/agent/tool_agent.py": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/reset-prefix-source/ARC3-Inference/inference/agent/tool_agent.py",
+    "runtime/final-source/ARC3-Inference/inference/framework/solver.py": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/reset-prefix-source/ARC3-Inference/inference/framework/solver.py",
+    "runtime/final-source/ARC3-Inference/inference/utils/frame_diff.py": "external/franzen-runtime-audit/ARC3-Inference/inference/utils/frame_diff.py",
+    "runtime/final-source/ARC3-Inference/inference/utils/grid_utils.py": "external/franzen-runtime-audit/ARC3-Inference/inference/utils/grid_utils.py",
+    "runtime/final-source/ARC3-Inference/inference/utils/retained_functions.py": "external/franzen-runtime-audit/ARC3-Inference/inference/utils/retained_functions.py",
+    "runtime/final-source/ARC3-Inference/inference/utils/segmentation.py": "external/franzen-runtime-audit/ARC3-Inference/inference/utils/segmentation.py",
+    "runtime/final-source/tufa-arc-agi-framework/src/taaf/benchmark.py": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/patched-source/tufa-arc-agi-framework/src/taaf/benchmark.py",
+    "runtime/final-source/tufa-arc-agi-framework/src/taaf/game.py": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/reset-prefix-source/tufa-arc-agi-framework/src/taaf/game.py",
+    "runtime/final-source/tufa-arc-agi-framework/src/taaf/game_api.py": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/reset-prefix-source/tufa-arc-agi-framework/src/taaf/game_api.py",
+    "runtime/host-package/arc_paper/__init__.py": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/host-package/arc_paper/__init__.py",
+    "runtime/host-package/arc_paper/allocation.py": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/host-package/arc_paper/allocation.py",
+    "runtime/host-package/arc_paper/automatic_reset_prefix_v1.py": "external/learned-physical-close-candidate-v1/generated/automatic_reset_prefix_v1.py",
+    "runtime/host-package/arc_paper/bounded_child_io.py": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/host-package/arc_paper/bounded_child_io.py",
+    "runtime/host-package/arc_paper/capacity_runtime.py": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/host-package/arc_paper/capacity_runtime.py",
+    "runtime/host-package/arc_paper/common_fleet_governor_v2.py": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/host-package/arc_paper/common_fleet_governor_v2.py",
+    "runtime/host-package/arc_paper/evidence_history.py": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/host-package/arc_paper/evidence_history.py",
+    "runtime/host-package/arc_paper/fleet_gate.py": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/host-package/arc_paper/fleet_gate.py",
+    "runtime/host-package/arc_paper/franzen_fleet_admission.py": "external/learned-physical-close-candidate-v1/generated/franzen_fleet_admission.py",
+    "runtime/host-package/arc_paper/franzen_fleet_admission_reset_prefix_v1.py": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/host-package/arc_paper/franzen_fleet_admission_reset_prefix_v1.py",
+    "runtime/host-package/arc_paper/franzen_fleet_admission_v2.py": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/host-package/arc_paper/franzen_fleet_admission_v2.py",
+    "runtime/host-package/arc_paper/franzen_host_accounting.py": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/host-package/arc_paper/franzen_host_accounting.py",
+    "runtime/host-package/arc_paper/franzen_host_accounting_reset_prefix_v1.py": "external/learned-host-cleanup-candidate-v1/generated/franzen_host_accounting_reset_prefix_v1.py",
+    "runtime/host-package/arc_paper/franzen_host_accounting_v2.py": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/host-package/arc_paper/franzen_host_accounting_v2.py",
+    "runtime/host-package/arc_paper/franzen_host_accounting_v3.py": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/host-package/arc_paper/franzen_host_accounting_v3.py",
+    "runtime/host-package/arc_paper/franzen_prediction_runtime.py": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/host-package/arc_paper/franzen_prediction_runtime.py",
+    "runtime/host-package/arc_paper/governor_trace_v2.py": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/host-package/arc_paper/governor_trace_v2.py",
+    "runtime/host-package/arc_paper/host_accounting.py": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/host-package/arc_paper/host_accounting.py",
+    "runtime/host-package/arc_paper/learned_host_model_binding_v1.py": "artifacts/reviews/learned-host-model-binding-v1-source/learned_host_model_binding_v1.py",
+    "runtime/host-package/arc_paper/paired_model_loader.py": "artifacts/reviews/learned-model-loader-v1-source/paired_model_loader.py",
+    "runtime/host-package/arc_paper/prediction_adapter.py": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/host-package/arc_paper/prediction_adapter.py",
+    "runtime/host-package/arc_paper/predictions.py": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/host-package/arc_paper/predictions.py",
+    "runtime/host-package/arc_paper/receipt_integrity.py": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/host-package/arc_paper/receipt_integrity.py",
+    "runtime/host-package/arc_paper/reset_prefix_arm_loader_v1.py": "artifacts/reviews/learned-prefix-loader-v1-source/reset_prefix_arm_loader_v1.py",
+    "runtime/host-package/arc_paper/reset_prefix_integrity_v1.py": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/host-package/arc_paper/reset_prefix_integrity_v1.py",
+    "runtime/patched-source/ARC3-Inference/inference/framework/solver.py": "kaggle/franzen-capacity-c2-reset-prefix-v2/runtime/patched-source/ARC3-Inference/inference/framework/solver.py"
+  },
+  "owned_test_models_are_not_scientific_outputs": true,
+  "profile": "learned-child-witness-runtime-v1",
+  "schema_version": 1,
+  "source_only": true,
+  "source_root": "runtime/final-source",
+  "transport_profile": "bounded-json-byte-derived-nodes-v2",
+  "upstream_source_provenance": {
+    "licenses": "new code MIT-0; upstream retained Apache-2.0 and third-party licenses; intended paper CC-BY-4.0",
+    "model_license_eligibility_certified": false,
+    "model_weight_sha256": null,
+    "scope": "Selected manifest provenance retained; no weights or external license eligibility are asserted by this assembly.",
+    "source_revision": "10882e332d883af3e61616df8c8a17d03a328a75",
+    "upstream_notebook": "https://www.kaggle.com/code/dfranzen/arc-agi-3-milestone-2-solution",
+    "upstream_notebook_sha256": "88a379f17c3a4ba8c98715fc23155346ccd6eb289bdafebadfc61a3178f9d9bd"
+  },
+  "worker_or_notebook": false
+}

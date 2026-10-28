@@ -1,0 +1,16 @@
+{
+  "function_source_sha256": {
+    "entry_competition_games": "9c7b17a308c19aa690f69f9852d3693b6c23a2b7af58c5a69ed8e452919b03cc",
+    "entry_is_rerun": "7d7527a9433ccb52d74bbe17da4ca95ae901b8c08b19b607d682b5b527dce69a",
+    "entry_placeholder": "113e70dcbd05059552616ce9f7541004e699c79ed44de372ecbf975d3a8d3916",
+    "entry_wait_gateway": "556f9e15888927c7ab595922ded784d4ed764b00b1ddea0505f2a095b8a4208a"
+  },
+  "old_receipt_inventory_instrumentation_not_relabelled": true,
+  "original_source": {
+    "path": "scripts/build_franzen_official_entry.py",
+    "sha256": "3f93dbdbb0f1d0197f34af9dcc0b28e0dcc98bcb7397eeb819a5422551c35e38"
+  },
+  "previous_official_score_not_method_score": true,
+  "schema_version": 1,
+  "scored_engineering_entry": 57087987
+}

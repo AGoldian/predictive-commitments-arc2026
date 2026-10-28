@@ -1,0 +1,16 @@
+Duck ARC3-Inference 0.1.0 — original-publisher license declaration
+
+Publisher repository: Tufalabs/duck-harness
+Revision: 7652836056c59e044f093e3c13ed7438c814169e
+Author field as supplied: ARC3 Inference authors
+Declared license in ARC3-Inference/pyproject.toml: License :: OSI Approved :: MIT License
+Included package scope: inference and inference.* (also viewer and viewer.*).
+
+The selected python_tool_sandbox.py, runtime_state.py, tool_agent.py,
+framework/solver.py and utils/openai_compat.py are within that declared package.
+Retain the pinned pyproject declaration, original notices and the standard MIT
+terms when redistributing this component. MIT-standard-text-reference.txt is an
+unmodified standard template; its placeholder year/holder is not an assertion
+about copyright ownership. No unrelated holder name or new grant is supplied.
+Franzen/project modifications retain their separate recorded license/notices.
+This attribution is not an organizer decision, endorsement or prize certificate.

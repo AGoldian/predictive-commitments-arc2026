@@ -1,0 +1,62 @@
+{
+  "artifact": "preliminary_paper_draft",
+  "published": false,
+  "files": {
+    "LICENSE-paper.txt": {
+      "bytes": 413,
+      "sha256": "58f39e65b02a673bae6de3b316437d87cf78c4c7793ee7aa0224bebf4b48bf48"
+    },
+    "README.txt": {
+      "bytes": 1426,
+      "sha256": "aaa42cc34dc49e61c1c3c4b723ee4c9fd10865c66bdb9484984f878da703a37f"
+    },
+    "cover.png": {
+      "bytes": 115521,
+      "sha256": "c7e5afbb81f580843ad0512476612cc9139d3003f3ec3d69998a7acb07ec9504"
+    },
+    "cover.svg": {
+      "bytes": 4314,
+      "sha256": "af2a6d7841dc1b1b345f9fa4ab17b63847299a3565c446d07d829577708b2513"
+    },
+    "evidence-summary.json": {
+      "bytes": 2381,
+      "sha256": "8e1d9146ab8b7f320c919166faf8e88f8af927361dcfef0c6db36a010f363e83"
+    },
+    "kaggle-writeup.txt": {
+      "bytes": 8197,
+      "sha256": "08cfb44dc3c54b7f69bed6e4c916774a01cd5a55f32be0b48fac2810ad736933"
+    },
+    "paper.tex": {
+      "bytes": 30885,
+      "sha256": "c2fb12bea781a5248821f8d4127267bf8b7945199e815f43ede612b7b68179fa"
+    },
+    "parameters/LICENSE-MIT-0.txt": {
+      "bytes": 1191,
+      "sha256": "a8693da874d02f4a628a0ca919e4a576b88513a04542af92398f87dfdebd0242"
+    },
+    "parameters/README.md": {
+      "bytes": 915,
+      "sha256": "59e45be79557729bbccce013926e18f38395f88d2552089b020cefaf5e083305"
+    },
+    "parameters/REVIEW-SUMMARY.md": {
+      "bytes": 1288,
+      "sha256": "d9197907bfae399a6a64211981c7ce089132ed69b4530bcab00a53aea55dc99d"
+    },
+    "parameters/association.json": {
+      "bytes": 1539,
+      "sha256": "cbfda2a62341ff1b9e0038b41a8dbf8f9edfa76140bdbded88c7c0986644fe89"
+    },
+    "parameters/manifest.json": {
+      "bytes": 714,
+      "sha256": "2030fb8a056c0361e499c604555576a1cf037640677320a98a15cd591ce8061b"
+    },
+    "parameters/model-config.json": {
+      "bytes": 2214,
+      "sha256": "e061d1de77c70806c0aaa3ecb832c27facbf9e260ebbe33f3a41c09720ae4dd4"
+    },
+    "parameters/paired-models.json": {
+      "bytes": 6096,
+      "sha256": "cccc2ffbaaf223ce1a284af1afd2405f58fca4cafeee4b12692678bd33f4b6ed"
+    }
+  }
+}

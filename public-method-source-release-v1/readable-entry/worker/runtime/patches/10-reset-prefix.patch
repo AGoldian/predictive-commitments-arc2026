@@ -1,0 +1,85 @@
+--- a/ARC3-Inference/inference/framework/solver.py
++++ b/ARC3-Inference/inference/framework/solver.py
+@@ -1,7 +1,11 @@
+ """TAAF solver adapter for the existing tool-using harness."""
+ 
+ from __future__ import annotations
+-from arc_paper.franzen_fleet_admission_v2 import (common_mode, host_admitted_run_games, host_admitted_play_one)
++
++from arc_paper.automatic_reset_prefix_v1 import (
++    source_warmup_claim, source_execute_claimed_reset, source_game_over_reset,
++)
++from arc_paper.franzen_fleet_admission_reset_prefix_v1 import (common_mode, host_admitted_run_games, host_admitted_play_one)
+ 
+ import asyncio
+ import contextlib
+@@ -23,7 +27,7 @@
+ 
+ import arcengine
+ from arc_paper.franzen_prediction_runtime import prediction_step_env
+-from arc_paper.franzen_host_accounting_v3 import accounted_prediction_game_action, bind_session, host_accounted_session_play
++from arc_paper.franzen_host_accounting_reset_prefix_v1 import accounted_prediction_game_action, bind_session, host_accounted_session_play
+ import taaf.game
+ from taaf.solver import Solver
+ 
+@@ -639,7 +643,7 @@
+ 
+     def _play_inner(self) -> None:
+         run = self.game.game_run
+-        if self.solver._claim_warmup_slot():
++        if source_warmup_claim(self):
+             # Straight to the engine - _execute_auto_reset takes the same path
+             # and needs no analyzer, so this works with the endpoint still
+             # loading. One action off this game's budget buys the whole
+@@ -652,7 +656,7 @@
+                 "%s: warmup RESET issued before the analyzer is reachable",
+                 run.game_id,
+             )
+-            self._execute_auto_reset()
++            source_execute_claimed_reset(self)
+         try:
+             retry_analysis_step: int | None = None
+             consecutive_failures = 0
+@@ -661,7 +665,7 @@
+                     _is_engine_game_over(self.game)
+                     and self.last_engine_action != "RESET"
+                 ):
+-                    self._execute_auto_reset()
++                    source_game_over_reset(self)
+                     continue
+ 
+                 if retry_analysis_step is None:
+--- a/ARC3-Inference/inference/agent/tool_agent.py
++++ b/ARC3-Inference/inference/agent/tool_agent.py
+@@ -1,7 +1,7 @@
+ """Direct OpenAI-compatible tool-calling analyzer for ARC puzzle runs."""
+ from __future__ import annotations
+-from arc_paper.franzen_fleet_admission_v2 import common_agent_mode
+-from arc_paper.franzen_host_accounting_v3 import (host_accounted_chat, host_accounted_tool, before_physical_send, account_response)
++from arc_paper.franzen_fleet_admission_reset_prefix_v1 import common_agent_mode
++from arc_paper.franzen_host_accounting_reset_prefix_v1 import (host_accounted_chat, host_accounted_tool, before_physical_send, account_response)
+ 
+ import base64
+ import heapq
+--- a/tufa-arc-agi-framework/src/taaf/game.py
++++ b/tufa-arc-agi-framework/src/taaf/game.py
+@@ -6,7 +6,7 @@
+ """
+ 
+ from __future__ import annotations
+-from arc_paper.franzen_host_accounting_v3 import host_accounted_game_start
++from arc_paper.franzen_host_accounting_reset_prefix_v1 import host_accounted_game_start
+ 
+ import asyncio
+ import copy
+--- a/tufa-arc-agi-framework/src/taaf/game_api.py
++++ b/tufa-arc-agi-framework/src/taaf/game_api.py
+@@ -4,7 +4,7 @@
+ """
+ 
+ from __future__ import annotations
+-from arc_paper.franzen_host_accounting_v3 import host_make
++from arc_paper.franzen_host_accounting_reset_prefix_v1 import host_make
+ 
+ import copy
+ import logging
