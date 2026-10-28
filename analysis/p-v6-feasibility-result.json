@@ -1,0 +1,107 @@
+{
+  "api_status": "COMPLETE",
+  "arm": "P",
+  "cost": {
+    "accepted_target_output_tokens": 404393,
+    "draft_model_work": null,
+    "equal_consumption_established": false,
+    "gameplay_tokens": 398009,
+    "known_requests": 303,
+    "late_drain_tokens": 6384,
+    "observed_pending_requests": 0,
+    "observed_unknown_requests": 0,
+    "scope": "complete physical accepted target-output component; not whole-kernel or draft work",
+    "whole_kernel_cost": null
+  },
+  "coverage": {
+    "all_eligible_actions_nonautomatic": true,
+    "counts_complete": true,
+    "eligible_executed_actions": 417,
+    "invalid_predictions": 0,
+    "minimum_valid_packet_rate": 0.5,
+    "missing_predictions": 328,
+    "missing_reason": "prediction_not_supplied",
+    "packet_coverage_pass": false,
+    "per_game": [
+      {
+        "D": 22,
+        "V": 0,
+        "counts_complete": true,
+        "game_id": "g50t-5849a774",
+        "invalid_predictions": 0,
+        "missing_predictions": 22,
+        "unknown_transitions": 0
+      },
+      {
+        "D": 164,
+        "V": 0,
+        "counts_complete": true,
+        "game_id": "dc22-fdcac232",
+        "invalid_predictions": 0,
+        "missing_predictions": 164,
+        "unknown_transitions": 0
+      },
+      {
+        "D": 90,
+        "V": 89,
+        "counts_complete": true,
+        "game_id": "ft09-0d8bbf25",
+        "invalid_predictions": 0,
+        "missing_predictions": 1,
+        "unknown_transitions": 0
+      },
+      {
+        "D": 141,
+        "V": 0,
+        "counts_complete": true,
+        "game_id": "ls20-9607627b",
+        "invalid_predictions": 0,
+        "missing_predictions": 141,
+        "unknown_transitions": 0
+      }
+    ],
+    "refused_transitions_excluded": 3,
+    "reset_transitions_excluded": 1,
+    "threshold_comparison": ">=",
+    "unknown_transitions": 0,
+    "valid_packet_rate": 0.21342925659472423,
+    "valid_prediction_packets": 89
+  },
+  "descriptive_score": null,
+  "diagnostic": {
+    "closed_packet_sha256": "ddfa6198c2a2c829981dab45e5206de4a84886bcce098df7a49d832e1625d024",
+    "component_calls": 1,
+    "component_source_sha256": "cb6fb9db9f7324b3b9736459248e305be4cd8f57f881b7fd63957380f92422f0",
+    "full_reader_replayed": false,
+    "invocation_facts_sha256": "1c6c9f030c958d865b4b77d5692d6546246339f0ebd4261a8d16f0f2ca4140c5",
+    "recorded_reasons_sha256": "d6a448179c7eb13418ad7d1e0bddfad146c46c7f08afff46aa80274d4cfc7e05",
+    "result_sha256": "3ae27f503c56612f348a894a74a88c8340d40ca974cc2b62eb7c6a5ef18a7597",
+    "scientific_adjudication": false
+  },
+  "efficacy_established": false,
+  "limitations": [
+    "Original reader refusal remains unchanged; no threshold relaxation, subset rescue, refit or GPU replay.",
+    "Missing prediction means absent or null at the host boundary; model intent is unestablished.",
+    "Coverage is packet availability, not prediction accuracy or comparative policy effectiveness.",
+    "Exposed development games are not a clean hidden test set."
+  ],
+  "namespace": "public-p-v6-feasibility-result-v1",
+  "official_P_result": null,
+  "original_execution_record_sha256": "9a0afd05fc85fe63047c9b7a159e527b2df8540a52e0f4d7f8d7a6eb9efe5566",
+  "original_reader": {
+    "closed_source_sha256": "50354a6eabd7eee29893dda089f76b6b01e09f5b2554080519228cfcd74adb19",
+    "failure_codes": [
+      "prediction_coverage_complete_original_fleet:original_fleet_packet_coverage_refused"
+    ],
+    "positive_folds": 20,
+    "report_sha256": "c6bdc1c957e21eb97da452afd6aae2ba4a26d33939ba8c4ec4d0dc693fec98b1",
+    "source_sha256": "87e786cbcde81fcaf413840955b049b6d145be90c7c3b4f43f48ddcf9d47569f",
+    "total_folds": 21
+  },
+  "raw_private_content_included": false,
+  "run_evidence_complete": false,
+  "run_label": "development-v6",
+  "schema_version": 1,
+  "scientific_eligible": false,
+  "score_computed": false
+}

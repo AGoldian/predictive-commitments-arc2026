@@ -1,8 +1,10 @@
 {
-  "assembled_at_utc": "2026-10-28T20:16:15.182941+00:00",
+  "assembled_at_utc": "2026-10-28T21:08:33.631207+00:00",
   "files": {
     "LICENSE.md": "ab5f00747de104da0be96cb28fc34cfbfadf73c28acdcc28683a8a01b98d4921",
-    "README.md": "ac869e205939d02315e2255feeecb5d33be3721729f91905d9ff38ed185e738e",
+    "README.md": "53c8e2cb1913f92f8f73a747cdefd12c1f26fe27d39817957c2908f58ee2c2e9",
+    "analysis/p-v6-feasibility-result.json": "7d07b9a23ede86c7e30b4254f7d581a521c84640ed7b8160735a5083aa461bf1",
+    "analysis/p-v6-feasibility-result.md": "3c94ba3530a4b43e99ba51e6d0775f23d5b2fafdc778b2f3fec158f92cc686d8",
     "analysis/reader-json-format-erratum.md": "3ac0e0421ac4485677a57fc4f107af7a369c0f8168bf0f24e51b46a780f1cc1e",
     "analysis/reader-json-format.patch": "6489c2e9ccc447f78081f7ba4a2e9db248384b09eab859e1fbb8033085313ce1",
     "archives/paper-draft-20261028-v1.zip": "60e2ee9df8488ddb71d51314e6dbc029513eb7256d48854d6ca2ed68656f2765",
@@ -22,6 +24,11 @@
     "paper-draft-20261028/parameters/manifest.json": "2030fb8a056c0361e499c604555576a1cf037640677320a98a15cd591ce8061b",
     "paper-draft-20261028/parameters/model-config.json": "e061d1de77c70806c0aaa3ecb832c27facbf9e260ebbe33f3a41c09720ae4dd4",
     "paper-draft-20261028/parameters/paired-models.json": "cccc2ffbaaf223ce1a284af1afd2405f58fca4cafeee4b12692678bd33f4b6ed",
+    "paper-draft-20261029/LICENSE-paper.txt": "58f39e65b02a673bae6de3b316437d87cf78c4c7793ee7aa0224bebf4b48bf48",
+    "paper-draft-20261029/README.md": "e6130fff9feb0dc42771fa5c7e7426bb5e2e5f13f51e8c635460a98086b70276",
+    "paper-draft-20261029/evidence-summary.json": "bccdadef4de717d25f258a99b120e12d208c2f7444175a9443ef2603f40dbe6f",
+    "paper-draft-20261029/kaggle-writeup.txt": "3186d5fc54187a4dbbc25848b90f38f7c0304dd2d17a5e166e7e3fa81a9115bf",
+    "paper-draft-20261029/paper.tex": "02779b1e1fa2306ab8e568808a49ede41baeb64ba5c2cf2394ab96b8971abd0a",
     "public-method-source-release-v1/NOTICE.txt": "00bc8e1ec37904e4c489b479e733bd600e0d28cb59218563a98b33bf3447638e",
     "public-method-source-release-v1/README.md": "8fc98a4a30e0e41597ec2542cc9bf198eb172b8949b6ce35518b5287085e449b",
     "public-method-source-release-v1/SHA256SUMS": "0f86b961742239c5146d143f9dd4658509790ecc7bd99eb0a2533413a89d32ea",
@@ -181,8 +188,8 @@
     "study/research/tier2-audit-protocol-20261028.md": "26a13b4552fba46fa569a14b10aea450c5b3d7066254d1618410c5240cd0f391",
     "study/research/validation-calibration-methods-20261028.md": "bcfab6e4cda4ca6098e47e3c93f59b4a0b67d46381ce353e8e2583d65fc1b555"
   },
-  "kind": "curated public source/paper snapshot, prospective design and disclosed reader-format correction",
+  "kind": "curated public source, preserved 28 October paper snapshot, revised 29 October preliminary paper, prospective design, reader-format correction and P development feasibility failure",
   "parent_public_commit": "2e10a735d8c667a1df26970b50cfcee9edc7e6a1",
-  "previous_manifest_sha256": "66ae06ea640d4671921fe8602bfc0d62e215adfd5d61b0a75f7ece4522070b7c",
+  "previous_manifest_sha256": "5b199392ec6f16cd6a85592f71191321ea832a9f923ea587a8b24e4ad5535e2e",
   "schema_version": 1
 }
