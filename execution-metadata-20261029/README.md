@@ -20,9 +20,15 @@ The ordinary private Save completed source verification and wrote the labelled
 offline placeholder; it did not run the allocator, model or competition gateway
 and supplies no scientific, native-certification or score measurement. Official
 submission **57749129** was accepted on **2026-10-28 at 21:28:14 UTC**, referring to
-kernel **141404446, version 1**. Its result remains **pending at this snapshot**.
-Acceptance is not proof of a working method, successful evaluation, score or prize
-eligibility. The original P development coverage failure remains unchanged.
+kernel **141404446, version 1**. Its original observer received API **COMPLETE**
+and public score **0.00** at **2026-10-28T21:42:51.801722 UTC**. This is the API
+observation time, not exact server completion or runtime. Final local custody
+matched the returned submission reference and selected request; the server did
+not echo the version. [The sanitized official-result note](../analysis/official-p-result-20261029.md)
+retains the missing actual rerun logs, actions, runtime, tokens, private score and
+cause. The score is separate from the saved placeholder and does not establish
+allocation benefit, model/prize approval or a successful mechanism. The original
+P development coverage failure remains unchanged.
 
 Own metadata is MIT-0; this note is CC BY 4.0. Existing upstream, model and other
 license scopes remain unchanged. No private API response/output, browser/account

@@ -2,7 +2,7 @@ Testing Predictive Commitments in Interactive Reasoning
 An ARC-AGI-3 feasibility pilot of prediction errors and shared inference allocation
 Alexander Serov — Independent Researcher
 
-RESEARCH DRAFT. October 29, 2026. All four development arms ran, but P failed the prespecified prediction-packet feasibility condition. No eligible efficacy comparison or corresponding official P result is available. The main audit, calibration and full published-policy reproduction remain unexecuted.
+RESEARCH DRAFT. October 29, 2026. All four development arms ran, but P failed the prespecified prediction-packet feasibility condition. No eligible efficacy comparison is available. The corresponding official P public score is 0.00. The main audit, calibration and full published-policy reproduction remain unexecuted.
 
 Question
 
@@ -12,7 +12,7 @@ We build on Daniel Franzen's ARC-AGI-3 Milestone 2 solution and Tufa Labs' Duck 
 
 Method
 
-Before one real action is dispatched, the model supplies probabilities for three next-action events: frame change, level completion and attempt failure. A trusted host binds the immutable prediction to the action and payload, then resolves it once against permitted returned observations. RESET and undo are recorded separately. A refused action has no executed target. Unavailable labels remain missing. Solver logic receives permitted observations/actions; it uses no environment implementation, hidden state, future answers or game-specific solution rules.
+Before one real action is dispatched, the model may supply probabilities for three next-action events: frame change, level completion and attempt failure. Omission is permitted abstention. A trusted host binds the prediction or abstention to the action and payload, then scores valid predictions once against permitted returned observations. RESET and undo are recorded separately. A refused action has no executed target. Unavailable labels remain missing. Solver logic receives permitted observations/actions; it uses no environment implementation, hidden state, future answers or game-specific solution rules.
 
 For each event, the history retains the last eight eligible actions and computes mean squared prediction error only over valid observable pairs. Common features include progress, accepted target tokens, action history, observation novelty, prediction availability and mean probability, squared probability and outcome on that same pair set.
 
@@ -40,13 +40,13 @@ P supplied only 89 valid packets for 417 eligible actions (21.3429%), below the 
 
 The prospective ten-game, three-request-seed, four-arm audit remains unexecuted, as does five-game held-out progress calibration. Its frozen endpoint is observed public-prefix progress under the fixed limits, using the selected SDK per-episode scalar formula. Fully observed won, gave_up, cancelled and crashed terminations remain included. A complete joined prefix and all original source/native/cost/cleanup conditions are required; any unavailable game leaves the ten-game mean unavailable. Raw states and stored scores stay separate. This is a local endpoint, not an authenticated SDK score or permission to rescore DEV. The adopted protocol is research/tier2-audit-protocol-20261028.md.
 
-No official P submission result is available. The separate earlier B1/C1 engineering score of 0.00 does not evaluate P. A prepared ordinary Save placeholder does not establish method execution. Final competition submission requires the actual corresponding code entry and public notebook association.
+The corresponding P submission 57749129 was accepted at 21:28:14 UTC on October 28. Its original observer received API COMPLETE and public score 0.00 at 2026-10-28T21:42:51.801722 UTC, not an exact server completion time. The request selected kernel 141404446/version 1; final custody matched, but the server did not echo the version. No Submit retry occurred. Actual rerun journals, runtime, tokens and private score are unavailable. No action trace, efficacy or novelty follows from this score. The earlier B1/C1 engineering submission 57087987, also scored 0.00, remains separate. An ordinary Save placeholder is not method execution.
 
-The pilot failed feasibility of the frozen P policy. It does not identify why packet supply differed from B1/A1 or estimate the added Brier coordinates' effect on progress. Each DEV arm had one fleet, with coupled scheduling across games. Public-game exposure, concentrated labels, missing predictions, feature basis and policy shift limit interpretation. The separately planned audit retains ten games, three matched request seeds and all four B0/B1/A1/P arms. These are not independent world seeds or independent statistical replicates. No efficacy advantage or deployment benefit follows from the pilot.
+The pilot failed feasibility of the frozen P policy. It does not identify model intent, keyword placement, why packet supply differed from B1/A1, or the added Brier coordinates' effect on progress. Each DEV arm had one fleet, with coupled scheduling across games. Public-game exposure, concentrated labels, missing predictions, feature basis and policy shift limit interpretation. The separately planned audit retains ten games, three matched request seeds and all four B0/B1/A1/P arms. These are not independent world seeds or independent statistical replicates. No efficacy advantage or deployment benefit follows from the pilot.
 
 Reproducibility and disclosure
 
-The draft, selected full method notebook/source, frozen coefficient pair, notices and prospective study documents are public at https://github.com/AGoldian/predictive-commitments-arc2026 . The draft package also includes a conceptual cover. Public source availability does not establish official P execution, prize eligibility or a method score. The compact parameter artifact alone is not a runnable solver.
+The draft, selected full method notebook/source, frozen coefficient pair, notices and prospective study documents are public at https://github.com/AGoldian/predictive-commitments-arc2026 . The draft package also includes a conceptual cover. The exact full method code was public before the official request. The Kaggle notebook remains private under the competition-source embargo until the competition ends; prize eligibility and the missing rerun evidence remain unresolved. The compact parameter artifact alone is not a runnable solver.
 
 Our code and fitted allocation parameters use MIT-0; upstream components retain their own licenses. Qwen target/draft assets and runtime dependencies are referenced at exact versions. This manuscript and writeup use CC BY 4.0. LLM assistants supported research, implementation, criticism and editing; advisor roles from one model family are not independent model families. The human author is responsible for final verification. All work uses free/local resources, including free Kaggle allocation.
 
