@@ -1,0 +1,11 @@
+--- reader-v8/reader.py
++++ reader-v9/reader.py
+@@ -607,7 +607,7 @@
+         admission_deadline_monotonic=worker['interval']['cutoff_ns']/1e9, drain_timeout_s=150, teardown_reserve_s=120,
+         whole_deadline_monotonic=worker['clock']['worker_work_deadline_monotonic']), 'actual_common_fleet_config')
+     _, payload = modules['admission']._models(fit['models'], arm) if arm!='B0' else ({},{'constant_multiplier':1.})
+-    need(allocation['models'] == payload, 'actual_allocator_models_not_alias_or_refit')
++    need(allocation['models'] == json.loads(json.dumps(payload, allow_nan=False)), 'actual_allocator_models_not_alias_or_refit')
+     rows = get('capacity/host/fleet-admission.jsonl', journal=True); host_flat = [r for group in host_rows.values() for r in group]
+     physical = [r for r in rows if r.get('event') == 'physical_session_close_observed']; projected = [r for r in rows if r.get('event') != 'physical_session_close_observed']
+     need(len(physical) == 4 and {r['planned_session_id'] for r in physical} == set(planned), 'complete_actual_physical_host_close')

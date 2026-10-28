@@ -1,8 +1,10 @@
 {
-  "assembled_at_utc": "2026-10-28T19:56:18.394563+00:00",
+  "assembled_at_utc": "2026-10-28T20:16:15.182941+00:00",
   "files": {
-    "LICENSE.md": "85a67e1083895bd4297ea2f55c7258ad0893e7762e92e8b358f117f493c44ed3",
-    "README.md": "80355ec65e2786662a750b7b957e711c161ed68c8daa9e1f5335e158f5cecfd5",
+    "LICENSE.md": "ab5f00747de104da0be96cb28fc34cfbfadf73c28acdcc28683a8a01b98d4921",
+    "README.md": "ac869e205939d02315e2255feeecb5d33be3721729f91905d9ff38ed185e738e",
+    "analysis/reader-json-format-erratum.md": "3ac0e0421ac4485677a57fc4f107af7a369c0f8168bf0f24e51b46a780f1cc1e",
+    "analysis/reader-json-format.patch": "6489c2e9ccc447f78081f7ba4a2e9db248384b09eab859e1fbb8033085313ce1",
     "archives/paper-draft-20261028-v1.zip": "60e2ee9df8488ddb71d51314e6dbc029513eb7256d48854d6ca2ed68656f2765",
     "archives/public-method-source-release-v1.tar.xz": "5b8659a11095743536ec8ed4d8ad1992eabc07712753dec434952ddf7e9bffc5",
     "paper-draft-20261028/LICENSE-paper.txt": "58f39e65b02a673bae6de3b316437d87cf78c4c7793ee7aa0224bebf4b48bf48",
@@ -179,8 +181,8 @@
     "study/research/tier2-audit-protocol-20261028.md": "26a13b4552fba46fa569a14b10aea450c5b3d7066254d1618410c5240cd0f391",
     "study/research/validation-calibration-methods-20261028.md": "bcfab6e4cda4ca6098e47e3c93f59b4a0b67d46381ce353e8e2583d65fc1b555"
   },
-  "kind": "curated preliminary public source, paper snapshots and prospective study documents",
-  "parent_public_commit": "42b7142a86bd6fddf9b89e9c5a89714f2930d794",
-  "previous_manifest_sha256": "9bde1c5c655c40937494bb93f2f723267e64b30239d04d247564faa82bcbbdad",
+  "kind": "curated public source/paper snapshot, prospective design and disclosed reader-format correction",
+  "parent_public_commit": "2e10a735d8c667a1df26970b50cfcee9edc7e6a1",
+  "previous_manifest_sha256": "66ae06ea640d4671921fe8602bfc0d62e215adfd5d61b0a75f7ece4522070b7c",
   "schema_version": 1
 }
