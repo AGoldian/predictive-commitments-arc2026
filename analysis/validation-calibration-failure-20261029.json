@@ -1,0 +1,261 @@
+{
+  "accepted_version": {
+    "kernel_id": 141409675,
+    "notebook_sha256": "38ff55ddda26207ae7255d33301c06d261e9ec0e414adb505e3284abb5b60965",
+    "plan_sha256": "f5639cb243da3e28a801ece427b7e474b5d5b6ec026cded35556bae29bcc3007",
+    "prelaunch_commit": "38df78bfd2b6abc9369fdf372838e56179038ced",
+    "prepared_manifest_sha256": "089126c968d02de304aa90797128521acd7b5a9cd6b1c6e06cf7603b7b5c6ab2",
+    "version": 1
+  },
+  "assembled_at_utc": "2026-10-28T22:52:09.835455+00:00",
+  "calibration_eligible": false,
+  "cost_observations": {
+    "all_request_accepted_target_tokens": null,
+    "bank_and_receipt_counts_are_not_additive": true,
+    "bank_journal_known_spend": 159646,
+    "bank_journal_scan_complete": true,
+    "bank_journal_unknown_attempts_observed": 0,
+    "draft_internal_work": null,
+    "known_accepted_target_tokens_lower_bound": 159646,
+    "known_at_or_after_verified_cutoff": null,
+    "known_before_verified_cutoff": null,
+    "known_execution_receipts_observed": 142,
+    "known_lower_bound_is_complete_total": false,
+    "scope": "Known receipt tokens and bank spend are two views of the same accepted-target accounting, not additive. Receipt scan is incomplete; observed zero unknown records is not proof of no unknown or pending work. Full physical target/draft work and whole-kernel GPU cost remain unavailable.",
+    "target_receipt_scan_complete": false,
+    "target_receipt_scan_failure_codes": [
+      "json_node_bound",
+      "input_byte_bound"
+    ],
+    "unknown_attempts_observed_in_scanned_records": 0,
+    "unknown_execution_receipts_observed_in_scanned_records": 0,
+    "whole_kernel_GPU_seconds": null
+  },
+  "disposition_counts": {
+    "unverified_or_failed_whole_replay": 20
+  },
+  "event_only_vs_mask_selected": false,
+  "evidence": {
+    "bounded_driver_finished": {
+      "path": "artifacts/kaggle/validation-calibration-v1-prelaunch/bounded-loop-finished-v1.json",
+      "sha256": "7df4c5f628bf421ea960aaffd49b4f68c9ae5fe5e34d05ede819dd000f372c7d"
+    },
+    "execution_record": {
+      "path": "artifacts/kaggle/validation-calibration-v1/execution-record.json",
+      "sha256": "e0ef0c4431454e6b5f7d6c4bf0451b5dc84898a8c5182c137f86cb41771ce792"
+    },
+    "reader_closure": {
+      "path": "artifacts/reviews/validation-calibration-composition-v3-source/reader/candidate-checksums.json",
+      "sha256": "ba7a114dd4f8680085d3dcebb732e28839c83d827e6eb848c9d2e9de0e4e34a9"
+    },
+    "reader_source": {
+      "path": "artifacts/reviews/validation-calibration-composition-v3-source/reader/reader.py",
+      "sha256": "54805b84bf2efaf58596e86ac8664fa79fe76e61d8414761a3f3b7467637e61c"
+    },
+    "retained_private_report_sha256": {
+      "calibration": "e21094c7c272875f57a6fdc36d812e67bc718bdd498476353b0cb27ec9e3b1a1",
+      "inspection": "ef4d602becae6e8dde7214c17f679e68b20c24bb9ade17938573b24c72e82dc2",
+      "original_dispositions": "c1adf97708eb15e3a10090ac748b01d447fafa9301fa81e6afc05fc70792b397",
+      "single_calibrate_invocation": "01dd336df3aeaf3ead1ca996a7b5ab1cc3b93a83c69333b3d27196eb380e8d3d"
+    }
+  },
+  "failure_codes": [
+    "missing_or_escaping_file",
+    "native_supervisor_failure_or_scope",
+    "json_node_bound",
+    "input_byte_bound"
+  ],
+  "fit_eligible": false,
+  "folds": {
+    "actual_component_result": {
+      "pass": false
+    },
+    "closed_actual_runtime": {
+      "pass": true
+    },
+    "external_parent_origin_freeze_native": {
+      "pass": false
+    }
+  },
+  "kind": "Sanitized technical summary of original terminal evidence and one frozen calibration invocation; not a rescore",
+  "limitations": [
+    "All20 original slots remain in the refused whole-run disposition; zero verified scorable games is not a claim that no game or action ran.",
+    "Per-game complete-window counters in the refused report are not validated observed zeros and are not promoted as measurements.",
+    "Macro scores are unavailable, not zero; analytic mask identity is not an observed validation tie or selected representation.",
+    "Failure codes are strict-reader observations, not independently established underlying runtime causes.",
+    "No raw journals, request text, private output files, account metadata or complete CLI arguments are included.",
+    "No new API, reader replay, model fit, scientific rescore, GPU execution or automatic retry occurred in this reconciliation."
+  ],
+  "macro_brier": {
+    "A1": null,
+    "P_effective": null,
+    "P_mask_effective": null,
+    "P_mask_raw": null,
+    "P_raw": null
+  },
+  "macro_log_loss": {
+    "A1": null,
+    "P_effective": null,
+    "P_mask_effective": null,
+    "P_mask_raw": null,
+    "P_raw": null
+  },
+  "mask_comparison": {
+    "analytic_identity": "P_mask_raw == P_raw; P_mask_effective == P_effective",
+    "estimable": false,
+    "measured_exact_tie": null,
+    "selected_representation": null,
+    "unavailable_reason": "five_game_macro_unavailable_not_a_measured_tie"
+  },
+  "model_pair_sha256": "cccc2ffbaaf223ce1a284af1afd2405f58fca4cafeee4b12692678bd33f4b6ed",
+  "models_refitted": false,
+  "models_written": false,
+  "namespace": "five-validation-calibration-actual-readout-summary-v1",
+  "official_score": null,
+  "original_dispositions_retained": 20,
+  "per_game": [
+    {
+      "brier": {
+        "A1": null,
+        "P_effective": null,
+        "P_mask_effective": null,
+        "P_mask_raw": null,
+        "P_raw": null
+      },
+      "game_id": "cd82-fb555c5d",
+      "log_loss": {
+        "A1": null,
+        "P_effective": null,
+        "P_mask_effective": null,
+        "P_mask_raw": null,
+        "P_raw": null
+      },
+      "planned_slots": 4,
+      "scorable": false,
+      "unavailable_reason": "whole_collection_source_cost_censoring_or_custody_refused"
+    },
+    {
+      "brier": {
+        "A1": null,
+        "P_effective": null,
+        "P_mask_effective": null,
+        "P_mask_raw": null,
+        "P_raw": null
+      },
+      "game_id": "ka59-38d34dbb",
+      "log_loss": {
+        "A1": null,
+        "P_effective": null,
+        "P_mask_effective": null,
+        "P_mask_raw": null,
+        "P_raw": null
+      },
+      "planned_slots": 4,
+      "scorable": false,
+      "unavailable_reason": "whole_collection_source_cost_censoring_or_custody_refused"
+    },
+    {
+      "brier": {
+        "A1": null,
+        "P_effective": null,
+        "P_mask_effective": null,
+        "P_mask_raw": null,
+        "P_raw": null
+      },
+      "game_id": "lp85-305b61c3",
+      "log_loss": {
+        "A1": null,
+        "P_effective": null,
+        "P_mask_effective": null,
+        "P_mask_raw": null,
+        "P_raw": null
+      },
+      "planned_slots": 4,
+      "scorable": false,
+      "unavailable_reason": "whole_collection_source_cost_censoring_or_custody_refused"
+    },
+    {
+      "brier": {
+        "A1": null,
+        "P_effective": null,
+        "P_mask_effective": null,
+        "P_mask_raw": null,
+        "P_raw": null
+      },
+      "game_id": "sb26-7fbdac44",
+      "log_loss": {
+        "A1": null,
+        "P_effective": null,
+        "P_mask_effective": null,
+        "P_mask_raw": null,
+        "P_raw": null
+      },
+      "planned_slots": 4,
+      "scorable": false,
+      "unavailable_reason": "whole_collection_source_cost_censoring_or_custody_refused"
+    },
+    {
+      "brier": {
+        "A1": null,
+        "P_effective": null,
+        "P_mask_effective": null,
+        "P_mask_raw": null,
+        "P_raw": null
+      },
+      "game_id": "sk48-d8078629",
+      "log_loss": {
+        "A1": null,
+        "P_effective": null,
+        "P_mask_effective": null,
+        "P_mask_raw": null,
+        "P_raw": null
+      },
+      "planned_slots": 4,
+      "scorable": false,
+      "unavailable_reason": "whole_collection_source_cost_censoring_or_custody_refused"
+    }
+  ],
+  "planned_games": 5,
+  "planned_slots": 20,
+  "public_runtime_cause_summary": {
+    "canonical_host_row_bytes": 1952774,
+    "exact_original_exception_text_available": false,
+    "future_main_success_established": false,
+    "offline_reader_failure_is_separate": true,
+    "operative_collection_observer_row_limit_bytes": 1048576,
+    "original_cause_note_sha256": "3dde1ce5e423e0900950850656c1cb349d83d65a31c4830c0a648e26f7d8a6b2",
+    "retained_public_response_frames": 227,
+    "runtime_failure": "host_observer_failed after the row exceeded the collection-book bound; subsequent coordinator and stop-source failures",
+    "specific_collection_book_guard_in_frozen_main_runtime": false
+  },
+  "rows_written": false,
+  "schema_version": 1,
+  "single_completed_inspection": {
+    "finished_at_utc": "2026-10-28T22:50:26.040723+00:00",
+    "invocation_sha256": "01dd336df3aeaf3ead1ca996a7b5ab1cc3b93a83c69333b3d27196eb380e8d3d",
+    "invocations": 1,
+    "mode": "calibrate",
+    "returncode": 2,
+    "started_at_utc": "2026-10-28T22:50:25.500967+00:00",
+    "stderr_bytes": 0,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout_sha256": "4246ae96f8c468dc1639e142452ace1458e1800b89e2d8e64a9fbc73bdfe9e48"
+  },
+  "terminal": {
+    "api_listed_output_files": 263,
+    "api_status": "ERROR",
+    "api_status_observed_at_utc": "2026-10-28T22:44:17.805695+00:00",
+    "bounded_driver_finished_at_utc": "2026-10-28T22:45:47.595766+00:00",
+    "bounded_driver_polls_claimed": 29,
+    "download_complete": true,
+    "original_inventory_bytes": 92794895,
+    "original_inventory_entries": 264,
+    "output_download_completed_at_utc": "2026-10-28T22:45:47.519494+00:00",
+    "remote_cancelled": false,
+    "version_join_scope": "Exact accepted handle under one new reserved nonce version; output endpoint is not version-addressed or remotely attested"
+  },
+  "transforms_refitted": false,
+  "validation_model_selection_performed": false,
+  "verified_scorable_games": 0,
+  "verified_work_cutoff_ns": null
+}
