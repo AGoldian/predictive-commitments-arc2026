@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1280" viewBox="0 0 1920 1280">
+<title>Predictive commitments and the four allocation controls</title>
+<desc>Schematic method illustration. An immutable optional prediction precedes dispatch; public outcomes resolve scored pairs before a later shared allocation ticket. The four controls are B0, B1, A1 and P. No game rollout or measured values are shown.</desc>
+<rect width="1920" height="1280" fill="white"/>
+<text x="90" y="55" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="51" font-weight="700" fill="#17253b">A prediction is fixed before the action</text>
+<text x="90" y="124" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="28" font-weight="400" fill="#53667d">Public outcomes are resolved before a later shared-compute decision.</text>
+<rect x="90" y="177" width="1740" height="39" rx="9" fill="#f1f5fa"/>
+<text x="108" y="186" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#53667d">METHOD OVERVIEW  •  Instrumented path: B1 / A1 / P; learned multiplier: A1 / P only</text>
+<rect x="90" y="238" width="320" height="250" rx="16" fill="#edf8f8" stroke="#087f8c" stroke-width="2"/>
+<rect x="110" y="261" width="37" height="37" rx="10" fill="#087f8c"/>
+<text x="121" y="270" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="white">1</text>
+<text x="162" y="264" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="#17253b">Commit</text>
+<text x="112" y="327" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="24" font-weight="400" fill="#17253b">optional q_t or abstain</text>
+<text x="112" y="363" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="21" font-weight="400" fill="#17253b">frame change / level / failure</text>
+<text x="112" y="399" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="22" font-weight="400" fill="#17253b">bound to action + payload</text>
+<polyline points="112,440 388,440" fill="none" stroke="#d6e0eb" stroke-width="1" stroke-linejoin="round"/>
+<text x="112" y="457" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="20" font-weight="400" fill="#53667d">Fixed before dispatch</text>
+<polyline points="417,365 439,365" fill="none" stroke="#2e68b1" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="439,365 431,359.8 431,370.2" fill="#2e68b1"/>
+<rect x="445" y="238" width="320" height="250" rx="16" fill="#eef4fc" stroke="#2e68b1" stroke-width="2"/>
+<rect x="465" y="261" width="37" height="37" rx="10" fill="#2e68b1"/>
+<text x="476" y="270" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="white">2</text>
+<text x="517" y="264" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="#17253b">Dispatch</text>
+<text x="467" y="327" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="25" font-weight="400" fill="#17253b">one action a_t</text>
+<text x="467" y="363" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="23" font-weight="400" fill="#17253b">permitted SDK only</text>
+<text x="467" y="399" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="22" font-weight="400" fill="#17253b">no future observations</text>
+<polyline points="467,440 743,440" fill="none" stroke="#d6e0eb" stroke-width="1" stroke-linejoin="round"/>
+<text x="467" y="457" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="20" font-weight="400" fill="#53667d">Exact action receipt</text>
+<polyline points="772,365 794,365" fill="none" stroke="#527a39" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="794,365 786,359.8 786,370.2" fill="#527a39"/>
+<rect x="800" y="238" width="320" height="250" rx="16" fill="#f1f7ec" stroke="#527a39" stroke-width="2"/>
+<rect x="820" y="261" width="37" height="37" rx="10" fill="#527a39"/>
+<text x="831" y="270" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="white">3</text>
+<text x="872" y="264" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="#17253b">Observe</text>
+<text x="822" y="327" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="24" font-weight="400" fill="#17253b">public return o_(t+1)</text>
+<text x="822" y="363" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="23" font-weight="400" fill="#17253b">last returned frame</text>
+<text x="822" y="399" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="22" font-weight="400" fill="#17253b">+ permitted metadata</text>
+<polyline points="822,440 1098,440" fill="none" stroke="#d6e0eb" stroke-width="1" stroke-linejoin="round"/>
+<text x="822" y="457" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="20" font-weight="400" fill="#53667d">No hidden state</text>
+<polyline points="1127,365 1149,365" fill="none" stroke="#a66a14" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="1149,365 1141,359.8 1141,370.2" fill="#a66a14"/>
+<rect x="1155" y="238" width="320" height="250" rx="16" fill="#fff7e9" stroke="#a66a14" stroke-width="2"/>
+<rect x="1175" y="261" width="37" height="37" rx="10" fill="#a66a14"/>
+<text x="1186" y="270" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="white">4</text>
+<text x="1227" y="264" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="#17253b">Resolve</text>
+<text x="1177" y="327" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="24" font-weight="400" fill="#17253b">observable outcome y</text>
+<text x="1177" y="363" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="24" font-weight="400" fill="#17253b">valid pair: (p − y)²</text>
+<text x="1177" y="399" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="22" font-weight="400" fill="#17253b">unavailable ≠ correct</text>
+<polyline points="1177,440 1453,440" fill="none" stroke="#d6e0eb" stroke-width="1" stroke-linejoin="round"/>
+<text x="1177" y="457" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="20" font-weight="400" fill="#53667d">No retrospective revision</text>
+<polyline points="1482,365 1504,365" fill="none" stroke="#6d4bc3" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="1504,365 1496,359.8 1496,370.2" fill="#6d4bc3"/>
+<rect x="1510" y="238" width="320" height="250" rx="16" fill="#f4effc" stroke="#6d4bc3" stroke-width="2"/>
+<rect x="1530" y="261" width="37" height="37" rx="10" fill="#6d4bc3"/>
+<text x="1541" y="270" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="white">5</text>
+<text x="1582" y="264" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="#17253b">Next ticket</text>
+<text x="1532" y="327" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="24" font-weight="400" fill="#17253b">settled history → r̂</text>
+<text x="1532" y="363" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="21" font-weight="400" fill="#17253b">A1/P: baseline × (0.5 + r̂)</text>
+<text x="1532" y="399" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="21" font-weight="400" fill="#17253b">freeze multiplier per ticket</text>
+<polyline points="1532,440 1808,440" fill="none" stroke="#d6e0eb" stroke-width="1" stroke-linejoin="round"/>
+<text x="1532" y="457" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="20" font-weight="400" fill="#53667d">Capacity: 2 exchanges</text>
+<polyline points="250,489 250,521 1315,521 1315,491" fill="none" stroke="#8a9caf" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="1315,491 1309.8,499 1320.2,499" fill="#8a9caf"/>
+<rect x="530" y="503" width="630" height="36" rx="4" fill="white"/>
+<text x="548" y="511" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="23" font-weight="400" fill="#53667d">Original commitment + exact action return</text>
+<rect x="90" y="561" width="1740" height="111" rx="14" fill="#f6f8fb" stroke="#d6e0eb" stroke-width="1"/>
+<text x="115" y="582" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#17253b">Settled history</text>
+<text x="115" y="623" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="23" font-weight="400" fill="#53667d">last 8 eligible actions</text>
+<polyline points="421,579 421,654" fill="none" stroke="#d6e0eb" stroke-width="2" stroke-linejoin="round"/>
+<text x="447" y="581" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="25" font-weight="700" fill="#17253b">A1 / P common inputs</text>
+<text x="447" y="620" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="23" font-weight="400" fill="#53667d">progress + coverage + mean(p), mean(p²), mean(y)</text>
+<polyline points="1231,579 1231,654" fill="none" stroke="#d6e0eb" stroke-width="2" stroke-linejoin="round"/>
+<text x="1259" y="581" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="25" font-weight="700" fill="#6d4bc3">P adds event Brier means</text>
+<text x="1259" y="620" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="23" font-weight="400" fill="#53667d">mean((p − y)²) on the same scored pairs</text>
+<text x="91" y="692" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="22" font-weight="400" fill="#53667d">Error sample: valid, observable pairs only. RESET / undo / known refusals excluded; missing labels stay unavailable.</text>
+<text x="90" y="744" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="31" font-weight="700" fill="#17253b">Four arms, different questions</text>
+<rect x="90" y="797" width="417" height="258" rx="16" fill="#f4f6f8" stroke="#d6e0eb" stroke-width="2"/>
+<text x="114" y="819" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="35" font-weight="700" fill="#53667d">B0</text>
+<text x="114" y="874" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="24" font-weight="400" fill="#17253b">No prediction interface</text>
+<text x="114" y="912" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="22" font-weight="400" fill="#17253b">Baseline prompts + batches</text>
+<polyline points="114,955 483,955" fill="none" stroke="#d6e0eb" stroke-width="1" stroke-linejoin="round"/>
+<text x="114" y="975" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="25" font-weight="700" fill="#53667d">Baseline priority</text>
+<text x="114" y="1015" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="21" font-weight="400" fill="#53667d">Practical baseline</text>
+<rect x="531" y="797" width="417" height="258" rx="16" fill="#edf8f8" stroke="#d6e0eb" stroke-width="2"/>
+<text x="555" y="819" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="35" font-weight="700" fill="#087f8c">B1</text>
+<text x="555" y="874" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="24" font-weight="400" fill="#17253b">Optional predictions</text>
+<text x="555" y="912" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="22" font-weight="400" fill="#17253b">Shared instrumentation</text>
+<polyline points="555,955 924,955" fill="none" stroke="#d6e0eb" stroke-width="1" stroke-linejoin="round"/>
+<text x="555" y="975" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="25" font-weight="700" fill="#087f8c">Baseline priority</text>
+<text x="555" y="1015" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="21" font-weight="400" fill="#53667d">Instrumentation control</text>
+<rect x="972" y="797" width="417" height="258" rx="16" fill="#eef4fc" stroke="#d6e0eb" stroke-width="2"/>
+<text x="996" y="819" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="35" font-weight="700" fill="#2e68b1">A1</text>
+<text x="996" y="874" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="24" font-weight="400" fill="#17253b">Same optional predictions</text>
+<text x="996" y="912" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="22" font-weight="400" fill="#17253b">Common progress + paired moments</text>
+<polyline points="996,955 1365,955" fill="none" stroke="#d6e0eb" stroke-width="1" stroke-linejoin="round"/>
+<text x="996" y="975" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="25" font-weight="700" fill="#2e68b1">Learned multiplier</text>
+<text x="996" y="1015" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="21" font-weight="400" fill="#53667d">Matched allocation control</text>
+<rect x="1413" y="797" width="417" height="258" rx="16" fill="#f4effc" stroke="#d6e0eb" stroke-width="2"/>
+<text x="1437" y="819" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="35" font-weight="700" fill="#6d4bc3">P</text>
+<text x="1437" y="874" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="24" font-weight="400" fill="#17253b">Same optional predictions</text>
+<text x="1437" y="912" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="22" font-weight="400" fill="#17253b">Same common inputs + Brier means</text>
+<polyline points="1437,955 1806,955" fill="none" stroke="#d6e0eb" stroke-width="1" stroke-linejoin="round"/>
+<text x="1437" y="975" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="25" font-weight="700" fill="#6d4bc3">Learned multiplier</text>
+<text x="1437" y="1015" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="21" font-weight="400" fill="#53667d">Primary representation test</text>
+<text x="90" y="1080" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="25" font-weight="700" fill="#6d4bc3">Primary contrast: P − A1 tests the added pairing-sensitive representation under fixed L2.</text>
+<text x="90" y="1130" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="25" font-weight="700" fill="#17253b">Two different targets</text>
+<text x="90" y="1167" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="24" font-weight="400" fill="#53667d">q_t: NEXT-action events.  r̂: current-level completion within 8,192 target tokens or 20 nonautomatic actions.</text>
+<text x="90" y="1203" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="23" font-weight="400" fill="#53667d">P falls back to A1 when all event residuals are missing. Only completed public history enters a new ticket.</text>
+<text x="90" y="1251" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#53667d">SCHEMATIC METHOD ILLUSTRATION  •  NO ROLLOUT, MEASURED PROBABILITIES OR PERFORMANCE RESULT</text>
+</svg>

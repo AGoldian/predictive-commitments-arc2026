@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "kind": "Static visualization of retained DEV aggregates; no reanalysis",
+  "prepared_at_utc": "2026-10-29T16:11:40.003227+00:00",
+  "claim_registry": {
+    "path": "paper/claims.json",
+    "sha256": "520794c35eba909343b53f9f3613d05e9c1c53a21151759b4cef1bfd248a6661",
+    "claim_ids": [
+      "O23",
+      "O25",
+      "O26"
+    ]
+  },
+  "rows": [
+    {
+      "arm": "B1",
+      "valid_predictions": 331,
+      "eligible_actions": 422,
+      "coverage_rate": 0.7843601895734598,
+      "counts_complete": true,
+      "packet_coverage_pass": true,
+      "source": {
+        "path": "artifacts/kaggle/tier1-v6-b1/reader-inspection-v1.json",
+        "sha256": "aaaae60fa03635c4982d52a2adf96db0d04668b118e619cd3c536326f5e49122",
+        "json_pointer": "/coverage",
+        "claim_id": "O23"
+      }
+    },
+    {
+      "arm": "A1",
+      "valid_predictions": 276,
+      "eligible_actions": 374,
+      "coverage_rate": 0.7379679144385026,
+      "counts_complete": true,
+      "packet_coverage_pass": true,
+      "source": {
+        "path": "artifacts/kaggle/tier1-v6-a1/reader-inspection-v2-json-format.json",
+        "sha256": "74b34887cc7ef310a6c20e0d73451118ec51f7db1d39858519cd4c09d07ecf50",
+        "json_pointer": "/coverage",
+        "claim_id": "O25"
+      }
+    },
+    {
+      "arm": "P",
+      "valid_predictions": 89,
+      "eligible_actions": 417,
+      "coverage_rate": 0.21342925659472423,
+      "counts_complete": true,
+      "packet_coverage_pass": false,
+      "source": {
+        "path": "artifacts/kaggle/tier1-v6-p/coverage-diagnostic-v1/coverage-component-output.json",
+        "sha256": "3ae27f503c56612f348a894a74a88c8340d40ca974cc2b62eb7c6a5ef18a7597",
+        "json_pointer": "/",
+        "claim_id": "O26"
+      }
+    }
+  ],
+  "feasibility_gate": {
+    "coverage_rate": 0.5,
+    "comparison": ">=",
+    "separately_per_arm": true,
+    "source_ref": {
+      "path": "research/experiment-protocol-inference-v012.md",
+      "sha256": "e54b1fef2167184c9736fb7b9f4406d5e2ff594a475d0194e874af85bdd4da94"
+    },
+    "line": 21
+  },
+  "study": {
+    "split": "exposed public DEV",
+    "game_ids": [
+      "g50t-5849a774",
+      "dc22-fdcac232",
+      "ft09-0d8bbf25",
+      "ls20-9607627b"
+    ],
+    "seed": 101,
+    "configuration_source": {
+      "path": "configs/tier1-inference-design-v1.json",
+      "sha256": "8e364e32785b63ef371b79e6b0856167340fbd21a2d5f427b3919b18420106df"
+    }
+  },
+  "limitations": [
+    "B0 excluded by design: no prospective-packet coverage estimand.",
+    "Packet availability is not prediction accuracy, a DEV score or an efficacy estimate.",
+    "Actions are not IID; no confidence intervals, significance tests or causal advantage are shown.",
+    "A1 uses the documented JSON-format reader adjudication, preserving its original refusal.",
+    "P counts come from the authorized pure coverage-component diagnostic; its original reader refusal and feasibility failure remain."
+  ],
+  "caption": "Valid prospective prediction packets V divided by all eligible executed actions D in four exposed public DEV games (seed 101): B1 331/422 (78.4%), A1 276/374 (73.8%), and P 89/417 (21.3%). The dashed line marks the frozen per-arm feasibility gate, V/D >= 50%. B0 is excluded by design. These are packet-availability ratios, not prediction accuracy, a DEV score or efficacy. Actions are not IID; no confidence intervals, significance or causal advantage are asserted. A1 uses the documented JSON-format adjudication; P counts come from the sole pure coverage diagnostic and do not clear the original refusal."
+}

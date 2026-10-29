@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "kind": "Static infographic of existing retained evidence; no new analysis",
+  "prepared_at_utc": "2026-10-29T16:25:06.630344+00:00",
+  "dev_p": {
+    "valid": 89,
+    "eligible": 417,
+    "rate": 0.21342925659472423,
+    "frozen_gate": 0.5,
+    "status": "feasibility failed",
+    "claim_id": "O26"
+  },
+  "mechanism_contrast": {
+    "contrast": "P minus A1",
+    "estimate": null,
+    "status": "unavailable",
+    "main_stopped_after": "B1 evidence refusal",
+    "efficacy_result": null,
+    "claim_id": "O36"
+  },
+  "official_p": {
+    "submission_id": 57749129,
+    "status": "COMPLETE",
+    "public_score": "0.00",
+    "observed_at_utc": "2026-10-28T21:42:51.801722+00:00",
+    "actual_rerun_cause": null,
+    "actual_rerun_runtime": null,
+    "actual_rerun_traces": null,
+    "claim_id": "O31"
+  },
+  "scope": {
+    "public_dev_games": 4,
+    "seed": 101,
+    "official_score_is_distinct_from_dev_coverage": true,
+    "successful_full_reproduction_established_by_these_observations": false,
+    "causal_advantage_established": false,
+    "no_current_running_status_embedded": true
+  },
+  "sources": {
+    "dev": {
+      "path": "artifacts/kaggle/tier1-v6-p/coverage-diagnostic-v1/coverage-component-output.json",
+      "sha256": "3ae27f503c56612f348a894a74a88c8340d40ca974cc2b62eb7c6a5ef18a7597"
+    },
+    "main_reader": {
+      "path": "artifacts/kaggle/tier2-s101-b1-v2/reader-inspection-v1.json",
+      "sha256": "ee0f68e86189e13c454413e8f32cf030d77db6ac9290e1aadba52ce642d15ee2"
+    },
+    "main_stop": {
+      "path": "artifacts/kaggle/tier2-s101-v2-sequential-execution-v1/stopped.json",
+      "sha256": "8d3e7f86f87db57ef0072d32df55edcf6618fda2013d6638c007f7a3d0cd50bf"
+    },
+    "official": {
+      "path": "artifacts/kaggle/official-private-p-submission-v1/submission-result.json",
+      "sha256": "44000435b3c53600bab1a0fac4f73daad5a605f6c8762383a988e3c7b5abf25c"
+    },
+    "gate": {
+      "path": "research/experiment-protocol-inference-v012.md",
+      "sha256": "e54b1fef2167184c9736fb7b9f4406d5e2ff594a475d0194e874af85bdd4da94"
+    }
+  },
+  "claims_registry": {
+    "path": "paper/claims.json",
+    "sha256": "520794c35eba909343b53f9f3613d05e9c1c53a21151759b4cef1bfd248a6661",
+    "claim_ids": [
+      "O26",
+      "O36",
+      "O31"
+    ]
+  },
+  "caption": "Three distinct evidence levels for P: DEV packet supply was 89/417 (21.3%), below the frozen 50% feasibility gate; the main P−A1 mechanism contrast is unavailable because the sequence stopped after B1 evidence refusal; official submission 57749129 completed with public score 0.00. The official observation does not reveal rerun cause, runtime or traces. DEV covers four exposed public games at seed 101. Official score and DEV coverage are different quantities; these observations establish neither successful full baseline reproduction nor an advantage."
+}

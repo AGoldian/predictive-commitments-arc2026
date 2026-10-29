@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="720pt" height="432pt" viewBox="0 0 720 432" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <title>Coverage, efficacy, and official result</title>
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title>Coverage, efficacy, and official result</dc:title>
+    <dc:description>Three distinct evidence levels for P: DEV packet supply was 89/417 (21.3%), below the frozen 50% feasibility gate; the main P−A1 mechanism contrast is unavailable because the sequence stopped after B1 evidence refusal; official submission 57749129 completed with public score 0.00. The official observation does not reveal rerun cause, runtime or traces. DEV covers four exposed public games at seed 101. Official score and DEV coverage are different quantities; these observations establish neither successful full baseline reproduction nor an advantage.</dc:description>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 432 
+L 720 432 
+L 720 0 
+L 0 0 
+z
+" style="fill: #f7f9fc"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 30.96 327.456 
+L 231.12 327.456 
+Q 242.64 327.456 242.64 320.544 
+L 242.64 94.176 
+Q 242.64 87.264 231.12 87.264 
+L 30.96 87.264 
+Q 19.44 87.264 19.44 94.176 
+L 19.44 320.544 
+Q 19.44 327.456 30.96 327.456 
+z
+" clip-path="url(#pa95f3d2add)" style="fill: #ffffff; stroke: #dde4ed; stroke-width: 1.1; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 259.92 327.456 
+L 460.08 327.456 
+Q 471.6 327.456 471.6 320.544 
+L 471.6 94.176 
+Q 471.6 87.264 460.08 87.264 
+L 259.92 87.264 
+Q 248.4 87.264 248.4 94.176 
+L 248.4 320.544 
+Q 248.4 327.456 259.92 327.456 
+z
+" clip-path="url(#pa95f3d2add)" style="fill: #ffffff; stroke: #dde4ed; stroke-width: 1.1; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 488.88 327.456 
+L 689.04 327.456 
+Q 700.56 327.456 700.56 320.544 
+L 700.56 94.176 
+Q 700.56 87.264 689.04 87.264 
+L 488.88 87.264 
+Q 477.36 87.264 477.36 94.176 
+L 477.36 320.544 
+Q 477.36 327.456 488.88 327.456 
+z
+" clip-path="url(#pa95f3d2add)" style="fill: #ffffff; stroke: #dde4ed; stroke-width: 1.1; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 38.16 117.072 
+L 51.84 96.768 
+L 65.52 117.072 
+z
+" clip-path="url(#pa95f3d2add)" style="fill: #fff2d8; stroke: #a56a14; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 40.32 244.08 
+L 221.76 244.08 
+L 221.76 238.032 
+L 40.32 238.032 
+z
+" clip-path="url(#pa95f3d2add)" style="fill: #e7ecf2"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 40.32 244.08 
+L 79.044604 244.08 
+L 79.044604 238.032 
+L 40.32 238.032 
+z
+" clip-path="url(#pa95f3d2add)" style="fill: #b87b23"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 40.32 312.768 
+L 221.76 312.768 
+Q 226.8 312.768 226.8 309.744 
+L 226.8 289.872 
+Q 226.8 286.848 221.76 286.848 
+L 40.32 286.848 
+Q 35.28 286.848 35.28 289.872 
+L 35.28 309.744 
+Q 35.28 312.768 40.32 312.768 
+z
+" clip-path="url(#pa95f3d2add)" style="fill: #fff2d8"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 271.44 111.024 
+C 272.96757 111.024 274.43278 110.659854 275.512935 110.011761 
+C 276.59309 109.363668 277.2 108.484542 277.2 107.568 
+C 277.2 106.651458 276.59309 105.772332 275.512935 105.124239 
+C 274.43278 104.476146 272.96757 104.112 271.44 104.112 
+C 269.91243 104.112 268.44722 104.476146 267.367065 105.124239 
+C 266.28691 105.772332 265.68 106.651458 265.68 107.568 
+C 265.68 108.484542 266.28691 109.363668 267.367065 110.011761 
+C 268.44722 110.659854 269.91243 111.024 271.44 111.024 
+z
+" clip-path="url(#pa95f3d2add)" style="fill: #ffffff; stroke: #627187; stroke-width: 1.3; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_10">
+    <path d="M 291.6 111.024 
+C 293.12757 111.024 294.59278 110.659854 295.672935 110.011761 
+C 296.75309 109.363668 297.36 108.484542 297.36 107.568 
+C 297.36 106.651458 296.75309 105.772332 295.672935 105.124239 
+C 294.59278 104.476146 293.12757 104.112 291.6 104.112 
+C 290.07243 104.112 288.60722 104.476146 287.527065 105.124239 
+C 286.44691 105.772332 285.84 106.651458 285.84 107.568 
+C 285.84 108.484542 286.44691 109.363668 287.527065 110.011761 
+C 288.60722 110.659854 290.07243 111.024 291.6 111.024 
+z
+" clip-path="url(#pa95f3d2add)" style="fill: #ffffff; stroke: #627187; stroke-width: 1.3; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_11">
+    <path d="M 269.28 312.768 
+L 450.72 312.768 
+Q 455.76 312.768 455.76 309.744 
+L 455.76 289.872 
+Q 455.76 286.848 450.72 286.848 
+L 269.28 286.848 
+Q 264.24 286.848 264.24 289.872 
+L 264.24 309.744 
+Q 264.24 312.768 269.28 312.768 
+z
+" clip-path="url(#pa95f3d2add)" style="fill: #edf1f6"/>
+   </g>
+   <g id="patch_12">
+    <path d="M 510.48 116.208 
+C 514.298925 116.208 517.96195 115.297635 520.662338 113.677403 
+C 523.362725 112.05717 524.88 109.859355 524.88 107.568 
+C 524.88 105.276645 523.362725 103.07883 520.662338 101.458597 
+C 517.96195 99.838365 514.298925 98.928 510.48 98.928 
+C 506.661075 98.928 502.99805 99.838365 500.297662 101.458597 
+C 497.597275 103.07883 496.08 105.276645 496.08 107.568 
+C 496.08 109.859355 497.597275 112.05717 500.297662 113.677403 
+C 502.99805 115.297635 506.661075 116.208 510.48 116.208 
+z
+" clip-path="url(#pa95f3d2add)" style="fill: #eaf2fa; stroke: #366e9d; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_13">
+    <path d="M 504.72 111.888 
+L 516.24 111.888 
+L 516.24 103.248 
+L 504.72 103.248 
+z
+" clip-path="url(#pa95f3d2add)" style="fill: #366e9d"/>
+   </g>
+   <g id="patch_14">
+    <path d="M 498.24 312.768 
+L 679.68 312.768 
+Q 684.72 312.768 684.72 309.744 
+L 684.72 289.872 
+Q 684.72 286.848 679.68 286.848 
+L 498.24 286.848 
+Q 493.2 286.848 493.2 289.872 
+L 493.2 309.744 
+Q 493.2 312.768 498.24 312.768 
+z
+" clip-path="url(#pa95f3d2add)" style="fill: #eaf2fa"/>
+   </g>
+   <g id="line2d_1">
+    <path d="M 131.04 248.4 
+L 131.04 231.984 
+" clip-path="url(#pa95f3d2add)" style="fill: none; stroke: #526174; stroke-width: 1.1; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_2">
+    <path d="M 277.2 107.568 
+L 285.84 107.568 
+" clip-path="url(#pa95f3d2add)" style="fill: none; stroke-dasharray: 2.4,2.4; stroke-dashoffset: 0; stroke: #627187; stroke-width: 1.2"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 23px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #202c3a" x="25.2" y="42.532406" transform="rotate(-0 25.2 42.532406)">Coverage, efficacy, and official result</text>
+   </g>
+   <g id="text_2">
+    <text style="font-size: 14.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #586678" x="25.2" y="65.881734" transform="rotate(-0 25.2 65.881734)">P method · three distinct evidence levels</text>
+   </g>
+   <g id="text_3">
+    <text style="font-weight: 700; font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #89570e" x="51.84" y="113.968953" transform="rotate(-0 51.84 113.968953)">!</text>
+   </g>
+   <g id="text_4">
+    <text style="font-weight: 700; font-size: 16px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #202c3a" x="76.32" y="111.29225" transform="rotate(-0 76.32 111.29225)">DEV P</text>
+   </g>
+   <g id="text_5">
+    <text style="font-weight: 700; font-size: 33px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #202c3a" x="38.88" y="156.748266" transform="rotate(-0 38.88 156.748266)">21.3%</text>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 13.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #48586a" x="40.32" y="189.621422" transform="rotate(-0 40.32 189.621422)">89 valid / 417 eligible</text>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 11.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #657386" x="40.32" y="209.051754" transform="rotate(-0 40.32 209.051754)">prediction packets / actions</text>
+   </g>
+   <g id="text_8">
+    <text style="font-size: 11.7px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #536377" x="40.32" y="263.952" transform="rotate(-0 40.32 263.952)">Frozen feasibility gate: 50%</text>
+   </g>
+   <g id="text_9">
+    <text style="font-weight: 700; font-size: 10.8px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #89570e" x="131.04" y="302.613469" transform="rotate(-0 131.04 302.613469)">FEASIBILITY FAILED</text>
+   </g>
+   <g id="text_10">
+    <text style="font-weight: 700; font-size: 15.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #202c3a" x="305.28" y="111.188344" transform="rotate(-0 305.28 111.188344)">P − A1 contrast</text>
+   </g>
+   <g id="text_11">
+    <text style="font-weight: 700; font-size: 23.7px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #202c3a" x="267.84" y="154.333371" transform="rotate(-0 267.84 154.333371)">Unavailable</text>
+   </g>
+   <g id="text_12">
+    <text style="font-size: 14px; font-family: 'DejaVu Sans'; fill: #48586a" transform="translate(269.28 180.987125)">Main study stopped</text>
+    <text style="font-size: 14px; font-family: 'DejaVu Sans'; fill: #48586a" transform="translate(269.28 202.643375)">after B1 evidence</text>
+    <text style="font-size: 14px; font-family: 'DejaVu Sans'; fill: #48586a" transform="translate(269.28 222.943375)">refusal.</text>
+   </g>
+   <g id="text_13">
+    <text style="font-weight: 700; font-size: 10.8px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #536377" x="360" y="302.613469" transform="rotate(-0 360 302.613469)">NO EFFICACY RESULT</text>
+   </g>
+   <g id="text_14">
+    <text style="font-weight: 700; font-size: 16px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #202c3a" x="534.24" y="111.292875" transform="rotate(-0 534.24 111.292875)">Official P</text>
+   </g>
+   <g id="text_15">
+    <text style="font-weight: 700; font-size: 33px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #202c3a" x="496.8" y="156.748266" transform="rotate(-0 496.8 156.748266)">0.00</text>
+   </g>
+   <g id="text_16">
+    <text style="font-size: 13.2px; font-family: 'DejaVu Sans'; fill: #48586a" transform="translate(498.24 188.887125)">Submission 57749129</text>
+    <text style="font-size: 13.2px; font-family: 'DejaVu Sans'; fill: #48586a" transform="translate(498.24 207.910594)">COMPLETE</text>
+   </g>
+   <g id="text_17">
+    <text style="font-size: 12.2px; font-family: 'DejaVu Sans'; fill: #657386" transform="translate(498.24 250.697922)">Rerun cause, runtime</text>
+    <text style="font-size: 12.2px; font-family: 'DejaVu Sans'; fill: #657386" transform="translate(498.24 268.400313)">and traces unobserved.</text>
+   </g>
+   <g id="text_18">
+    <text style="font-weight: 700; font-size: 10.8px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #366e9d" x="588.96" y="302.613469" transform="rotate(-0 588.96 302.613469)">OFFICIAL PUBLIC SCORE</text>
+   </g>
+   <g id="text_19">
+    <text style="font-size: 13.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #48586a" x="25.2" y="368.817891" transform="rotate(-0 25.2 368.817891)">DEV: four exposed public games · seed 101</text>
+   </g>
+   <g id="text_20">
+    <text style="font-size: 13.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #48586a" x="25.2" y="391.281891" transform="rotate(-0 25.2 391.281891)">Official score is distinct from DEV prediction coverage.</text>
+   </g>
+   <g id="text_21">
+    <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #657386" x="25.2" y="413.850047" transform="rotate(-0 25.2 413.850047)">These observations establish neither full reproduction nor an advantage.</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pa95f3d2add">
+   <rect x="0" y="0" width="720" height="432"/>
+  </clipPath>
+ </defs>
+</svg>
