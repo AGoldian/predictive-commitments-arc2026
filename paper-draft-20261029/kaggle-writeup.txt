@@ -2,13 +2,13 @@ Testing Predictive Commitments in Interactive Reasoning
 An ARC-AGI-3 feasibility pilot of prediction errors and shared inference allocation
 Alexander Serov — Independent Researcher
 
-RESEARCH DRAFT. October 29, 2026. All four development arms ran, but P failed the prespecified prediction-packet feasibility condition. No eligible efficacy comparison is available. The corresponding official P public score is 0.00. Main audit remains unlaunched; calibration and full Bpub reproduction failed their strict readouts.
+RESEARCH DRAFT. October 29, 2026. All four development arms ran, but P failed the prespecified prediction-packet feasibility condition. No eligible efficacy comparison is available. The corresponding official P public score is 0.00. The first main-audit B0 run failed before gameplay; calibration and full Bpub reproduction failed their strict readouts.
 
 Question
 
-Interactive reasoning agents must decide both what to do and where to spend their next inference request. We study whether recent prediction errors help allocate shared inference effort beyond an existing progress-aware scheduler. Our intervention is a fixed representation of paired prediction errors in a learned progress model. The comparison keeps the prediction interface, observations, probability/outcome moments and fitting procedure matched.
+We test whether recent prediction errors improve shared inference allocation beyond an existing progress-aware scheduler. A learned progress model uses a fixed representation of paired errors, with matched prediction interface, observations, probability/outcome moments and fitting.
 
-We build on Daniel Franzen's ARC-AGI-3 Milestone 2 solution and Tufa Labs' Duck harness [1,2]. Existing executable-world-model and transition-verification work already checks predictions against observations [3,4]. A public project plan also proposes calibration-conditioned priority [5]. We therefore make no novelty claim for prediction checking, shared scheduling or multi-agent review. Our question concerns the incremental behavior of the specified paired-error representation under fixed regularization.
+We build on Franzen's ARC-AGI-3 Milestone 2 solution and Tufa Labs' Duck harness [1,2]. Earlier work checks predictions against observations [3,4]; a public plan proposes calibration-conditioned priority [5]. Prediction checking, shared scheduling and multi-agent review are not our novelty claims. We test the incremental paired-error representation under fixed regularization.
 
 Method
 
@@ -16,13 +16,13 @@ Before one real action is dispatched, the model may supply probabilities for thr
 
 For each event, the history retains the last eight eligible actions and computes mean squared prediction error only over valid observable pairs. Common features include progress, accepted target tokens, action history, observation novelty, prediction availability and mean probability, squared probability and outcome on that same pair set.
 
-A1 uses those common features. P adds the three event Brier means. Both logistic progress models predict completion of the current level before the first of 8,192 additional target-output tokens or 20 real nonautomatic actions. Censored windows remain unavailable. These labels describe progress under collection policy rather than the causal value of additional computation. The same completed rows, standardization, missingness handling, equal weights, L2 coefficient 1.0 and 2,000 full-gradient steps train both models. Their predicted progress probability multiplies baseline priority by 0.5 plus that probability. The maximum scheduling capacity is two complete request/tool exchanges. If all event residuals are missing, P uses the predeclared A1 fallback and records its frequency.
+A1 uses those common features. P adds the three event Brier means. Both logistic progress models predict completion of the current level before the first of 8,192 additional target-output tokens or 20 real nonautomatic actions. Censored windows remain unavailable. These labels describe progress under collection policy rather than the causal value of additional computation. The same completed rows, standardization, missingness handling, equal weights, L2 coefficient 1.0 and 2,000 full-gradient steps train both models. Their predicted progress probability multiplies baseline priority by 0.5 plus that probability. Scheduling capacity is two complete request/tool exchanges. If all event residuals are missing, P uses the predeclared A1 fallback and records its frequency.
 
 Two additional controls interpret the practical intervention. B0 retains baseline prompts and batch policy under common accounting/admission. B1 uses the prediction interface and baseline priority. P versus A1 is the mechanism contrast; B1 versus B0 describes the total instrumentation treatment, and P versus B0 describes the complete method under the matched limits.
 
 Why the representation controls matter
 
-Brier equals mean(p-squared) plus mean(y) minus twice mean(p-times-y). With the common marginal moments, it can reveal pairing information. Fixed L2 nevertheless depends on feature basis. Replacing every probability by a constant q gives q-squared plus (1 minus 2q) times mean(y). Under our preprocessing, q=0.5 adds zero standardized columns; q=0.25 and 0.75 add signed duplicates of outcome columns where outcomes vary. A duplicate can change shrinkage and fixed-step optimization while adding no information. These are representation diagnostics, not policy-performance estimates.
+Brier equals mean(p-squared) plus mean(y) minus twice mean(p-times-y). With the common marginal moments, it can reveal pairing information. Fixed L2 nevertheless depends on feature basis. Replacing every probability by a constant q gives q-squared plus (1 minus 2q) times mean(y). Under our preprocessing, q=0.5 adds zero standardized columns; q=0.25 and 0.75 add signed duplicates of outcome columns where outcomes vary. A duplicate can change shrinkage and fixed-step optimization while adding no information. These diagnose representation, not policy performance.
 
 Evidence and evaluation
 
@@ -38,7 +38,9 @@ A1 supplied valid packets on 276 of 374 actions. Its first reader refused a tupl
 
 P supplied only 89 valid packets for 417 eligible actions (21.3429%), below the unchanged 50% threshold. The other 328 had prediction_not_supplied; the complete diagnostic recorded zero invalid predictions and zero unknown transitions. All other 20 reader checks passed, but scientific eligibility remains false. P retained 404,393 accepted target-output tokens across 303 known requests: 398,009 gameplay and 6,384 late, with zero observed unknown or pending requests in that scope. No efficacy score or surviving-subset comparison is reported.
 
-The unlaunched ten-game, three-request-seed, four-arm audit uses observed public-prefix progress under fixed limits and the selected SDK per-episode scalar formula. Fully observed won, gave_up, cancelled and crashed terminations remain included. It requires a complete joined prefix and all original source/native/cost/cleanup conditions; any unavailable game leaves the ten-game mean unavailable. Raw states and stored scores remain separate. This local endpoint is not an authenticated SDK score and does not rescore DEV. Protocol: research/tier2-audit-protocol-20261028.md.
+The prospectively frozen ten-game, three-request-seed, four-arm audit uses observed public-prefix progress under fixed limits and the selected SDK per-episode scalar formula. Fully observed won, gave_up, cancelled and crashed terminations remain included. It requires a complete joined prefix and all original source/native/cost/cleanup conditions; any unavailable game leaves the ten-game mean unavailable. Raw states and stored scores remain separate. This local endpoint is not an authenticated SDK score and does not rescore DEV. Protocol: research/tier2-audit-protocol-20261028.md.
+
+Main B0/seed101 (141448483/version1) ended ERROR before gameplay: after READY at1,948s, an inherited four-session/four-game guard rejected the ten-game roster. Original retrieval retained23 files/537,008 bytes; strict readout refused and the controller stopped. Eleven fleets remain unlaunched; the twelve-fleet plan is unchanged. Audit score/full cost are unavailable.
 
 Five-game calibration ended ERROR. One frozen readout refused whole-collection eligibility, retaining all 20 unverified slots; every macro Brier/log-loss remains null. No refit, verified completed-window count or measured mask tie is established. The observed 227-frame SDK return produced a 1,952,774-byte host row, exceeding the 1,048,576-byte collection limit. This runtime failure is distinct from later offline input/node-bound refusals.
 
@@ -50,7 +52,7 @@ The pilot failed feasibility of the frozen P policy. It does not identify model 
 
 Reproducibility and disclosure
 
-The draft, selected full method notebook/source, frozen coefficient pair, notices and prospective study documents are public at https://github.com/AGoldian/predictive-commitments-arc2026 . The draft package includes a conceptual cover. The exact full method code was public before the official request. The Kaggle notebook remains private under the competition-source embargo until the competition ends; prize eligibility and the missing rerun evidence remain unresolved. The compact parameter artifact alone is not a runnable solver.
+Method source, coefficients, notices and prospective protocols are public at https://github.com/AGoldian/predictive-commitments-arc2026 . A conceptual cover accompanies the draft. The exact full method code was public before the official request. The Kaggle notebook remains private under the competition-source embargo until the competition ends; prize eligibility and the missing rerun evidence remain unresolved. The compact parameter artifact alone is not a runnable solver.
 
 Our code and fitted allocation parameters use MIT-0; upstream components retain their own licenses. Qwen target/draft assets and runtime dependencies are referenced at exact versions. This manuscript and writeup use CC BY 4.0. LLM assistants supported research, implementation, criticism and editing; advisor roles from one model family are not independent model families. The human author is responsible for final verification. All work uses free/local resources, including free Kaggle allocation.
 

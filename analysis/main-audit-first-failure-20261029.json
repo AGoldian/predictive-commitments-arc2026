@@ -1,0 +1,41 @@
+{
+  "account_metadata_included": false,
+  "api_status": "ERROR",
+  "api_status_observed_at_utc": "2026-10-29T05:23:35.918768+00:00",
+  "arm": "B0",
+  "assembled_at_utc": "2026-10-29T05:31:06.089626+00:00",
+  "audit_score": null,
+  "automatic_retry": false,
+  "descriptive_score_invoked": false,
+  "evidence_sha256": {
+    "bounded-loop-finished-v1.json": "26f3703e80e0ca5d4502f7423d81679c8a9eba0934a66aaf9f4fdef85595efcb",
+    "execution-record.json": "690907b12ca082eb68293155eab477ac0e7db77418d8eaa3177cab2c6a3f7d3d",
+    "reader-inspection-v1.json": "d80f99a613eec4e77aae3c9bee4caa4e15be95275672c12cfacd0baa2cfb9afb",
+    "stopped.json": "6cd34b856109ba7b42e256048ba9913cda4b2827a67633d6cb72b78695c2eb79",
+    "tier2-s101-b0-runtime-failure-cause-20261029.md": "4c41507afd8a175ebc1363c303dddf542b62cbfa14a898d65c397f59fcbd4785"
+  },
+  "failure_stage": "B0RunContext before gameplay",
+  "full_target_tokens": null,
+  "kernel_id": 141448483,
+  "kernel_version": 1,
+  "model_ready_after_seconds_recorded": 1948,
+  "original_file_count": 23,
+  "original_reader_failure_codes": [
+    "external_notebook_execution:accepted_notebook_download_custody",
+    "source_config_delivery:KeyError"
+  ],
+  "original_refusal_preserved": true,
+  "original_total_bytes": 537008,
+  "planned_fleets": 12,
+  "planned_games": 10,
+  "raw_private_outputs_included": false,
+  "reader_replay": false,
+  "recorded_error": "exact B0 benchmark roster and post-setup callback required",
+  "request_seed": 101,
+  "schema_version": 1,
+  "scientific_eligible": false,
+  "scope": "Original first audit failure before gameplay; all twelve planned fleets retained. Prospective correction does not reclassify this attempt or change original DEV/official/Bpub/calibration results.",
+  "source_cause": "Inherited DEV cardinality4 rejects prospective audit cardinality10",
+  "unlaunched_fleets": 11,
+  "whole_kernel_gpu_seconds": null
+}
