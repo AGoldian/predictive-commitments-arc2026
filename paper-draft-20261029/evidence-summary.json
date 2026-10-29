@@ -518,8 +518,8 @@
     },
     "source_sha256": "d5539688e41636ee75217b7457ca09e72950394e038782758dca71054dd417c3"
   },
-  "main_audit_state_at_source_cut": "unlaunched",
-  "manuscript_source_cut_commit": "0a6a288eaa04ca21c0eeaa7d72e902da0ba4654f",
+  "main_audit_state_at_source_cut": "corrected_B0_eligible_B1_refused_original_controller_terminal",
+  "manuscript_source_cut_commit": "9764c8271d807d3fddfa91d8c30982f3ae594d65",
   "moscow_date": "2026-10-29",
   "namespace": "public-paper-snapshot-20261029-evidence-v1",
   "official_P_result": {
@@ -596,8 +596,160 @@
   "private_notebook_output_included": false,
   "raw_training_rows_included": false,
   "schema_version": 1,
-  "scope": "Public DEV observations, official P API0.00, failed full Bpub/calibration and first main B0 before-gameplay failure; no eligible efficacy comparison.",
-  "snapshot_at_utc": "2026-10-29T05:31:06.089626+00:00",
+  "scope": "Public DEV observations, officialP0.00, failed Bpub/calibration/originalO34, eligible correctedB0 and refusedB1; no eligible efficacy comparison.",
+  "snapshot_at_utc": "2026-10-29T08:59:00.324861+00:00",
   "source_cut_relation_to_calibration": "After original terminal retrieval and one frozen calibrate refusal",
-  "whole_kernel_cost": null
+  "whole_kernel_cost": null,
+  "corrected_main_audit": {
+    "B0": {
+      "schema_version": 1,
+      "observed_at_utc": "2026-10-29T08:47:33.987568+00:00",
+      "arm": "B0",
+      "request_seed": 101,
+      "kernel_id": 141454755,
+      "version": 1,
+      "api_status": "COMPLETE",
+      "api_status_observed_at_utc": "2026-10-29T07:07:01.788189+00:00",
+      "output_download_completed_at_utc": "2026-10-29T07:08:08.273802+00:00",
+      "original_api_listed_files": 149,
+      "original_inventory_entries": 150,
+      "original_inventory_bytes": 199571195,
+      "original_owners_retained": 10,
+      "single_completed_core_readout": true,
+      "scientific_eligible": true,
+      "run_evidence_complete": true,
+      "folds_passed": 21,
+      "folds_total": 21,
+      "failure_codes": [],
+      "cost": {
+        "complete_target_tokens": 439051,
+        "by_phase": {
+          "before_gameplay": 0,
+          "gameplay": 431409,
+          "late_drain": 7642,
+          "unavailable": 0
+        },
+        "known_attempts": 295,
+        "unknown_attempts": 0,
+        "pending_attempts": 0,
+        "scope": "supplied_original_ten_owner_physical_target_accounting_only",
+        "component_complete": true,
+        "whole_kernel_GPU_seconds": null,
+        "draft_internal_work": null
+      },
+      "descriptive_score": {
+        "metric": "observed_public_prefix_end_of_budget",
+        "equal_weight_ten_game_mean": 14.491341991341992,
+        "n_passes": 1,
+        "seed": 101,
+        "sigma": null,
+        "sem": null,
+        "recorded_states": {
+          "crashed": 9,
+          "won": 1
+        }
+      },
+      "official_score": null,
+      "full_three_seed_mean": null,
+      "P_minus_A1": null,
+      "original_O34_failure_unchanged": true,
+      "new_fit_or_reader_replay": false,
+      "evidence": [
+        {
+          "path": "artifacts/kaggle/tier2-s101-b0-v2/execution-record.json",
+          "sha256": "3a15f4537d5c2a8fa7e1e329802368b9ffaaec92fdef704b6c49a136c3c73b60"
+        },
+        {
+          "path": "artifacts/kaggle/tier2-s101-b0-v2/reader-inspection-v1.json",
+          "sha256": "2b271211865e6baa6e3e66066176d16c4eae1e206a862fe4b56b892c979a1f90"
+        },
+        {
+          "path": "artifacts/kaggle/tier2-s101-v2-sequential-execution-v1/b0-reader.facts.json",
+          "sha256": "38a1e3be82a85cd44405445348250a530d09e10292fe0d5dd622fcdd37e599e2"
+        },
+        {
+          "path": "artifacts/kaggle/tier2-s101-b0-v2/observed-public-prefix-score-v1.json",
+          "sha256": "7b9db3fa619361458ab8533f6f17b03d96b7cffff5859ed88343c73a89f3e85b"
+        }
+      ],
+      "metadata_limitation": "coverage.original_owner_count is the inherited literal4; actual mapping/coverage/cost/score arrays retain10. Original report unchanged."
+    },
+    "B1": {
+      "schema_version": 1,
+      "observed_at_utc": "2026-10-29T08:47:33.987568+00:00",
+      "arm": "B1",
+      "request_seed": 101,
+      "kernel_id": 141464867,
+      "version": 1,
+      "api_status": "COMPLETE",
+      "api_status_observed_at_utc": "2026-10-29T08:42:06.635681+00:00",
+      "output_download_completed_at_utc": "2026-10-29T08:43:05.073825+00:00",
+      "original_api_listed_files": 148,
+      "original_inventory_entries": 149,
+      "original_inventory_bytes": 178991393,
+      "original_owners_retained": 10,
+      "single_completed_core_readout": true,
+      "scientific_eligible": false,
+      "run_evidence_complete": false,
+      "folds_passed": 19,
+      "folds_total": 21,
+      "failure_codes": [
+        "prediction_coverage_complete_original_fleet:original_fleet_packet_coverage_refused",
+        "source_owned_child_native_coverage:child_return_or_cleanup_failure"
+      ],
+      "cost": {
+        "complete_target_tokens": 441232,
+        "by_phase": {
+          "before_gameplay": 0,
+          "gameplay": 429116,
+          "late_drain": 12116,
+          "unavailable": 0
+        },
+        "known_attempts": 287,
+        "unknown_attempts": 0,
+        "pending_attempts": 0,
+        "scope": "supplied_original_ten_owner_physical_target_accounting_only",
+        "component_complete": true,
+        "whole_kernel_GPU_seconds": null,
+        "draft_internal_work": null
+      },
+      "descriptive_score": null,
+      "official_score": null,
+      "full_three_seed_mean": null,
+      "P_minus_A1": null,
+      "original_O34_failure_unchanged": true,
+      "new_fit_or_reader_replay": false,
+      "evidence": [
+        {
+          "path": "artifacts/kaggle/tier2-s101-b1-v2/execution-record.json",
+          "sha256": "50ab0e8ef3f65436e22c7c6825e9bd63889a9c1e98cd25d85002b996cd84750b"
+        },
+        {
+          "path": "artifacts/kaggle/tier2-s101-b1-v2/reader-inspection-v1.json",
+          "sha256": "ee0f68e86189e13c454413e8f32cf030d77db6ac9290e1aadba52ce642d15ee2"
+        },
+        {
+          "path": "artifacts/kaggle/tier2-s101-v2-sequential-execution-v1/b1-reader.facts.json",
+          "sha256": "23e9dcc3fb868059f2cb8caae5e24a65720ab99423b0bf57a40760afc49a2325"
+        },
+        {
+          "path": "artifacts/kaggle/tier2-s101-v2-sequential-execution-v1/stopped.json",
+          "sha256": "8d3e7f86f87db57ef0072d32df55edcf6618fda2013d6638c007f7a3d0cd50bf"
+        }
+      ],
+      "descriptive_score_invoked": false,
+      "coverage_counts_available_in_top_level_report": false,
+      "coverage_D": null,
+      "coverage_V": null,
+      "coverage_rate": null,
+      "source_owned_child_native_coverage": false,
+      "original_controller_stopped": true,
+      "unlaunched_corrected_cells": 10
+    },
+    "unlaunched_corrected_cells": 10,
+    "planned_corrected_cells": 12,
+    "full_three_seed_mean": null,
+    "P_minus_A1": null
+  },
+  "constant_controls_scope": "Both A1_q/P_q are fitted on derivative training rows with replaced common forecast moments. They are not comparisons with original A1. Recorded0/0.056532387482543744 values unchanged; no new fit."
 }

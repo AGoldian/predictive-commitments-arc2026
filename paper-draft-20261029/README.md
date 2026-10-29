@@ -2,19 +2,17 @@
 
 Alexander Serov — Independent Researcher
 
-Manuscript source commit: `0a6a288eaa04ca21c0eeaa7d72e902da0ba4654f`, after original first main-audit retrieval and its one strict refusal. Public copy assembled at `2026-10-29T05:31:06.089626+00:00` UTC. [paper.tex](paper.tex) and [kaggle-writeup.txt](kaggle-writeup.txt) are exact workspace copies; the existing LaTeX compiled successfully in the desktop editor. The writeup has1497 whitespace-separated words. No separate PDF is included.
+Manuscript source commit: `9764c8271d807d3fddfa91d8c30982f3ae594d65`, after corrected B0's eligible readout and corrected B1's original refusal. Public copy assembled at `2026-10-29T08:59:00.324861+00:00` UTC. [paper.tex](paper.tex) and [kaggle-writeup.txt](kaggle-writeup.txt) are exact saved workspace copies. The existing LaTeX compiled successfully in the desktop editor; no replacement document, separate PDF or tab was created. The short writeup has1414 whitespace-separated words.
 
-P's original DEV feasibility failure remains:89/417 valid packets (21.3429%) is below50%. Official P57749129 was observed COMPLETE/public0.00, with actual rerun traces/runtime/tokens unavailable. Full instrumented Bpub and five-game calibration failed their strict readouts; their aggregates remain unavailable.
+Corrected B0's one-pass/request-seed101 mean is14.491341991341992 for observed_public_prefix_end_of_budget across all10 games (1won/9recordedcrashed);21/21evidence gates passed. Corrected B1 reached COMPLETE/fullretrieval, then its only core readout refused coverage/child evidence (19/21pass). Coverage counts/rate are unknown; a local child deadline before globalcutoff was recorded with subsequent cleanup. No B1 score or surviving-subset contrast was computed. A1/P and eight other-seed fleets remain unlaunched, leaving full3-seed/four-arm and P-minus-A1 results unavailable. [Sanitized corrected-main evidence](../analysis/main-audit-corrected-seed101-20261029.md) retains exact pins and cost scopes.
 
-First main-audit B0/seed101/ten-game kernel141448483/version1 ended ERROR before gameplay. After READY1948s, an inherited four-session/four-game guard rejected the ten-game roster. Original retrieval retained23files/537008bytes. One strict readout refused and the controller stopped; eleven fleets remain unlaunched and all twelve remain in the plan. No audit score or complete cost is available. [Sanitized original evidence](../analysis/main-audit-first-failure-20261029.json) preserves the failure; no reader replay or test suite accompanied this revision.
+Original O34 pre-game failure remains separately ineligible; the correction uses the same exposed roster, not a fresh sample. P's DEV89/417feasibility refusal and separate officialP57749129 COMPLETE/public0.00 remain unchanged. Actual official rerun traces/runtime/tokens are unavailable. Full instrumented Bpub and five-game calibration failed their strict readouts; their aggregates remain unavailable. [Prior O34 snapshot](https://github.com/AGoldian/predictive-commitments-arc2026/tree/f79fbb45875ee9a35f8025ee1a95810b30ba63c8/paper-draft-20261029) and [unchanged28October release](../paper-draft-20261028/README.txt) remain available.
 
-[Snapshot evidence](evidence-summary.json), [calibration note](../analysis/validation-calibration-failure-20261029.md), [previous O33 snapshot](https://github.com/AGoldian/predictive-commitments-arc2026/tree/af9894920dedef5f5715bfb06533aeeb562c5d70/paper-draft-20261029) and [28October release](../paper-draft-20261028/README.txt) remain available.
-
-Reuse the unchanged [parameters](../public-method-source-release-v1/parameters/), [conceptual cover](../paper-draft-20261028/cover.png) and [full method source](../public-method-source-release-v1/README.md). No private outputs, raw training rows, weights, binaries or account metadata are included. The Kaggle notebook remains private under the competition-source embargo.
+[The constant-probability clarification](../analysis/constant-probability-control-derivation-20261029.md) explains derivative A1_q/P_q fits, duplicate-coordinate regularization and finite gradient steps without changing measurements or refitting. Reuse unchanged [parameters](../public-method-source-release-v1/parameters/), [cover](../paper-draft-20261028/cover.png) and [full method source](../public-method-source-release-v1/README.md). Private outputs, raw training rows, account metadata, weights and wheels are excluded. The Kaggle notebook remains private under its competition-source embargo.
 
 Manuscript/writeup: [CC BY4.0](LICENSE-paper.txt). Code/upstream/model terms remain separate. This is a preliminary draft without an efficacy result or completed Paper Track submission.
 
 Exact SHA256:
 
-- paper.tex: `417ecb6b35ea9f33f228131ad3bde9d07a0c3d53a8e52910f2c86eb2848c60e2`
-- kaggle-writeup.txt: `f44261110d195003d6b6d7c7afbec45dec3e0ed3402400d81684a8ae9bf98dad`
+- paper.tex: `1f702baec06973b99ae7b517227053ff24f137bace8a5169ce223a1f424d0689`
+- kaggle-writeup.txt: `a4a7295acd624ec1dec24e74558e859a5acf0bf4b037102605dfd6c4b224237c`
