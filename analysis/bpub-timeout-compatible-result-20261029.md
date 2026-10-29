@@ -1,0 +1,9 @@
+# Third instrumented full-baseline attempt: original refusal
+
+Kernel141510931/version1 ended API ERROR, observed29October2026 at16:37:44.814733UTC. Original full retrieval ended16:48:06.023335UTC:14APIpages/1381listed files,1382inventory files including the log,3575011067bytes. The single actual strict reader returned2. All100planned rows remain evidence_unavailable; both complete descriptive means, upstream reproduction and official Bpub score remain null.
+
+The incomplete cost scan retained100journals and a known accepted-target-token lower bound6966479; accepted total remains null. Zero observed unknown/pending counters do not establish their absence. Two journals refused: one initial automatic RESET exposes a producer/parser watermark contract mismatch; another owner was invalid and lacked its host close. The original readout is retained without replay or subset rescue.
+
+A source-owned json_bytes failure stopped the fleet. Eight public actions had settled before the host attempted to return the complete324-frame history. A minimal source-required reply is at least4242629bytes, exceeding the4194304-byte input limit; the exact full wire length was not retained. The reply was rejected before pipe writing. Five ordinary execution deadlines used the prospective typed timeout certificate; this observation does not replace independent native joins. The actual global32370-second work limit had not expired, and outer physical cleanup completed. Neither this failed instrumentation run nor the preceding attempts establishes the unmodified upstream policy's outcome or allocator benefit.
+
+The detailed source evidence is pinned in the adjacent JSON. The first local profile-author CLI failed because root passed absolute paths before any input was read; an unchanged relative-path invocation succeeded. Only one actual data reader ran. No experiment, fit, reader replay or new submission occurred during this diagnosis.

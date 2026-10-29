@@ -95,6 +95,19 @@
     },
     "source_sha256": "1a646f002b5db394248688cc67f7769a4ad7a32c80b2ceee2bfb58f8a9a79730"
   },
+  "O38_timeout_compatible_Bpub": {
+    "API_status": "ERROR",
+    "accepted_target_tokens": null,
+    "both_full_means": null,
+    "complete_cost_scan": false,
+    "complete_run_eligible": false,
+    "known_target_token_lower_bound": 6966479,
+    "no_subset_rescue_or_reader_replay": true,
+    "retained_slots": 100,
+    "sanitized_result": "../analysis/bpub-timeout-compatible-result-20261029.json",
+    "sanitized_result_sha256": "a02f3fe70ee0e7c694d77255dfda3d8cc4f71a9cb2cc6a8e068ddbc048664431",
+    "source_cut_commit": "92f3b8ad19618755124d2f542733e2d0240a79c3"
+  },
   "P": {
     "public_source": "../analysis/p-v6-feasibility-result.json",
     "sanitized_result": {

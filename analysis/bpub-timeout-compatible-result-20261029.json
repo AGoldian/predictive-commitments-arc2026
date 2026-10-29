@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "kind": "original_instrumented_Bpub_timeout_compatible_result",
+  "kernel_id": 141510931,
+  "version": 1,
+  "API_status": "ERROR",
+  "API_status_observed_at_utc": "2026-10-29T16:37:44.814733+00:00",
+  "original_full_retrieval_completed_at_utc": "2026-10-29T16:48:06.023335+00:00",
+  "original_API_pages": 14,
+  "original_API_listed_files": 1381,
+  "retained_inventory_files": 1382,
+  "retained_inventory_bytes": 3575011067,
+  "single_actual_reader_returncode": 2,
+  "complete_run_eligible": false,
+  "planned_episode_rows": 100,
+  "retained_episode_states": {
+    "evidence_unavailable": 100
+  },
+  "descriptive_published_policy_mean25_games_then_mean4_passes": null,
+  "descriptive_SDK098_best_of4_per_game_then_mean25": null,
+  "official_Kaggle_score": null,
+  "upstream_score_reproduced": null,
+  "source_bytes_verified": true,
+  "native_component": null,
+  "failed_compound_gates": [
+    "accepted_version_and_private_retrieval",
+    "all100_actual_public_score_and_action_joins",
+    "all_original_physical_target_costs",
+    "noncommon_source_owned_native_census",
+    "original_clock_and_outer_physical_cleanup",
+    "original_policy_roster_and_versions"
+  ],
+  "failed_host_journals": 2,
+  "target_costs": {
+    "accepted_target_tokens": null,
+    "certified_first_connect_refusals": 0,
+    "complete_scan": false,
+    "draft_internal_work": null,
+    "host_journal_count": 100,
+    "known_accepted_target_tokens_lower_bound": 6966479,
+    "observed_owned_preconnect_attempts": 4047,
+    "observed_pending_attempts": 0,
+    "observed_unknown_usage_attempts": 0,
+    "pending_owned_preconnect_phases": 0,
+    "whole_kernel_GPU_seconds": null
+  },
+  "cost_scope": "Incomplete original scan. Observed counters and the known lower bound are not a full accepted-token total or proof of absent unknown usage.",
+  "runtime_finding": {
+    "fatal_resource_stage": "json_bytes",
+    "direction": "host_to_child_public_action_result_and_full_history",
+    "settled_actions_in_fatal_batch": 8,
+    "retained_history_frames": 324,
+    "operative_input_byte_limit": 4194304,
+    "minimal_required_reply_byte_lower_bound": 4242629,
+    "exact_full_wire_bytes": null,
+    "reply_rejected_before_pipe_write": true,
+    "ordinary_execution_timeout_certificates_observed": 5,
+    "global_work_deadline_reached": false,
+    "outer_physical_cleanup_complete": true,
+    "these_observations_do_not_override_failed_native_gates": true
+  },
+  "separate_parser_finding": "The reader requires accepted usage before every action; the selected producer permits an initial automatic RESET with null frontier. This original refusal is preserved, with no retrospective reader replay or total-cost repair.",
+  "provenance": [
+    {
+      "path": "artifacts/kaggle/bpub-timeout-compatible-v1/execution-record.json",
+      "sha256": "4e8224a4a815a7f46b8c22cfa4015d3789fc0ce30eb70ae4c575fae67fdd4e50"
+    },
+    {
+      "path": "artifacts/kaggle/bpub-timeout-compatible-v1/reader-inspection-v1.json",
+      "sha256": "3208627d483cc0a0e2087019fc890e3a07db9e0c00acf7b15e42bd020785d3a7"
+    },
+    {
+      "path": "artifacts/kaggle/bpub-timeout-compatible-v1/source-profile-v2.json",
+      "sha256": "b7852ade71b07cde40fbddd2ed3212aaeb5ac992b26cd185061ba57b7f7d26b7"
+    },
+    {
+      "path": "artifacts/kaggle/bpub-timeout-compatible-v1/original-readout-invocations-v1.json",
+      "sha256": "fd82ed1094ab609ac1a06026093fd9b05697b90b1d816c587c141a3af17bf28b"
+    },
+    {
+      "path": "research/reviews/bpub-timeout-compatible-runtime-failure-20261029.md",
+      "sha256": "ff9a0ca5bce8848c01e784654b7db0c3810cdf9c1d03faa663097b31eff9e764"
+    },
+    {
+      "path": "research/reviews/bpub-timeout-compatible-cost-watermark-20261029.md",
+      "sha256": "4afaf96a60dee616267e1e9183d5eaa1e6093abcf66dced4aa6d4fd03cb4d7c7"
+    }
+  ],
+  "limits": [
+    "Public exposed corpus; this does not evaluate the P-minus-A1 mechanism.",
+    "No surviving-subset average, new official score or inferred zero cost.",
+    "Source-owned observations are not remote attestation.",
+    "Original O32 and O37 remain unchanged.",
+    "Private outputs, requests, browser account metadata and credentials are excluded."
+  ]
+}
