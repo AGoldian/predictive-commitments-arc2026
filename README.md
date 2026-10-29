@@ -8,6 +8,7 @@ Alexander Serov — Independent Researcher
 - [Current standalone LaTeX manuscript](paper-draft-20261029/paper.tex), licensed CC BY 4.0, with AI disclosure and limitations. No separately exported PDF is included.
 - [Current snapshot details and sanitized evidence](paper-draft-20261029/README.md); [unchanged 28 October snapshot](paper-draft-20261028/README.txt).
 - [Complete selected method source and execution instructions](public-method-source-release-v1/README.md).
+- [Corrected full published-policy baseline source](baselines/bpub-owned-preconnect-20261029/README.md), with the exact 25-game/four-pass notebook and scoped notices. Its newly accepted run has no result at this source-release cut.
 - [Exact Kaggle notebook](public-method-source-release-v1/notebook/official-public-entry.ipynb) and [readable parent/worker payload](public-method-source-release-v1/readable-entry/).
 - [Frozen fitted parameter pair and scoped terms](public-method-source-release-v1/parameters/).
 - [Frozen prospective study protocol, calibration methods, budgets and public-game split](study/README.md).
