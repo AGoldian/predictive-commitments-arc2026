@@ -2,7 +2,7 @@
 
 Alexander Serov, Independent Researcher.
 
-Current manuscript/writeup source cut: `92f3b8ad19618755124d2f542733e2d0240a79c3`. [LaTeX manuscript](paper.tex) and [illustrated short writeup](kaggle-writeup.txt) are exact saved copies. The existing LaTeX source compiled successfully in the desktop editor. The writeup contains936whitespace-delimited source words and three inline figures, including the schematic GIF. [Figure sources, evidence pins and builders](figures/README.md) are public. No separate paper PDF was exported.
+Manuscript scientific source cut: `92f3b8ad19618755124d2f542733e2d0240a79c3`; final writeup clarity source cut: `ca4a540bed597f79c736104dc60fc902f754972c`. [LaTeX manuscript](paper.tex) and [illustrated short writeup](kaggle-writeup.txt) are exact saved copies. The existing LaTeX source compiled successfully in the desktop editor. The writeup contains941whitespace-delimited source words and three inline figures, including the schematic GIF. [Figure sources, evidence pins and builders](figures/README.md) are public. No separate paper PDF was exported.
 
 This edition records the third instrumented full-baseline attempt, kernel141510931/version1. It ended ERROR; original retrieval retained1382files/3575011067bytes. Its single actual strict reader refused, keeping all100planned rows and both full means unavailable. A full-history host-to-child reply exceeded the4MiB transport limit after eight public actions had settled. Outer physical cleanup completed before the global work limit. Its incomplete cost scan retained only a6,966,479-token lower bound, not a valid total; zero observed unknown/pending counters do not prove their absence. A separate initial automatic-RESET parser mismatch is disclosed without retrospective acceptance. [Sanitized original outcome](../analysis/bpub-timeout-compatible-result-20261029.md) preserves source hashes and limitations.
 
@@ -15,4 +15,4 @@ Manuscript, writeup and owned figures: [CC BY4.0](LICENSE-paper.txt). Code/upstr
 Exact SHA256:
 
 - paper.tex: `f6c9d8caca8bd418b31fe9cf9aae1f3ba5c131c8eda08c4c099edfefa15dd42f`
-- kaggle-writeup.txt: `9305c9f5cd50b8235c729133b4c91b59ae14ae6ddc0650c29347a83bf32e915d`
+- kaggle-writeup.txt: `05c37949cd43f969813cc312847cc392795828d576d296d070ffdb9423e7b8e5`

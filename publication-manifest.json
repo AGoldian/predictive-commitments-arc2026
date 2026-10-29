@@ -1,5 +1,5 @@
 {
-  "assembled_at_utc": "2026-10-29T17:03:11.324975+00:00",
+  "assembled_at_utc": "2026-10-29T17:15:23.147983+00:00",
   "baseline_notebook_sha256": "2b94d6235ddafef9483e6a69f59549483f0e26720bcb7e02563fc92d16b9439d",
   "baseline_result_included": true,
   "baseline_source_prelaunch_commit": "8e00320331dc6ea95b1326d39761795a41095b4f",
@@ -83,7 +83,7 @@
     "paper-draft-20261028/parameters/model-config.json": "e061d1de77c70806c0aaa3ecb832c27facbf9e260ebbe33f3a41c09720ae4dd4",
     "paper-draft-20261028/parameters/paired-models.json": "cccc2ffbaaf223ce1a284af1afd2405f58fca4cafeee4b12692678bd33f4b6ed",
     "paper-draft-20261029/LICENSE-paper.txt": "58f39e65b02a673bae6de3b316437d87cf78c4c7793ee7aa0224bebf4b48bf48",
-    "paper-draft-20261029/README.md": "f0ed6e05778b27913af8c606da1fbdf750b1bcf0f26af423e082260f8584e0e8",
+    "paper-draft-20261029/README.md": "2cd19869acf09c5d16f1427c76cc7470b97d8d71783ebc9f4e0d56ec6c945ee9",
     "paper-draft-20261029/evidence-summary.json": "4b234d0bef350be37bd795111508e92566e27536c62b12fda0bb66dae209108f",
     "paper-draft-20261029/figures/README.md": "295dfa1344c17e4c9353b827ee342f7406efb85d8c9cf35ecf4e92904d594938",
     "paper-draft-20261029/figures/coverage-build.py": "bd30dbbe6ea60efc1b67bd5bbfd204a902e3f07eef5c9f9790b4b9567bf0793f",
@@ -113,7 +113,7 @@
     "paper-draft-20261029/figures/method-loop.png": "64d905aaa2ccab1dd6fd0d4a18b6296d62a71268497e861148435105df9e82ff",
     "paper-draft-20261029/figures/method-loop.svg": "79c6120935bf3a1215ac7e5f7b69ee52c884830302145d9e3bc9b9e0f0f95c96",
     "paper-draft-20261029/figures/method-manifest.json": "0760a5d02c0eb8db5331f10101c843eedc8fe7b69bc022f561f01d4a77330bed",
-    "paper-draft-20261029/kaggle-writeup.txt": "9305c9f5cd50b8235c729133b4c91b59ae14ae6ddc0650c29347a83bf32e915d",
+    "paper-draft-20261029/kaggle-writeup.txt": "05c37949cd43f969813cc312847cc392795828d576d296d070ffdb9423e7b8e5",
     "paper-draft-20261029/paper.tex": "f6c9d8caca8bd418b31fe9cf9aae1f3ba5c131c8eda08c4c099edfefa15dd42f",
     "public-method-source-release-v1/NOTICE.txt": "00bc8e1ec37904e4c489b479e733bd600e0d28cb59218563a98b33bf3447638e",
     "public-method-source-release-v1/README.md": "8fc98a4a30e0e41597ec2542cc9bf198eb172b8949b6ce35518b5287085e449b",
@@ -311,6 +311,7 @@
     "source_files_added": 18,
     "upstream_score_reproduced": null
   },
+  "writeup_clarity_source_cut_commit": "ca4a540bed597f79c736104dc60fc902f754972c",
   "writeup_editorial_update": {
     "Kaggle_preview_words": 879,
     "animated_figures": 1,
