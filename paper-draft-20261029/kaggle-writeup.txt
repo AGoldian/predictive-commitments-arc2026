@@ -2,7 +2,7 @@ Testing Predictive Commitments in Interactive Reasoning
 An ARC-AGI-3 feasibility pilot of prediction errors and shared inference allocation
 Alexander Serov — Independent Researcher
 
-RESEARCH DRAFT. October 29, 2026. P failed the prespecified DEV feasibility condition. Corrected main-audit B0 passed; B1 failed its evidence checks and the sequence stopped. No eligible efficacy comparison is available. Official P scored 0.00. The original main B0 refusal, calibration failure and failed full Bpub reproduction remain recorded.
+RESEARCH DRAFT. October 29, 2026. P failed the prespecified DEV feasibility condition. Corrected main-audit B0 passed; B1 failed its evidence checks and the sequence stopped. No eligible efficacy comparison is available. Official P scored 0.00. The original main B0 refusal, calibration failure and both failed instrumented Bpub reproductions remain recorded.
 
 Question
 
@@ -53,13 +53,15 @@ Five-game calibration ended ERROR. One frozen readout refused whole-collection e
 
 The corresponding P submission 57749129 was accepted at 21:28:14 UTC on October 28. Its original observer received API COMPLETE and public score 0.00 at 2026-10-28T21:42:51.801722 UTC, not an exact server completion time. The request selected kernel 141404446/version 1; final custody matched, but the server did not echo the version. No Submit retry occurred. Actual rerun journals, runtime, tokens and private score are unavailable. No action trace, efficacy or novelty follows from this score. The earlier B1/C1 engineering submission 57087987, also scored 0.00, remains separate. An ordinary Save placeholder is not method execution.
 
-Full Bpub reproduction (25 games×4 passes, 100 owners, legacy C10) ended ERROR. Complete original retrieval retained 100 host journals, four unknown-usage attempts and zero observed pending. Strict readout is ineligible: both full aggregates stay null; upstream not reproduced. Accepted tokens/GPU/draft work are unknown; lower bound zero is not measured zero. The 720-second release while loading preceded four TransportErrors; our accounting interrupted upstream retries. The original operating-system cause is unknown. No subset rescue.
+The first instrumented Bpub (25 games×4 passes, 100 owners, legacy C10) ended ERROR; strict readout refused and both aggregates remain null. Its 100 host journals retained four unknown-usage attempts and zero observed pending. Accepted tokens/GPU/draft work are unknown; lower bound zero is not actual zero. Release at 720 seconds while loading preceded four TransportErrors; added accounting interrupted upstream retries. The underlying OS exception is unavailable. No subset rescue.
+
+The separate full Bpub141479988/version1 also ended ERROR. Original strict readout refused; all 100 slots remain evidence_unavailable, both aggregates and upstream reproduction null. The complete 100-journal cost scan reports lower bound 0 and observed unknown/pending 0, but accepted target total is null, not zero. Two sandbox deadlines triggered shared fail-closed stop before the 32,370-second work limit; outer physical cleanup was recorded complete. Snippet delay remains unexplained. Neither instrumented attempt establishes the unmodified upstream policy's outcome.
 
 The pilot failed feasibility of frozen P. It identifies neither model intent/keyword placement nor why packet supply differed or whether Brier improved progress. One coupled fleet per DEV arm, public-game exposure, concentrated labels, missing predictions and policy shift limit interpretation. Request seeds establish neither independent worlds nor statistical replicates. No efficacy or deployment benefit follows.
 
 Reproducibility and disclosure
 
-Method source, coefficients, notices and prospective protocols are public at https://github.com/AGoldian/predictive-commitments-arc2026 . Full code preceded the official request. The notebook remains private until the competition-source embargo ends; prize eligibility and missing rerun evidence remain unresolved. A conceptual cover accompanies the draft. Parameters alone are not a runnable solver.
+Method source, coefficients, notices and prospective protocols are public at https://github.com/AGoldian/predictive-commitments-arc2026 . Full code preceded the official request; the corrected baseline source was also public before its outcome. The notebook remains private until the competition-source embargo ends; prize eligibility and missing rerun evidence remain unresolved. A conceptual cover accompanies the draft. Parameters alone are not a runnable solver.
 
 Our code and fitted allocation parameters use MIT-0; upstream components retain their own licenses. Qwen target/draft assets and runtime dependencies are referenced at exact versions. This manuscript and writeup use CC BY 4.0. LLM assistants supported research, implementation, criticism and editing; advisor roles from one model family are not independent model families. The human author is responsible for final verification. All work uses free/local resources, including free Kaggle allocation.
 

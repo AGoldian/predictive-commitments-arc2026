@@ -1,0 +1,147 @@
+{
+  "cost_interpretation": "The complete scan of100 host journals is not a certified physical target total. Accepted target tokens remain null. Lower-bound0 and observed unknown0/pending0 are retained scan fields, not evidence of zero usage, zero cost, or whole-run accounting success. Draft/whole-kernel costs remain unavailable.",
+  "evidence_pins": {
+    "original_bounded_driver_finished_sha256": "a9b0f19eb79520eb3464df26394a78e78112302f843293e464911b27fa09e6b2",
+    "original_execution_record_sha256": "bbb63f996ed09795d1ff2940e8fb6db718c5b58e9ec7a038561ffc22f9793ff1",
+    "outer_supervisor_record_sha256": "20c2fe81aea89ed6f710373f98f787472819f9845b0d99c4022667741bfc7d81",
+    "single_completed_strict_readout_sha256": "2143bd7749e2c31fd7b7e9e305f8fc718778ad0d33a3b4d1ecd5eccd752a5e31",
+    "source_owned_child_journal_sha256": "d8f7c3d831957b330844aad323e6a4a35fab8edc43dcbe615b8c9e2064b6bb15",
+    "worker_stderr_sha256": "303e18c3360cc54fb28981471ddb97d6674e821b818e053e941b76662fadd416"
+  },
+  "kind": "Sanitized corrected full Bpub observed failure; no new evaluation",
+  "protocol": {
+    "common_C2": false,
+    "legacy_active_streams": 10,
+    "passes": 4,
+    "planned_episodes": 100,
+    "public_games": 25
+  },
+  "retained_outer_supervisor_observation": {
+    "cleanup_complete": true,
+    "cleanup_deadline_reached": false,
+    "no_owned_descendants_remaining": true,
+    "no_waitable_children_remaining": true,
+    "output_cap_reached": false,
+    "pipes_closed": true,
+    "scope": "Recorded outer process cleanup only; does not override the false strict native/clock gates.",
+    "supervisor_errors": [],
+    "work_deadline_reached": false,
+    "worker_reaped": true,
+    "worker_returncode": 1
+  },
+  "run": {
+    "api_status": "ERROR",
+    "api_status_observed_at_utc": "2026-10-29T12:08:58.096369+00:00",
+    "kernel_id": 141479988,
+    "original_inventory_bytes": 3257986583,
+    "original_inventory_files": 1382,
+    "original_output_download_completed_at_utc": "2026-10-29T12:19:56.941409+00:00",
+    "output_endpoint_version_addressed": false,
+    "version": 1
+  },
+  "schema_version": 1,
+  "scope": {
+    "P_development_feasibility_refusal_unchanged": true,
+    "account_or_credential_metadata_included": false,
+    "earlier_O32_failure_unchanged": true,
+    "new_efficiency_or_policy_effectiveness_claim": false,
+    "new_fit_or_reader_replay": false,
+    "raw_private_files_included": false,
+    "result_is_not_unmodified_upstream_policy_outcome": true,
+    "separate_official_P_public_score": "0.00"
+  },
+  "source_identity": {
+    "historical_worker_transport_identity_established": false,
+    "notebook_sha256": "2b94d6235ddafef9483e6a69f59549483f0e26720bcb7e02563fc92d16b9439d",
+    "owned_preconnect_source_bound": true,
+    "reader_source_sha256": "48a9e31c333018799a3840eb676c2836f405f7cdf41fefd0e12745399b75f969",
+    "runtime_manifest_sha256": "af1e090b3abbe13ac3d04c73a9420170c98d425f6dc01ec6ed86042a5d30011e",
+    "source_bytes_verified": true,
+    "source_profile_sha256": "b4986b0e02a6c0e263e3fc31714f4aeb0d7576ed10e825146a98d37ae3c123ad",
+    "transport_vendor_manifest_sha256": "766cfea4647199610dc91727ae77de764aea03da622c119a890f527e249c5a64",
+    "worker_sha256": "ce318afcf0618e81b24a11e76297ffa67850449d11218d681d216aff429e8111"
+  },
+  "source_owned_lifecycle": {
+    "bound_sessions": 100,
+    "closed_sessions": 100,
+    "complete_external_child_census_established": false,
+    "failed_sessions": 2,
+    "failure_chain": [
+      {
+        "approximate_seconds_from_first_code": 10451,
+        "child_returncode": 0,
+        "following_accounting_invalid_reason": "b0_child_resource_failed",
+        "invocation_ordinal": 3872,
+        "pass_index": 0,
+        "pipes_closed": true,
+        "public_game": "tr87-cd924810",
+        "reaped": true,
+        "resource_failure_stage": "deadline",
+        "verified_setup": true
+      },
+      {
+        "approximate_seconds_from_first_code": 10462,
+        "child_returncode": -9,
+        "following_accounting_invalid_reason": "b0_child_cleanup_failed",
+        "invocation_ordinal": 3873,
+        "pass_index": 3,
+        "pipes_closed": true,
+        "public_game": "tr87-cd924810",
+        "reaped": true,
+        "resource_failure_stage": "deadline",
+        "verified_setup": true
+      }
+    ],
+    "invalid_ledgers": 2,
+    "model_health_observed": true,
+    "propagation": "Source-owned native/child integrity hooks set the shared stop flag; later analyzer calls recorded host_stop_requested.",
+    "source_owned_child_census_complete": false,
+    "source_owned_child_journal_rows": 35014,
+    "unclosed_sessions": 0,
+    "underlying_generated_computation_causing_deadline": null
+  },
+  "strict_readout": {
+    "actual_official_SDK_scorecard_action_total": null,
+    "all_original_physical_target_costs_gate": false,
+    "clock_and_outer_physical_cleanup_gate": false,
+    "complete_run_eligible": false,
+    "completed_inspections": 1,
+    "descriptive_SDK098_best_of4_per_game_then_mean25": null,
+    "descriptive_published_policy_mean25_games_then_mean4_passes": null,
+    "failure_codes": [
+      "accepted_version_and_private_retrieval",
+      "all100_actual_public_score_and_action_joins",
+      "all_original_physical_target_costs",
+      "noncommon_source_owned_native_census",
+      "original_clock_and_outer_physical_cleanup",
+      "original_policy_roster_and_versions"
+    ],
+    "native_census_gate": false,
+    "native_component": null,
+    "official_kaggle_score": null,
+    "original_episode_records": 100,
+    "returncode": 2,
+    "upstream_score_reproduced": null
+  },
+  "target_costs": {
+    "accepted_target_tokens": null,
+    "certified_first_connect_refusals": 0,
+    "complete_scan": true,
+    "draft_internal_work": null,
+    "host_journal_count": 100,
+    "known_accepted_target_tokens_lower_bound": 0,
+    "observed_owned_preconnect_attempts": 0,
+    "observed_pending_attempts": 0,
+    "observed_unknown_usage_attempts": 0,
+    "pending_owned_preconnect_phases": 0,
+    "whole_kernel_GPU_seconds": null
+  },
+  "work_stop_interpretation": {
+    "declared_work_seconds": 32370,
+    "final_wrapper_exception": "bpub_failed_or_incomplete_host_evidence",
+    "global_work_budget_expiry_established": false,
+    "recorded_trigger": "child resource deadline and global integrity stop, before the global work limit",
+    "reported_wrapper_exception": "bpub_whole_work_budget_exhausted",
+    "source_condition": "The worker raises the first label for elapsed work deadline OR an already-set shared stop flag."
+  }
+}
