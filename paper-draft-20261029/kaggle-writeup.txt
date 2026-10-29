@@ -1,74 +1,54 @@
-Testing Predictive Commitments in Interactive Reasoning
-An ARC-AGI-3 feasibility pilot of prediction errors and shared inference allocation
-Alexander Serov — Independent Researcher
+Alexander Serov, Independent Researcher
 
-RESEARCH DRAFT. October 29, 2026. P failed the prespecified DEV feasibility condition. Corrected main-audit B0 passed; B1 failed its evidence checks and the sequence stopped. No eligible efficacy comparison is available. Official P scored 0.00. The original main B0 refusal, calibration failure and both failed instrumented Bpub reproductions remain recorded.
+## What happened
 
-Question
+We tested whether an agent's recent prediction errors help decide which game receives the next share of inference. The P arm supplied valid packets on 21.3429% of eligible DEV actions, below the prespecified 50% requirement. We therefore have no eligible P−A1 efficacy comparison. The corresponding official P submission completed with public score 0.00; its rerun cause remains unknown.
 
-We test whether recent prediction errors improve shared inference allocation beyond an existing progress-aware scheduler. A learned progress model uses a fixed representation of paired errors, with matched prediction interface, observations, probability/outcome moments and fitting.
+This is a feasibility paper with retained failures. The [full paper](https://github.com/AGoldian/predictive-commitments-arc2026/blob/963dac62510dbe6754df3b745b92dd44864babe3/paper-draft-20261029/paper.tex) contains the complete parameters, accounting, source corrections and evidence references.
 
-We build on Franzen's ARC-AGI-3 Milestone 2 solution and Tufa Labs' Duck harness [1,2]. Earlier work checks predictions against observations [3,4]; a public plan proposes calibration-conditioned priority [5]. Prediction checking, shared scheduling and multi-agent review are not our novelty claims. We test the incremental paired-error representation under fixed regularization.
+## Commit, act, then allocate
 
-Method
+The method builds on [Franzen's solution](https://github.com/da-fr/arc-agi-3-solution) and [Duck](https://github.com/Tufalabs/duck-harness). Before dispatching an action, the model may forecast frame change, level completion and attempt failure. Omission is permitted abstention. The host binds that prediction or abstention to the exact action and scores valid forecasts once against returned public observations. Unavailable labels stay missing; RESET/undo and refused actions remain separate. Solver logic uses no environment implementations, hidden state, answers or game-specific solution rules.
 
-Before a real action, the model may supply probabilities for frame change, level completion and attempt failure. Omission is permitted abstention. A host binds the prediction or abstention to the action/payload and scores valid predictions once against permitted returned observations. RESET/undo remain separate; refused actions have no executed target and unavailable labels remain missing. Solver logic excludes environment implementations, hidden state, future answers and game-specific solution rules.
+![Prediction commitment, dispatch, public observation, outcome resolution and the next allocation ticket.](https://raw.githubusercontent.com/AGoldian/predictive-commitments-arc2026/85043878d6c0e085e058d1adc71a8bc0c7c8ed87/paper-draft-20261029/figures/method-loop.gif)
 
-For each event, the history retains the last eight eligible actions and computes mean squared prediction error only over valid observable pairs. Common features include progress, accepted target tokens, action history, observation novelty, prediction availability and mean probability, squared probability and outcome on that same pair set.
+The last eight eligible actions provide paired forecast/outcome histories. Four arms separate the questions:
 
-A1 uses these common features; P adds three event Brier means. Both logistic models predict current-level completion before 8,192 additional target-output tokens or 20 nonautomatic actions. Censored windows remain unavailable; observational labels do not identify causal computation value. Identical completed rows, development standardization, missingness rules, equal weights, L2 coefficient 1.0 and 2,000 full-gradient steps train both models. The frozen progress probability multiplies baseline priority by 0.5 plus that probability; capacity is two request/tool exchanges. P uses A1 when all event residuals are missing and reports fallback frequency.
+- B0 keeps baseline prompts, batch policy and priority under common accounting/admission.
+- B1 adds the optional prediction interface and keeps baseline priority.
+- A1 learns allocation from common progress, coverage and paired probability/outcome moments.
+- P uses the same common features and adds three event Brier means.
 
-B0 retains baseline prompts/batch policy under common accounting/admission. B1 uses the prediction interface and baseline priority. P versus A1 is the mechanism contrast; B1 versus B0 describes total instrumentation, and P versus B0 the complete method under matched limits.
+A1/P predict current-level completion within 8,192 further target-output tokens or 20 nonautomatic actions. These observational labels do not identify the causal benefit of extra compute. At each admission boundary, the scheduler freezes a multiplier of 0.5 plus the fitted probability; upstream baseline priority may still refresh. P falls back to A1 when all event residuals are missing. Capacity is two request/tool exchanges.
 
-Why the representation controls matter
+## What the controls can tell us
 
-Brier equals mean(p-squared)+mean(y)−2mean(p-times-y), revealing pairing beyond common marginals. The saved constant-q diagnostics replaced common forecast moments and fitted both A1_q/P_q on derivative rows; their matrix differs from original A1. Added Brier training columns are zero at q=0.5 and signed outcome duplicates at q=0.25/0.75 when training variance is positive. Duplication halves that coordinate's effective L2 penalty and doubles its gradient step. Differences compare raw training probabilities within each derivative pair, supplying no new pairing information or policy evidence.
+Brier equals mean(p²)+mean(y)−2mean(py). Its interaction can encode pairing beyond the matched marginals, but Brier and that interaction span the same linear predictor space. Fixed L2 shrinkage depends on the chosen basis. Any eventual difference would concern this representation under fixed regularization.
 
-Evidence and evaluation
+Constant-q diagnostics refit derivative A1_q/P_q pairs, replacing common forecast moments too. They do not compare against original A1. Added training columns are zero at q=0.5 and signed outcome duplicates at q=0.25/0.75 when training variance is positive. Duplication halves the coordinate's effective penalty and doubles its gradient step; it adds no pairing information or policy evidence. Earlier [prediction-verification work](https://arxiv.org/abs/2605.05138v2), [related work](https://arxiv.org/abs/2610.00834v1) and a [calibration-priority plan](https://github.com/dcw06/ARC-AGI-3/blob/54e129671e1583e958dbde2c34aede1a7d341b72/docs/ARC-AGI-3_Project_Plan_7.md) limit novelty claims.
 
-One prospectively corrected four-game collection retained all 16 planned windows: 13 negative and three positive endpoints, all positives from one game/episode. Earlier collection and inference failures remain recorded. Unknown terminal usage invalidates the comparison; cutoff closes new admission while admitted requests may settle within reserved drain.
+## The DEV feasibility result
 
-The prospectively amended B0/B1/A1/P study fixes four public development games, seed 101, capacity two, 1,800 seconds gameplay and 6,000 seconds from first code per arm, including a shared 3,600-second startup ceiling. It retains complete original outputs, source/version checksums, clocks, action receipts, all known costs and failures. Valid prediction-packet coverage must reach 50% separately in each instrumented arm. Equal ceilings do not establish equal consumed computation. Unsupported draft work and GPU-FLOPs remain unavailable.
+The matched pilot used four exposed public games, request seed 101, 1,800 seconds gameplay and 6,000 seconds from first code per arm, including a 3,600-second startup ceiling. Equal ceilings did not produce equal consumed costs. Host-accounted target-output totals were 446,084/412,843/390,586/404,393 for B0/B1/A1/P; GPU-FLOPs and draft work remain unavailable.
 
-DEV accepted target-output tokens (total = gameplay + late drain; known attempts):
-B0: 446,084 = 427,632 + 18,452; 215.
-B1: 412,843 = 408,789 + 4,054; 287.
-A1: 390,586 = 388,225 + 2,361; 330.
-P: 404,393 = 398,009 + 6,384; 303.
-Each reported zero observed unknown/pending attempts in that scope. B0/B1 each won one six-level game; B0's other three were incomplete/crashed and B1 retained cancelled/crashed records. A1's four states were crashed. Original DEV fleet scores remain unavailable.
+![Valid prediction-packet coverage in the four-game DEV pilot, with the prespecified 50% threshold.](https://raw.githubusercontent.com/AGoldian/predictive-commitments-arc2026/85043878d6c0e085e058d1adc71a8bc0c7c8ed87/paper-draft-20261029/figures/coverage-dev.png)
 
-B1 supplied 331/422 valid packets; A1 supplied 276/374. A1's first reader refused a tuple-versus-JSON-list comparison. A disclosed one-line JSON normalization preceded the same equality check; one separate adjudication passed all 21 checks. The original refusal remains, without GPU replay, refit, model, runtime, budget or endpoint change.
+B1 supplied 331/422 valid packets (78.4%); A1 supplied 276/374 (73.8%). P supplied 89/417 (21.3429%): 328 were missing with prediction_not_supplied, with zero invalid predictions or unknown transitions in the complete diagnostic. The 50% requirement applied separately to each instrumented arm. P failed despite passing the other 20 checks; no efficacy score or surviving-subset comparison follows. A1's disclosed JSON-format adjudication preserved its original refusal and changed no model or runtime.
 
-P supplied 89/417 valid packets (21.3429%), below the unchanged 50%. The other 328 had prediction_not_supplied; the complete diagnostic recorded zero invalid predictions/unknown transitions. All other 20 checks passed, but scientific eligibility remains false. No efficacy score or surviving-subset comparison is reported.
+The fitting collection had only 16 windows, with all three positive endpoints from one game/episode. Public-game exposure, concentrated labels, missing forecasts and one coupled DEV fleet per arm limit interpretation. Request seeds do not establish independent worlds or statistical replicates.
 
-The frozen ten-game, three-request-seed, four-arm audit uses observed public-prefix progress under fixed limits and the selected per-episode scalar formula. Fully observed won/gave_up/cancelled/crashed states remain included. It requires a complete joined prefix and all source/native/cost/cleanup gates; an unavailable game makes the mean unavailable. Raw states/scores remain separate. This endpoint is neither authenticated SDK scoring nor DEV rescoring. Protocol: research/tier2-audit-protocol-20261028.md.
+## Main audit and reproduction status
 
-Original main B0 (request seed 101, kernel 141448483/version 1) ended ERROR before gameplay: after READY at 1,948 seconds, an inherited four-session/four-game guard rejected ten games. Its 23 files/537,008 bytes and strict refusal remain; no score/full cost exists. Prospective roster/method-binding corrections retained science, budgets and the same exposed roster, not a fresh sample.
+After prospective infrastructure corrections on the same exposed roster, main B0 passed all 21 checks. Its descriptive public-prefix mean was 14.49134199 across all 10 games: one won, nine crashed. This is one seed-101 cohort, not an official score. The original pregame B0 refusal remains recorded.
 
-Corrected B0 passed 21/21 checks. Its public-prefix mean of 14.49134199 includes all 10 equally weighted games: 1 won and 9 crashed, without claiming why they ended. Host target-output tokens totaled 439,051 (431,409 gameplay + 7,642 late) across 295 known attempts, with 0 unknown/pending in scope. This is one request-seed 101 cohort, not an official score or three-seed estimate.
+Main B1 passed 19/21 checks and remained ineligible: coverage and child-evidence checks refused. A tool child exceeded its local deadline despite recorded reaping; coverage percentage is unavailable. No B1 score was calculated. Main A1/P and the other eight seed-arm fleets were never launched. The full three-seed estimate and P−A1 remain unavailable.
 
-The following B1 passed 19/21 checks but scientific eligibility and complete evidence were false. Packet coverage and child-evidence gates refused; a tool child exceeded its local deadline despite recorded reaping. Coverage is null, not a measured low rate. Host target-output tokens totaled 441,232 (429,116 gameplay + 12,116 late) across 287 known attempts, with 0 unknown/pending in scope. No B1 score was invoked. The controller stopped before A1/P and the eight other-seed fleets; P−A1/full three-seed results remain unavailable.
+![Evidence status distinguishes observed results, refused readouts and unfinished comparisons.](https://raw.githubusercontent.com/AGoldian/predictive-commitments-arc2026/85043878d6c0e085e058d1adc71a8bc0c7c8ed87/paper-draft-20261029/figures/evidence-status.png)
 
-Five-game calibration ended ERROR. One frozen readout refused whole-collection eligibility, retaining all 20 unverified slots; every macro Brier/log-loss remains null. No refit, verified completed-window count or measured mask tie is established. The observed 227-frame SDK return produced a 1,952,774-byte host row, exceeding the 1,048,576-byte collection limit. This runtime failure is distinct from later offline input/node-bound refusals.
+Five-game calibration failed; all 20 slots remain unverified and all macro calibration metrics are null, with no refit. Both instrumented Bpub attempts failed, retaining all 100 planned slots each; both descriptive aggregates remain null. Neither establishes the unmodified upstream policy's outcome. A separate Bpub attempt, kernel 141510931, was still RUNNING in the saved October 29, 16:22 UTC observation; it has no result here.
 
-The corresponding P submission 57749129 was accepted at 21:28:14 UTC on October 28. Its original observer received API COMPLETE and public score 0.00 at 2026-10-28T21:42:51.801722 UTC, not an exact server completion time. The request selected kernel 141404446/version 1; final custody matched, but the server did not echo the version. No Submit retry occurred. Actual rerun journals, runtime, tokens and private score are unavailable. No action trace, efficacy or novelty follows from this score. The earlier B1/C1 engineering submission 57087987, also scored 0.00, remains separate. An ordinary Save placeholder is not method execution.
+Official P submission 57749129 reached COMPLETE with public score 0.00. Competition-rerun traces, runtime, tokens, private score and cause remain unavailable. It is separate from the earlier zero-scoring engineering entry and the ordinary Save placeholder.
 
-The first instrumented Bpub (25 games×4 passes, 100 owners, legacy C10) ended ERROR; strict readout refused and both aggregates remain null. Its 100 host journals retained four unknown-usage attempts and zero observed pending. Accepted tokens/GPU/draft work are unknown; lower bound zero is not actual zero. Release at 720 seconds while loading preceded four TransportErrors; added accounting interrupted upstream retries. The underlying OS exception is unavailable. No subset rescue.
+## Source and disclosure
 
-The separate full Bpub141479988/version1 also ended ERROR. Original strict readout refused; all 100 slots remain evidence_unavailable, both aggregates and upstream reproduction null. The complete 100-journal cost scan reports lower bound 0 and observed unknown/pending 0, but accepted target total is null, not zero. Two sandbox deadlines triggered shared fail-closed stop before the 32,370-second work limit; outer physical cleanup was recorded complete. Snippet delay remains unexplained. Neither instrumented attempt establishes the unmodified upstream policy's outcome.
-
-The pilot failed feasibility of frozen P. It identifies neither model intent/keyword placement nor why packet supply differed or whether Brier improved progress. One coupled fleet per DEV arm, public-game exposure, concentrated labels, missing predictions and policy shift limit interpretation. Request seeds establish neither independent worlds nor statistical replicates. No efficacy or deployment benefit follows.
-
-Reproducibility and disclosure
-
-Method source, coefficients, notices and prospective protocols are public at https://github.com/AGoldian/predictive-commitments-arc2026 . Full code preceded the official request; the corrected baseline source was also public before its outcome. The notebook remains private until the competition-source embargo ends; prize eligibility and missing rerun evidence remain unresolved. A conceptual cover accompanies the draft. Parameters alone are not a runnable solver.
-
-Our code and fitted allocation parameters use MIT-0; upstream components retain their own licenses. Qwen target/draft assets and runtime dependencies are referenced at exact versions. This manuscript and writeup use CC BY 4.0. LLM assistants supported research, implementation, criticism and editing; advisor roles from one model family are not independent model families. The human author is responsible for final verification. All work uses free/local resources, including free Kaggle allocation.
-
-References
-
-[1] https://github.com/da-fr/arc-agi-3-solution
-[2] https://github.com/Tufalabs/duck-harness
-[3] https://arxiv.org/abs/2605.05138v2
-[4] https://arxiv.org/abs/2610.00834v1
-[5] https://github.com/dcw06/ARC-AGI-3/blob/54e129671e1583e958dbde2c34aede1a7d341b72/docs/ARC-AGI-3_Project_Plan_7.md
+[Public code, coefficients and protocols](https://github.com/AGoldian/predictive-commitments-arc2026) accompany the paper. Full method code preceded the official request. The competition notebook remains private under the source embargo; prize and model-license compatibility remain unresolved. Our code/coefficients use MIT-0, the paper/writeup and owned figures CC BY 4.0; upstream assets retain their licenses. Work uses free/local resources, including free Kaggle allocation. LLM assistants supported research, code, criticism, editing and figure scripts; same-family advisor roles are not independent model families. The animated method diagram is schematic; the cover is conceptual. The human author is responsible for verification.
