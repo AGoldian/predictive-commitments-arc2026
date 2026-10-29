@@ -1,0 +1,15 @@
+{
+  "config_sha256": "daae3de58eee00f27e2e0ccdd1d4d94c6bc5a30aac6689713a001e6fab1c59cc",
+  "protocol_sha256": "c70dc2c429deaef968094ee0e907db6ffda2eb5e25078304b17f8cc2f055f99b",
+  "source": {
+    "closure_sha256": "3b72230848f104da7345a738366925da5ccb2de588bedc7a64fa8d484b91e1c8",
+    "members": {
+      "scripts/local_public_game_session.py": "e2e3eaa9a27ba053ded7a821cbd03c20a286afcf9b6099f4cc3c4e883e206617",
+      "scripts/run_click_rewrite_probe.py": "36632fa5a49345734e7577f5990724d52ee9a60fdb36a9bed576090abeffa89d",
+      "scripts/run_partial_motion_development.py": "73fd1539c0ff153f22392a2e615a6910ead754c257de412b573ce463173d8e78",
+      "scripts/smoke_arc3.py": "514d817104f2f7c96d2dffde26ead4e92beb40fd1c64e56ab21fa92e28aa03ba",
+      "src/arc_paper/__init__.py": "71f757b8d8d7ab55e6ec655f5281ca6a69bae4a44e17dae4f0cdc52fe5ab6c84",
+      "src/arc_paper/click_rewrite.py": "98d20dc1a457e368da993474f87faaaa7c27c78d7aa0a381b6e8afc68dc2aa98"
+    }
+  }
+}

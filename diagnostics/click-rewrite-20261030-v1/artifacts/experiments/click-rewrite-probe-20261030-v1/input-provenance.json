@@ -1,0 +1,13 @@
+{
+  "prefix_sha256": "21c9e8190026427da1a7af9ae899379b80053915c2dfdcd90e97e517fa6f49fc",
+  "scope": "first6 exposed public D2 component records, data export only, no fit",
+  "source_files_sha256": {
+    "artifacts/experiments/spatial-intervention-development-20261030-v1/D2-component/observation-01.json": "faf136e9329666229e8cc121f2aa2abfe500f44f5416f037817243cf4db41bb9",
+    "artifacts/experiments/spatial-intervention-development-20261030-v1/D2-component/observation-02.json": "c643a65d9a6c183e9844dba9aa0f5facd43c7d0979659ddc9c6ff4cad5e190f3",
+    "artifacts/experiments/spatial-intervention-development-20261030-v1/D2-component/observation-03.json": "c643a65d9a6c183e9844dba9aa0f5facd43c7d0979659ddc9c6ff4cad5e190f3",
+    "artifacts/experiments/spatial-intervention-development-20261030-v1/D2-component/observation-04.json": "1f6111a2c4a5a84ae7abb94bbb85a10aaa7ceadfca4c1cf49368d5014d758d04",
+    "artifacts/experiments/spatial-intervention-development-20261030-v1/D2-component/observation-05.json": "9372e3ddabdbb1c0af35cb9dbd10b1970e9cb2c32038647fdca3f430a23192b6",
+    "artifacts/experiments/spatial-intervention-development-20261030-v1/D2-component/observation-06.json": "66e05b0b538f223a7a3fecb670562014aceb366bd1740c768bc045b53b9c6cee"
+  },
+  "source_slots_sha256": "edf4069a9c9920535d9bbde4115185b25e47d134c6faf5ec174d73499f7a5839"
+}

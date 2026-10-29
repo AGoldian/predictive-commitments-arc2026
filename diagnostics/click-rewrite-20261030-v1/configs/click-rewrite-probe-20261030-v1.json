@@ -1,0 +1,25 @@
+{
+  "schema": "click-rewrite-probe-v1",
+  "purpose": "One public exposed DEV coordinate-rule discrimination probe; no efficacy/generalization claim",
+  "game_id": "dc22-fdcac232",
+  "seed": 303,
+  "prefix": {
+    "path": "artifacts/experiments/click-rewrite-probe-20261030-v1/input-prefix.json",
+    "sha256": "21c9e8190026427da1a7af9ae899379b80053915c2dfdcd90e97e517fa6f49fc"
+  },
+  "cache_provenance": {
+    "path": "artifacts/resources/native-motion-development-runtime-20261029-v1.json",
+    "sha256": "5e6ad5e336002d0e4c1b116b3137c337b4dbf4c56fc0ee1007fca961ff8bccbe"
+  },
+  "fit_calls": 1,
+  "prefix_records_including_factory_reset": 6,
+  "new_probe_actions": 1,
+  "max_total_actions_including_factory_reset": 7,
+  "whole_wall_seconds": 120,
+  "cleanup_reserve_seconds": 5,
+  "retry_count": 0,
+  "all_candidates_retained": true,
+  "all_forecasts_committed_before_SDK_initialization": true,
+  "goal_utility": "UNKNOWN",
+  "mode": "OFFLINE"
+}

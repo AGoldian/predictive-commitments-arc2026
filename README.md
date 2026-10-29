@@ -1,11 +1,13 @@
 # Testing Predictive Commitments in Interactive Reasoning
 
 **Alexander Serov — Independent Researcher**  
-Research release, 29 October 2026
+Research release, 30 October 2026 (Moscow); manuscript edition 29 October
 
 Can recent action-prediction errors help an interactive agent allocate shared inference effort? This paper implements that question in ARC-AGI-3 and reports a failed development feasibility test. It does not demonstrate an allocation benefit.
 
 Today's edition brings the implemented method, available results and limitations together, including all three instrumented baseline attempts and their original terminal refusals. The method and corrected baseline source were public before that outcome. The manuscript links below point to this edition; pinned source links preserve the source published before its outcome. This release is not a completed ARC Prize Paper Track submission.
+
+A new [coordinate-rewrite diagnostic](diagnostics/click-rewrite-20261030-v1/README.md) includes code, saved forecasts and public observations for one selected transition. One 48-cell forecast matched all its claimed changed cells; 49 pixels changed in total. Two candidate mechanisms supplied that identical forecast and remain indistinguishable. No level completed. The linked manuscript and writeup retain the October29 edition; this separate component result does not supply the missing allocator comparison.
 
 ## Read the paper and use the source
 
@@ -37,6 +39,6 @@ Public games are an exposed development sample. The incomplete audit, failed fea
 
 ## Execution and licensing
 
-The selected P entry notebook's ordinary Save branch writes a labelled offline placeholder. An actual competition rerun invokes the full P method; the placeholder is not a measured score. The separate Bpub notebook executes the full 25-game/four-pass reproduction under its 32,400-second ceiling. The corresponding Kaggle execution notebook remains private under the competition-source embargo, while its method source is public. Execution uses the pinned assets and depends on available free Kaggle resources.
+The selected P entry notebook's ordinary Save branch writes a labelled offline placeholder. Its competition-flag branch is configured to invoke the full P method; actual rerun traces remain unavailable, and the placeholder is not a measured score. The separate Bpub notebook executes the full 25-game/four-pass reproduction under its 32,400-second ceiling. The corresponding Kaggle execution notebook remains private under the competition-source embargo, while its method source is public. Execution uses the pinned assets and depends on available free Kaggle resources.
 
 The manuscript is CC BY 4.0. Original code and parameters are MIT-0; inherited code and models retain their separate terms. See the [scoped source notices](https://github.com/AGoldian/predictive-commitments-arc2026/blob/86d1690c9695e5d6a460c91cc71801be64c6ed4f/public-method-source-release-v1/NOTICE.txt). No claim of prize eligibility or organizer approval is made.
