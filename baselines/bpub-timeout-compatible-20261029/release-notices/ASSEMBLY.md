@@ -1,0 +1,11 @@
+# Minimal full-entry publication assembly
+
+This notice bundle complements the exact original-code archive and exact fitted allocation release. It is not itself a solver, a public upload or an eligibility decision. Current source identity is the official97 entry; the prospective cutoff repair and its new hashes are pending. Preserve this source as the documented predecessor, never silently rename it as the repaired source.
+
+For the final code publication, include the selected repaired worker/runtime sources and builder, exact source/member manifest, final notebook, this scoped NOTICE, retained Apache/MIT terms and Duck package declaration. Keep existing prominent modification statements. If redistributing modified historical snapshots, add corresponding release-only modification comments or omit those redundant snapshots and reference their original hashes in a newly built release package. The current closed experimental source is unchanged. Any comment-only source derivative still needs its own actual source/package/notebook hashes.
+
+Reference the pinned Kaggle model, source and wheelhouse attachments in DEPENDENCY-REFERENCES.json. Do not copy tensors, wheels, executables, source pickle bundles, game implementations, private notebook payloads, raw training rows or account metadata into the public release. No new wheel audit is needed for this references-only route.
+
+Include ../fitted-allocation-v1/paired-models.json and its portable association/config. The pair bytes are unchanged. The final public builder needs a reviewed deployment association for that public pair; the compact public association is not to be mislabelled as the original full scientific runtime bundle. Keep the private original bundle untouched. This is the remaining fitted-data binding seam for the repaired public entry, not a request to refit.
+
+A research draft and original component/parameter release can be published now with explicit provisional status and the actual failed B0 outcome. A contest-complete paper additionally needs its real corresponding approach code entry, truthful full matched-run results/failures/costs, and the final paper/writeup/release links. High score is not a prerequisite stated by the primary Paper Prize page; do not promise competitiveness or prize approval.

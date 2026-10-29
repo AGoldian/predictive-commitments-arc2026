@@ -1,0 +1,544 @@
+{
+  "date": "2026-10-28",
+  "excluded": [
+    "LLM weights",
+    "wheels and binaries",
+    "pickle source bundles",
+    "game implementation",
+    "private notebook payloads",
+    "raw training rows",
+    "private inspection output",
+    "credentials/account metadata"
+  ],
+  "fitted_parameters": {
+    "pair_sha256": "cccc2ffbaaf223ce1a284af1afd2405f58fca4cafeee4b12692678bd33f4b6ed",
+    "relative_release": "../fitted-allocation-v1",
+    "release_manifest_sha256": "2030fb8a056c0361e499c604555576a1cf037640677320a98a15cd591ce8061b"
+  },
+  "local_notice_files_sha256": {
+    "ASSEMBLY.md": "f45c174e3a8c86818272af439ebb3c6fe6ac9b8321a54504b38c0fac4d62ca74",
+    "DEPENDENCY-REFERENCES.json": "4600699049515b1edec6d5eff8c2729cb1f420d917e60a7e8aa4daa41218f2a3",
+    "NOTICE.txt": "00bc8e1ec37904e4c489b479e733bd600e0d28cb59218563a98b33bf3447638e",
+    "duck/ARC3-Inference-pyproject.toml": "e1615814eddbc6a731b630380144081d502f6bd9051b5a7aa09b93bae2ae4e77",
+    "duck/DUCK-COMPONENT-NOTICE.txt": "e2afb2bb322ab83716aa7ceac52e71a599eeeaf5f3cb7313907bb590a5a04df7",
+    "licenses/LICENSE-FRANZEN-APACHE-2.0.txt": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "licenses/LICENSE-MIT-0.txt": "a8693da874d02f4a628a0ca919e4a576b88513a04542af92398f87dfdebd0242",
+    "licenses/MIT-standard-text-reference.txt": "b05785f9f18e6716bab63424b11454513b9943a222595b70411009202fc592b5",
+    "licenses/QWEN-COMMUNITY-1.0-reference.txt": "a0dc422560841fd68e06d974907f8b4c709bca44a67daad2b528437bdf676c08"
+  },
+  "namespace": "full-entry-redistribution-notice-manifest-v1",
+  "published": false,
+  "remaining_assembly": [
+    "Prospective corrected runtime and new exact source/notebook associations",
+    "Scoped mixed-worker and modified historical-source notices in final release derivative; preserve final upstream notices already present",
+    "Final public deployment binding for exact released coefficient pair without raw training rows/private inspection",
+    "Publish final method source/notebook and links before the next official private-evaluation score under the observed overview requirement"
+  ],
+  "resolved_duck_MIT": {
+    "declaration_sha256": "e1615814eddbc6a731b630380144081d502f6bd9051b5a7aa09b93bae2ae4e77",
+    "revision": "7652836056c59e044f093e3c13ed7438c814169e",
+    "status": "Affirmative original-publisher package MIT declaration; no extra consent inferred merely from missing standalone license text"
+  },
+  "runtime_repair_pending": true,
+  "schema_version": 1,
+  "source_predecessor": {
+    "builder": {
+      "path": "build_entry.py",
+      "sha256": "0513f23815b52984e1846ee5fabcad53dfdf366334a46fdf11aa212ca5e12bf6"
+    },
+    "members": [
+      {
+        "license_scope": "Original project metadata/provenance with referenced upstream hashes; preserve component attribution",
+        "path": "build-manifest.json",
+        "sha256": "495d4c764ed613a87e8092afcf0b34a73c92ddd57e5e16f11a8041bee865b676"
+      },
+      {
+        "license_scope": "MIT-0 original project code",
+        "path": "capacity_source_observation.py",
+        "sha256": "24061e0ed50401267b3c5ed4d26bf2435b8ef6fc6327d9b5c7d401187180a70c"
+      },
+      {
+        "license_scope": "Original project metadata/provenance with referenced upstream hashes; preserve component attribution",
+        "path": "configs/automatic-reset-prefix-policy-v1.json",
+        "sha256": "eef252ac22a0a6a7da696c5fbbac607e4085b1b9434d8b834f78b64ea71b6165"
+      },
+      {
+        "license_scope": "License text retains its stated scope",
+        "path": "licenses/LICENSE-FRANZEN-APACHE-2.0.txt",
+        "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+      },
+      {
+        "license_scope": "License text retains its stated scope",
+        "path": "licenses/LICENSE-MIT-0.txt",
+        "sha256": "a8693da874d02f4a628a0ca919e4a576b88513a04542af92398f87dfdebd0242"
+      },
+      {
+        "license_scope": "Original project metadata/provenance with referenced upstream hashes; preserve component attribution",
+        "path": "official-deployment-policy.json",
+        "sha256": "467912a5ac3993a8ced0b01c9e6f49201e8d42272e870ba52644368bd65b7466"
+      },
+      {
+        "license_scope": "MIT-0 original project code",
+        "path": "official_worker_control.py",
+        "sha256": "c763f92a3cbe680e6b8de8a3bbbcee9afba320abc2eb87d1eaea673e122beaf9"
+      },
+      {
+        "license_scope": "Original project metadata/provenance with referenced upstream hashes; preserve component attribution",
+        "path": "package-checksums.json",
+        "sha256": "ede701addf263266b9f871740dfe18ea52517c6403c920e21b34d9ae3898a6fd"
+      },
+      {
+        "license_scope": "Original project metadata/provenance with referenced upstream hashes; preserve component attribution",
+        "path": "provenance/input-closures/arm_loader_closure.json",
+        "sha256": "6fb8069db6e687a69e4921c3619b2d5f7964509a553cfc56136d59f47c9b336f"
+      },
+      {
+        "license_scope": "Original project metadata/provenance with referenced upstream hashes; preserve component attribution",
+        "path": "provenance/input-closures/host_closure.json",
+        "sha256": "604f271bc9a2261a2f0e0f37acfa935832ac3f60260e9a3c821056159bfa1fc1"
+      },
+      {
+        "license_scope": "Original project metadata/provenance with referenced upstream hashes; preserve component attribution",
+        "path": "provenance/input-closures/model_bridge_closure.json",
+        "sha256": "d8d0878f9118be8d21262daef800305a8d4f5a08467cd6b2422b8c9070da1a62"
+      },
+      {
+        "license_scope": "Original project metadata/provenance with referenced upstream hashes; preserve component attribution",
+        "path": "provenance/input-closures/pair_loader_closure.json",
+        "sha256": "f237c34f59f282c4ef0a2e8c8571dfdc0cc32e0c8d414a19b9ce8255bc6f5ff8"
+      },
+      {
+        "license_scope": "Original project metadata/provenance with referenced upstream hashes; preserve component attribution",
+        "path": "provenance/input-closures/physical_closure.json",
+        "sha256": "2da4bf5e7efaf3c99f83d417373672a0c32a3c0e8d45a0cdab6fd901fa06852d"
+      },
+      {
+        "license_scope": "Original project metadata/provenance with referenced upstream hashes; preserve component attribution",
+        "path": "provenance/input-closures/selected_closure.json",
+        "sha256": "2e75bf236099583606f01a41d1134d95dddaf91d8c5da5cd587803643e348809"
+      },
+      {
+        "license_scope": "Original project metadata/provenance with referenced upstream hashes; preserve component attribution",
+        "path": "provenance/official-gateway-source.json",
+        "sha256": "0cf00e8a512e88ab279ef87559887042e7bb0d3ef6d8b3f3c54cbead665b83ba"
+      },
+      {
+        "license_scope": "Original project metadata/provenance with referenced upstream hashes; preserve component attribution",
+        "path": "provenance/transport-overlay-closure.json",
+        "sha256": "cf40d065fe626fdbc00953cec7bc19adfe75ba93a0c863618ef27eabcc87efb7"
+      },
+      {
+        "license_scope": "Original project metadata/provenance with referenced upstream hashes; preserve component attribution",
+        "path": "provenance/transport-overlay-manifest.json",
+        "sha256": "8c5f767ed8e875a4a9c1cc776d9d6664acabf3f6f59b459664dc2d3fb8bd9e6a"
+      },
+      {
+        "license_scope": "Original project metadata/provenance with referenced upstream hashes; preserve component attribution",
+        "path": "provenance/transport-resource-amendment.md",
+        "sha256": "0638f041ff041f50a4ba82fdd055438d2c88efa301793aa9635b8ab7d8bbc97d"
+      },
+      {
+        "license_scope": "Original project metadata/provenance with referenced upstream hashes; preserve component attribution",
+        "path": "provenance/witness-input-closure.json",
+        "sha256": "bd9b487ec7fc8bb63c568a1c76dbfe8f7ef7ec40a74cb0e0e876ecc2660b5c16"
+      },
+      {
+        "license_scope": "Original project metadata/provenance with referenced upstream hashes; preserve component attribution",
+        "path": "provenance/witness-overlay-manifest.json",
+        "sha256": "c142e59aff314eb4c4d26356148e16c32dbeb206d05aff233ad13c5e7b5e1f78"
+      },
+      {
+        "license_scope": "Original project metadata/provenance with referenced upstream hashes; preserve component attribution",
+        "path": "provenance/witness-selection.json",
+        "sha256": "113205ecb72770859a6392484dbd46494454569f639d2e5b16071da5fca1e5e0"
+      },
+      {
+        "license_scope": "Original project metadata/provenance with referenced upstream hashes; preserve component attribution",
+        "path": "runtime-manifest.json",
+        "sha256": "56765586bc60fc8af3617008cf1049e8df0a8dfee2e70c212767c119b38f1133"
+      },
+      {
+        "license_scope": "Original project metadata/provenance with referenced upstream hashes; preserve component attribution",
+        "path": "runtime-profiles/A1.json",
+        "sha256": "115a905b600af20990ef9c029326c5b1d445d4dfc9745740222968d4b72c2574"
+      },
+      {
+        "license_scope": "Original project metadata/provenance with referenced upstream hashes; preserve component attribution",
+        "path": "runtime-profiles/B1.json",
+        "sha256": "d9e3e42b9943c51abb838f2981cf9603e117919c7e0229682b71ca762c58b081"
+      },
+      {
+        "license_scope": "Original project metadata/provenance with referenced upstream hashes; preserve component attribution",
+        "path": "runtime-profiles/P.json",
+        "sha256": "b97146b261142b95e3160fe626fb16c38156ae87636c030d98a2f1704f8bdd1d"
+      },
+      {
+        "license_scope": "Mixed generated/patch material: retain original project and upstream component scope",
+        "path": "runtime/child-bootstrap/python_tool_bootstrap.py",
+        "sha256": "27de5d1b31740b087ebdd8ea3ddeb978f5badeafda52dd71c344954a5b6edd84"
+      },
+      {
+        "license_scope": "Upstream source with retained component terms; unchanged upstream bytes",
+        "path": "runtime/final-source/ARC3-Inference/inference/agent/priority_pace_reference.json",
+        "sha256": "313c779a28988aac3ee66b01d0dea7cc3b105fdd45e4f7b8c41de6c23762fa9c"
+      },
+      {
+        "license_scope": "Upstream source with retained component terms; unchanged upstream bytes",
+        "path": "runtime/final-source/ARC3-Inference/inference/agent/priority_scheduler.py",
+        "sha256": "f9f8a4bd21a1066073bb97d50639be2c2410d481a97e5b1cab9d6214ebe70bbe"
+      },
+      {
+        "license_scope": "Upstream source with retained component terms; existing prominent modification notice",
+        "path": "runtime/final-source/ARC3-Inference/inference/agent/prompts.py",
+        "sha256": "19ab584237c6b1d4e8f588755ba277e37791e7df025664801274aec82013c3c2"
+      },
+      {
+        "license_scope": "Upstream source with retained component terms; existing prominent modification notice",
+        "path": "runtime/final-source/ARC3-Inference/inference/agent/python_tool_sandbox.py",
+        "sha256": "f75152a03fee9192492e7c9068567f2ac86af9b39169c065112400913936d3ec"
+      },
+      {
+        "license_scope": "Upstream source with retained component terms; unchanged upstream bytes",
+        "path": "runtime/final-source/ARC3-Inference/inference/agent/runtime_state.py",
+        "sha256": "371e211ac2e364829f44acd1bd9de85284c365445c8bb4669445ac4a7545ac73"
+      },
+      {
+        "license_scope": "Upstream source with retained component terms; existing prominent modification notice",
+        "path": "runtime/final-source/ARC3-Inference/inference/agent/tool_agent.py",
+        "sha256": "f8a9b7f54f91c39b9d234ab20dc0f1232fb085a7296aad349c0351628345cd5c"
+      },
+      {
+        "license_scope": "Upstream source with retained component terms; existing prominent modification notice",
+        "path": "runtime/final-source/ARC3-Inference/inference/framework/solver.py",
+        "sha256": "92a814fcdb773f0a9ed5e970b2938124d9146416c83a5aadcd8b0251acdde138"
+      },
+      {
+        "license_scope": "Upstream source with retained component terms; unchanged upstream bytes",
+        "path": "runtime/final-source/ARC3-Inference/inference/utils/frame_diff.py",
+        "sha256": "843be0ce9225ae19de91dd34409bd7b7cf69ebad1ff73e69759c506c161bdeee"
+      },
+      {
+        "license_scope": "Upstream source with retained component terms; unchanged upstream bytes",
+        "path": "runtime/final-source/ARC3-Inference/inference/utils/grid_utils.py",
+        "sha256": "2c96de5a6e0da2ae0390ab191b39a154784089b00fce8e2da98ebb3960715b67"
+      },
+      {
+        "license_scope": "Upstream source with retained component terms; unchanged upstream bytes",
+        "path": "runtime/final-source/ARC3-Inference/inference/utils/retained_functions.py",
+        "sha256": "9450d8c73fa5f84f40f7bd7bc3868ab63fadde2c68e4546de7b041b387be0b37"
+      },
+      {
+        "license_scope": "Upstream source with retained component terms; unchanged upstream bytes",
+        "path": "runtime/final-source/ARC3-Inference/inference/utils/segmentation.py",
+        "sha256": "1bd1346e4b87a8eca5f1b67df88237cb7527f96132de84772b2094de95353aed"
+      },
+      {
+        "license_scope": "Upstream source with retained component terms; existing prominent modification notice",
+        "path": "runtime/final-source/tufa-arc-agi-framework/src/taaf/benchmark.py",
+        "sha256": "f4e7cb2c1d0d7bc7bcfc2cbe509d9252a202a956ad521df8db7d4cab8e3793fe"
+      },
+      {
+        "license_scope": "Upstream source with retained component terms; existing prominent modification notice",
+        "path": "runtime/final-source/tufa-arc-agi-framework/src/taaf/game.py",
+        "sha256": "f707f593e340bf4a7d8f740736c829f2c26da9d7fd51920605b8d1401b68906c"
+      },
+      {
+        "license_scope": "Upstream source with retained component terms; existing prominent modification notice",
+        "path": "runtime/final-source/tufa-arc-agi-framework/src/taaf/game_api.py",
+        "sha256": "43ced11639cc36ef836f1c5d21131f8815fe412765692f0c97df5d0f2039331d"
+      },
+      {
+        "license_scope": "MIT-0 original project code",
+        "path": "runtime/host-package/arc_paper/__init__.py",
+        "sha256": "71f757b8d8d7ab55e6ec655f5281ca6a69bae4a44e17dae4f0cdc52fe5ab6c84"
+      },
+      {
+        "license_scope": "MIT-0 original project code",
+        "path": "runtime/host-package/arc_paper/allocation.py",
+        "sha256": "661f17f8b5636f63af8dcf4fc3bbbfc9aaf37bd4241c2f649d7640d8dc407bd7"
+      },
+      {
+        "license_scope": "MIT-0 original project code",
+        "path": "runtime/host-package/arc_paper/automatic_reset_prefix_v1.py",
+        "sha256": "065096fbd3a9b297f837c6fb13dc7557974abc3bd37acf688b59977fd5c6fd1a"
+      },
+      {
+        "license_scope": "MIT-0 original project code",
+        "path": "runtime/host-package/arc_paper/bounded_child_io.py",
+        "sha256": "22dcf677a5eab3aca6a902919fa7bca2988d1cd4d4be2507c61213d6516419aa"
+      },
+      {
+        "license_scope": "MIT-0 original project code",
+        "path": "runtime/host-package/arc_paper/capacity_runtime.py",
+        "sha256": "55d297806c1bc98dc46fae2e2ba9f890c32e7e116652a766050fa07ad603fe98"
+      },
+      {
+        "license_scope": "MIT-0 original project code",
+        "path": "runtime/host-package/arc_paper/common_fleet_governor_v2.py",
+        "sha256": "735e4b8b579597ff0bc88e98d546f37827bfed6281b108f9e2a844c808182106"
+      },
+      {
+        "license_scope": "MIT-0 original project code",
+        "path": "runtime/host-package/arc_paper/evidence_history.py",
+        "sha256": "b22c63db8226790ebc9aef7ca56e08fbf9940d600231c97b186d1484a98d4aae"
+      },
+      {
+        "license_scope": "MIT-0 original project code",
+        "path": "runtime/host-package/arc_paper/fleet_gate.py",
+        "sha256": "87966601376cd0d34f958a0f462890efefd693ee1ac66490813ae2366b49ec28"
+      },
+      {
+        "license_scope": "MIT-0 original project code",
+        "path": "runtime/host-package/arc_paper/franzen_fleet_admission.py",
+        "sha256": "9091e8ada88dbe626793ed0a2402ddfa83f773b9bf63d8ade8bc625e56ccd4f4"
+      },
+      {
+        "license_scope": "MIT-0 original project code",
+        "path": "runtime/host-package/arc_paper/franzen_fleet_admission_reset_prefix_v1.py",
+        "sha256": "7683e151dec0e029f84b2a6a1ca7d7eaf4f3db5072ac441a676ca35ae153f8b6"
+      },
+      {
+        "license_scope": "MIT-0 original project code",
+        "path": "runtime/host-package/arc_paper/franzen_fleet_admission_v2.py",
+        "sha256": "e67f95d927a72177e831dc813ff9ed239bc42d9ad01b4d1841225dcbb5a9307b"
+      },
+      {
+        "license_scope": "MIT-0 original project code",
+        "path": "runtime/host-package/arc_paper/franzen_host_accounting.py",
+        "sha256": "468fdbbe63d618edf793706fcab5f1fe7c2bf94601ba4c494c908a92971e9df8"
+      },
+      {
+        "license_scope": "MIT-0 original project code",
+        "path": "runtime/host-package/arc_paper/franzen_host_accounting_reset_prefix_v1.py",
+        "sha256": "e53270184cdb5f8128b4e86419a73cc6d6b41a36c53e26cbb9448e788b4845fa"
+      },
+      {
+        "license_scope": "MIT-0 original project code",
+        "path": "runtime/host-package/arc_paper/franzen_host_accounting_v2.py",
+        "sha256": "923eb121bb4f75ce4d23b685c5c11fae2a5589107261af54d14c10a5a26b3031"
+      },
+      {
+        "license_scope": "MIT-0 original project code",
+        "path": "runtime/host-package/arc_paper/franzen_host_accounting_v3.py",
+        "sha256": "5d469872723420de6c60319de854cca671fef42ac2c642db8d8981f1b8889455"
+      },
+      {
+        "license_scope": "MIT-0 original project code",
+        "path": "runtime/host-package/arc_paper/franzen_prediction_runtime.py",
+        "sha256": "2087dfe7785df934049544d7373b86d2e200ba23eb2f461832b1e5c5a288c336"
+      },
+      {
+        "license_scope": "MIT-0 original project code",
+        "path": "runtime/host-package/arc_paper/governor_trace_v2.py",
+        "sha256": "d719a002172c85a7fe00500610ae8261486f47ea35d85c93c1708be30022f13d"
+      },
+      {
+        "license_scope": "MIT-0 original project code",
+        "path": "runtime/host-package/arc_paper/host_accounting.py",
+        "sha256": "beabeae3ec4a97315601051f80a57bef7b65eafff268d133988b657222afd8d7"
+      },
+      {
+        "license_scope": "MIT-0 original project code",
+        "path": "runtime/host-package/arc_paper/inference_child_witness_v1.py",
+        "sha256": "cc49e52e7791290ceb2a01d6a2a507f2823700de1ed27fecb72ab01c6e2d9df2"
+      },
+      {
+        "license_scope": "MIT-0 original project code",
+        "path": "runtime/host-package/arc_paper/learned_host_model_binding_v1.py",
+        "sha256": "279527cb1329d349740455720e27246838c30c624e0f0da82183a7c93cfd174a"
+      },
+      {
+        "license_scope": "MIT-0 original project code",
+        "path": "runtime/host-package/arc_paper/paired_model_loader.py",
+        "sha256": "c491a1046ad727c3c705d065ad5ebb54211b17ef2147b9764bd81acc4e7aee54"
+      },
+      {
+        "license_scope": "MIT-0 original project code",
+        "path": "runtime/host-package/arc_paper/prediction_adapter.py",
+        "sha256": "d560a2834ba0f032002faba33955516ab0b39e3cb18c0bdfadb9b937d97ff369"
+      },
+      {
+        "license_scope": "MIT-0 original project code",
+        "path": "runtime/host-package/arc_paper/predictions.py",
+        "sha256": "ebd53fe1296e16832b497fdd8b4d6e2d1cfb0d1ba1cf9bac8f9729e8ff3d83fe"
+      },
+      {
+        "license_scope": "MIT-0 original project code",
+        "path": "runtime/host-package/arc_paper/receipt_integrity.py",
+        "sha256": "19030d18d92e1a712084724376cad56bfc0d9e55f68a79508ff7517baf2a1046"
+      },
+      {
+        "license_scope": "MIT-0 original project code",
+        "path": "runtime/host-package/arc_paper/reset_prefix_arm_loader_v1.py",
+        "sha256": "f29d34edf673343205df9a2475b261000f5eca1c58824b578e5f3a80f25e54bd"
+      },
+      {
+        "license_scope": "MIT-0 original project code",
+        "path": "runtime/host-package/arc_paper/reset_prefix_integrity_v1.py",
+        "sha256": "8c2a00a25b6750aaebcfd551a39e6bc5508d2043452d7ec43d53bfc7c3049572"
+      },
+      {
+        "license_scope": "Historical upstream derivative: release-only modification notice or hash-reference omission required if rebuilding public package",
+        "path": "runtime/patched-source/ARC3-Inference/inference/framework/solver.py",
+        "sha256": "137b59e82a19e40fa8c1a1d3e695419b6b56ab17c0124291be1d34a7f55bc073"
+      },
+      {
+        "license_scope": "Mixed generated/patch material: retain original project and upstream component scope",
+        "path": "runtime/patches/01-prediction-receipts.patch",
+        "sha256": "859362c338eecf298145633710ba42baf40b9bbb02a1273198f9db443ff3e77e"
+      },
+      {
+        "license_scope": "Mixed generated/patch material: retain original project and upstream component scope",
+        "path": "runtime/patches/02-request-accounting.patch",
+        "sha256": "646674c23ccf9a177daa9af9bf1922b9c647a675ae06b2074c68f6ec867c025c"
+      },
+      {
+        "license_scope": "Mixed generated/patch material: retain original project and upstream component scope",
+        "path": "runtime/patches/03-child-confinement.patch",
+        "sha256": "142ce338085c376d0b9c3ffea83f520ef8406d52bc7251795b77843b49839d44"
+      },
+      {
+        "license_scope": "Mixed generated/patch material: retain original project and upstream component scope",
+        "path": "runtime/patches/04-host-accounting.patch",
+        "sha256": "70113c54191caab18bfe584247e688a20b0eb60e0215d4027f562cb769ec9d38"
+      },
+      {
+        "license_scope": "Mixed generated/patch material: retain original project and upstream component scope",
+        "path": "runtime/patches/05-pre-sdk-stop-refusal.patch",
+        "sha256": "7ce2b87ab5f77045ac304d6c519f05494cc52a0ad7e3bbc9196603848b3dbba9"
+      },
+      {
+        "license_scope": "Mixed generated/patch material: retain original project and upstream component scope",
+        "path": "runtime/patches/06-fleet-admission.patch",
+        "sha256": "48c5ed5bc2f10c83e7c54ae325f14bb31a1e4a7da9314b3eb7ffff2a0966bef4"
+      },
+      {
+        "license_scope": "Mixed generated/patch material: retain original project and upstream component scope",
+        "path": "runtime/patches/07-common-deadline.patch",
+        "sha256": "b018e4dba200cf97cd902c3f0526ba9ece92df278d65c2e78f7c1c3d01001cc1"
+      },
+      {
+        "license_scope": "Mixed generated/patch material: retain original project and upstream component scope",
+        "path": "runtime/patches/08-resource-bounds.patch",
+        "sha256": "56f1bfdc4e0cdaa3748a69dad861e9360eaa40f5452c9ffc048d87b6e3899eaa"
+      },
+      {
+        "license_scope": "Mixed generated/patch material: retain original project and upstream component scope",
+        "path": "runtime/patches/09-capacity-played-solver.patch",
+        "sha256": "e27d80571ebc848d7bff5dac3af2f51d89fba549f26a12a6a5c3697b97c29c25"
+      },
+      {
+        "license_scope": "Mixed generated/patch material: retain original project and upstream component scope",
+        "path": "runtime/patches/10-reset-prefix.patch",
+        "sha256": "7096769a51539d9d758392cdd97ed3b082522e3979b5279606dda26556fc3db9"
+      },
+      {
+        "license_scope": "Mixed generated/patch material: retain original project and upstream component scope",
+        "path": "runtime/patches/11-source-owned-child-witness.patch",
+        "sha256": "c2d302e54bd30ceb6fe3299bd1629599395a891bf9988be277d6cd1079114c1e"
+      },
+      {
+        "license_scope": "Mixed generated/patch material: retain original project and upstream component scope",
+        "path": "runtime/patches/12-upstream-modified-file-notices.patch",
+        "sha256": "d67a4b15e028781fe0dc970358f33122145716f54971d74f65c6f5297914191a"
+      },
+      {
+        "license_scope": "Mixed generated/patch material: retain original project and upstream component scope",
+        "path": "runtime/patches/13-byte-derived-json-node-profile.patch",
+        "sha256": "3c193e8b4354653c6ba3c241b7e754c7c4924e3eadb9000c5e2c71a6e9a399eb"
+      },
+      {
+        "license_scope": "Mixed generated/patch material: retain original project and upstream component scope",
+        "path": "runtime/patches/combined-with-confinement.patch",
+        "sha256": "72774bf74937ba503d488494e37adcb41564d48d52c8ff0cf107fd1b6e8a727c"
+      },
+      {
+        "license_scope": "Mixed generated/patch material: retain original project and upstream component scope",
+        "path": "runtime/patches/combined.patch",
+        "sha256": "1017c3549d704c26af78823ece69a171c51c67ffb38ce6a7d707715752333be5"
+      },
+      {
+        "license_scope": "Original project metadata/provenance with referenced upstream hashes; preserve component attribution",
+        "path": "runtime/provenance/common-deadline-input-manifest.json",
+        "sha256": "c8a2157dcf572e9ed54cf3e15d516f17a002d362ac5e4755676e2d31dc901424"
+      },
+      {
+        "license_scope": "Original project metadata/provenance with referenced upstream hashes; preserve component attribution",
+        "path": "runtime/provenance/common-deadline-manifest.json",
+        "sha256": "a74223705402d4c6608344ce51a8d7c9364a85801ec97c00a69884f96ecb8712"
+      },
+      {
+        "license_scope": "Original project metadata/provenance with referenced upstream hashes; preserve component attribution",
+        "path": "runtime/provenance/fleet-admission-input-manifest.json",
+        "sha256": "c8a2157dcf572e9ed54cf3e15d516f17a002d362ac5e4755676e2d31dc901424"
+      },
+      {
+        "license_scope": "Original project metadata/provenance with referenced upstream hashes; preserve component attribution",
+        "path": "runtime/provenance/host-accounting-input-manifest.json",
+        "sha256": "7dca03e355d17e6c5070820aebd743b5721a0d05449619fac88efc187453654e"
+      },
+      {
+        "license_scope": "Original project metadata/provenance with referenced upstream hashes; preserve component attribution",
+        "path": "runtime/provenance/resource-bounds-input-manifest.json",
+        "sha256": "370e42ad1bf1fd7ed2f7cf5108563886bcce8750118def7fc67209bfb6fd3f38"
+      },
+      {
+        "license_scope": "Original project metadata/provenance with referenced upstream hashes; preserve component attribution",
+        "path": "runtime/provenance/sdk-source-manifest.json",
+        "sha256": "e9e36ef21659862d6b885d3312770cbd037bb299229a05aec00c75e09a3ff0d3"
+      },
+      {
+        "license_scope": "Historical upstream derivative: release-only modification notice or hash-reference omission required if rebuilding public package",
+        "path": "runtime/provenance/stage6-source/ARC3-Inference/inference/agent/tool_agent.py",
+        "sha256": "1df1588bb4ec2428b55026d200f4d0f85a206da552245caddb01ac878f45194b"
+      },
+      {
+        "license_scope": "Historical upstream derivative: release-only modification notice or hash-reference omission required if rebuilding public package",
+        "path": "runtime/provenance/stage6-source/ARC3-Inference/inference/framework/solver.py",
+        "sha256": "02d9e431c8fe4979220133969823df00c3e36baa6215d0382561f6e5125e6fa4"
+      },
+      {
+        "license_scope": "Historical upstream derivative: release-only modification notice or hash-reference omission required if rebuilding public package",
+        "path": "runtime/provenance/stage6-source/tufa-arc-agi-framework/src/taaf/game.py",
+        "sha256": "cafb5cc2f4dd556ab389e83138633d3c9c29361e8dfe3c9e7ab3b5513bfd650d"
+      },
+      {
+        "license_scope": "Historical upstream derivative: release-only modification notice or hash-reference omission required if rebuilding public package",
+        "path": "runtime/provenance/stage6-source/tufa-arc-agi-framework/src/taaf/game_api.py",
+        "sha256": "de8bc91a0081c9c130f2e87405236cd6335eb79ca7b00fa80147cb9736bf6623"
+      },
+      {
+        "license_scope": "MIT-0 original project code",
+        "path": "session_supervisor.py",
+        "sha256": "3126cdaec525178ca5f9bb44f30bbba1e168107f3253a6c6ee580ff6da787a76"
+      },
+      {
+        "license_scope": "Original project metadata/provenance with referenced upstream hashes; preserve component attribution",
+        "path": "source-delta.patch",
+        "sha256": "48bca1827c73c76cb3b2444fe74e12d39c51f468379d3a47acfc66f0d992759b"
+      },
+      {
+        "license_scope": "Original project metadata/provenance with referenced upstream hashes; preserve component attribution",
+        "path": "transport-profile-delta.patch",
+        "sha256": "ebdad30627a53ba97788c90853b1ec57dc5b826988645b669d4e739286616a44"
+      },
+      {
+        "license_scope": "Original project metadata/provenance with referenced upstream hashes; preserve component attribution",
+        "path": "witness-integration-delta.patch",
+        "sha256": "ac094b302a4b284de62ef780cc01d8d6b20559869a0d9d0bed63c8f133e9cf1b"
+      },
+      {
+        "license_scope": "Mixed: MIT-0 original wrapper; upstream cells/patches retain component terms",
+        "path": "worker.py",
+        "sha256": "bad1ec568afe9eaafd331c23d25c293a1fa83f4a4e42f41bdc4c7f67c0b7d763"
+      }
+    ],
+    "official_source_closure_sha256": "33619f21d37e1dbef232524ae714c2ab65d28744c090ddea840afc7f1714c87a",
+    "parent_runtime": {
+      "path": "parent_runtime.py",
+      "sha256": "a238875596289b375aa6a1016625d6085c80f4b2f5ecd4a79fc5e3a1daba1442"
+    },
+    "worker_package_closure_sha256": "ede701addf263266b9f871740dfe18ea52517c6403c920e21b34d9ae3898a6fd",
+    "worker_package_files": 97
+  }
+}
