@@ -1,0 +1,30 @@
+{
+  "builder": {
+    "bytes": 8503,
+    "copied_into_export": false,
+    "sha256": "8c9961bc3a9006c0f187392426fc9a659176362b54592c4aad5b6b1a3f3da318",
+    "url": "https://raw.githubusercontent.com/arcprize/ARC-AGI-3-Kaggle-Starter/eeb1535404f321d280a8f9194bbc1d7aca5f05fc/scripts/build_notebook.py"
+  },
+  "commit": "eeb1535404f321d280a8f9194bbc1d7aca5f05fc",
+  "license_status": "No license advertised by repository metadata; no upstream builder source copied or modified. API flag/output interface semantics are referenced; our implementation is separately authored MIT-0.",
+  "metadata_response_sha256": {
+    "commit": "1d341f0803f14434f67ff0d1d6cd39d0698c40adda492ef6a4432f93c4edeaf7",
+    "repository": "500cdb5a5795a61227be1279994b806d815eee735e1024bc26ddd1082d9875d4"
+  },
+  "network_scope": "Three bounded unauthenticated public source/metadata GETs; no credentials/account session, clone, package download or target execution.",
+  "observed_at_utc": "2026-10-30T00:38:45.234574+00:00",
+  "official_contract": {
+    "actual_rerun_output": "Gateway records actual actions and emits submission.parquet. False branch alone writes commit placeholder.",
+    "flag_expression": "bool(os.getenv('KAGGLE_IS_COMPETITION_RERUN'))",
+    "source_lines": [
+      75,
+      114,
+      125,
+      127,
+      128
+    ]
+  },
+  "repository": "https://github.com/arcprize/ARC-AGI-3-Kaggle-Starter",
+  "repository_license_metadata": null,
+  "schema": "cpu-official-interface-provenance-v1"
+}

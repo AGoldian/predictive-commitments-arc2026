@@ -1,0 +1,314 @@
+{
+  "addition": {
+    "additional_raw_requests": 1,
+    "changes_to_other_source_bytes": false,
+    "executions": 0,
+    "imports": 0,
+    "metadata_checked_before_raw_preservation": {
+      "encoding": "base64",
+      "git_blob_sha1": "f57b74a1ff8ab56b21067097cd74cd6dea842219",
+      "git_lfs_pointer": false,
+      "name": "world_model.py",
+      "ordinary_solver_code_evidence": "Exact agents/a/world_model.py file metadata, then UTF-8 text header identifying self-falsifying program world-models with MDL selection and finite deterministic transition primitives; not a weight, prior data file or environment implementation.",
+      "path": "agents/a/world_model.py",
+      "public_metadata_requests": 1,
+      "raw_bytes_match_metadata_size_and_git_blob_sha1": true,
+      "size": 19163,
+      "type": "file",
+      "url": "https://api.github.com/repos/Kubyer/arc-agi-3-solver/contents/agents/a/world_model.py?ref=dade1e0efb7bc951b54297b4e4447b0d89fec6be"
+    },
+    "reason": "agents/b/mdl_model.py transitive solver dependency ../a/world_model.py; no interface/runtime audit duplicated.",
+    "retries": 0
+  },
+  "allowlist": [
+    "LICENSE",
+    "README.md",
+    "agents/b/__init__.py",
+    "agents/b/agent.py",
+    "agents/b/archive.py",
+    "agents/b/goals.py",
+    "agents/b/mdl_model.py",
+    "agents/b/model.py",
+    "agents/b/objects.py",
+    "agents/b/success.py",
+    "agents/b/APPROACH.md",
+    "agents/b/RESULTS.md",
+    "agents/b/RESULTS_ROUND2.md",
+    "agents/b/RESULTS_W1_PLANNER.md",
+    "agents/b/RESULTS_W2_MDL.md",
+    "agents/a/world_model.py"
+  ],
+  "commit": "dade1e0efb7bc951b54297b4e4447b0d89fec6be",
+  "counts": {
+    "SDK_calls": 0,
+    "additional_metadata_requests": 1,
+    "additional_raw_download_attempts": 1,
+    "allowed_files": 16,
+    "download_attempts": 16,
+    "downloaded_files": 16,
+    "errors": 0,
+    "model_calls": 0,
+    "retries": 0,
+    "target_executions": 0,
+    "target_imports": 0,
+    "total_bytes": 214896
+  },
+  "datasets": {
+    "downloaded": false,
+    "present_in_preserved_subset": false
+  },
+  "errors": [],
+  "excluded_assets": {
+    "datasets": {
+      "downloaded": false,
+      "present": false
+    },
+    "environment_implementation": {
+      "downloaded": false,
+      "present": false
+    },
+    "model_weights": {
+      "downloaded": false,
+      "present": false
+    },
+    "success_prior.json": {
+      "downloaded": false,
+      "present": false
+    },
+    "toy_prior": {
+      "downloaded": false,
+      "present": false
+    }
+  },
+  "finished_at_utc": "2026-10-30T00:04:13.150298+00:00",
+  "license": {
+    "bytes": 18657,
+    "license_scope": "Upstream source/documentation; retained without relicensing or modification.",
+    "sha256": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411",
+    "source_path": "LICENSE",
+    "spdx_id": "CC-BY-4.0",
+    "text_identity_markers": {
+      "attribution_4_0": true,
+      "creative_commons": true
+    },
+    "url": "https://raw.githubusercontent.com/Kubyer/arc-agi-3-solver/dade1e0efb7bc951b54297b4e4447b0d89fec6be/LICENSE",
+    "verified_from_exact_LICENSE_text": true
+  },
+  "limits": {
+    "attempts_per_file": 1,
+    "concurrent_requests": 4,
+    "max_bytes_per_file": 524288,
+    "max_total_bytes": 4194304,
+    "network_timeout_seconds_per_request": 20,
+    "successor_addition": {
+      "attempts": 1,
+      "concurrent_raw_requests": 1,
+      "max_bytes_per_file": 524288,
+      "timeout_seconds": 20
+    }
+  },
+  "local_ignored_root": "external/kubyer-arc-agi-3-solver-dade1e0efb7b",
+  "members": {
+    "LICENSE": {
+      "bytes": 18657,
+      "commit": "dade1e0efb7bc951b54297b4e4447b0d89fec6be",
+      "download_attempts": 1,
+      "elapsed_seconds": 0.594842375,
+      "http_status": 200,
+      "path": "LICENSE",
+      "resolved_url": "https://raw.githubusercontent.com/Kubyer/arc-agi-3-solver/dade1e0efb7bc951b54297b4e4447b0d89fec6be/LICENSE",
+      "sha256": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411",
+      "url": "https://raw.githubusercontent.com/Kubyer/arc-agi-3-solver/dade1e0efb7bc951b54297b4e4447b0d89fec6be/LICENSE"
+    },
+    "README.md": {
+      "bytes": 3198,
+      "commit": "dade1e0efb7bc951b54297b4e4447b0d89fec6be",
+      "download_attempts": 1,
+      "elapsed_seconds": 0.55285675,
+      "http_status": 200,
+      "path": "README.md",
+      "resolved_url": "https://raw.githubusercontent.com/Kubyer/arc-agi-3-solver/dade1e0efb7bc951b54297b4e4447b0d89fec6be/README.md",
+      "sha256": "710632003e634f11af2950f25568e8d15a0a4b6af91bba85f2c2430d729e484a",
+      "url": "https://raw.githubusercontent.com/Kubyer/arc-agi-3-solver/dade1e0efb7bc951b54297b4e4447b0d89fec6be/README.md"
+    },
+    "agents/a/world_model.py": {
+      "bytes": 19163,
+      "commit": "dade1e0efb7bc951b54297b4e4447b0d89fec6be",
+      "download_attempts": 1,
+      "elapsed_seconds": 0.516229166,
+      "finished_at_utc": "2026-10-30T00:03:45.821926+00:00",
+      "http_status": 200,
+      "path": "agents/a/world_model.py",
+      "resolved_url": "https://raw.githubusercontent.com/Kubyer/arc-agi-3-solver/dade1e0efb7bc951b54297b4e4447b0d89fec6be/agents/a/world_model.py",
+      "sha256": "9622bb63b5310317f05046731402954915f5f9127c18e389fd93148fc35425b0",
+      "started_at_utc": "2026-10-30T00:03:45.305699+00:00",
+      "url": "https://raw.githubusercontent.com/Kubyer/arc-agi-3-solver/dade1e0efb7bc951b54297b4e4447b0d89fec6be/agents/a/world_model.py"
+    },
+    "agents/b/APPROACH.md": {
+      "bytes": 21813,
+      "commit": "dade1e0efb7bc951b54297b4e4447b0d89fec6be",
+      "download_attempts": 1,
+      "elapsed_seconds": 0.502790208,
+      "http_status": 200,
+      "path": "agents/b/APPROACH.md",
+      "resolved_url": "https://raw.githubusercontent.com/Kubyer/arc-agi-3-solver/dade1e0efb7bc951b54297b4e4447b0d89fec6be/agents/b/APPROACH.md",
+      "sha256": "b0f8a45e36df6f0ff9e1d38ab9d97ce22cb1c5492f7a625202571ea88b3d56ad",
+      "url": "https://raw.githubusercontent.com/Kubyer/arc-agi-3-solver/dade1e0efb7bc951b54297b4e4447b0d89fec6be/agents/b/APPROACH.md"
+    },
+    "agents/b/RESULTS.md": {
+      "bytes": 662,
+      "commit": "dade1e0efb7bc951b54297b4e4447b0d89fec6be",
+      "download_attempts": 1,
+      "elapsed_seconds": 0.480535417,
+      "http_status": 200,
+      "path": "agents/b/RESULTS.md",
+      "resolved_url": "https://raw.githubusercontent.com/Kubyer/arc-agi-3-solver/dade1e0efb7bc951b54297b4e4447b0d89fec6be/agents/b/RESULTS.md",
+      "sha256": "3a80f57f8bf208e6b8ec2062a7e95c284e07b73ec2b14f4d8da496b5a3194152",
+      "url": "https://raw.githubusercontent.com/Kubyer/arc-agi-3-solver/dade1e0efb7bc951b54297b4e4447b0d89fec6be/agents/b/RESULTS.md"
+    },
+    "agents/b/RESULTS_ROUND2.md": {
+      "bytes": 6804,
+      "commit": "dade1e0efb7bc951b54297b4e4447b0d89fec6be",
+      "download_attempts": 1,
+      "elapsed_seconds": 0.5148980420000002,
+      "http_status": 200,
+      "path": "agents/b/RESULTS_ROUND2.md",
+      "resolved_url": "https://raw.githubusercontent.com/Kubyer/arc-agi-3-solver/dade1e0efb7bc951b54297b4e4447b0d89fec6be/agents/b/RESULTS_ROUND2.md",
+      "sha256": "2d8373e9135f9376a44a0fc444049770a26fae5b35e5371b702045ea25d8e152",
+      "url": "https://raw.githubusercontent.com/Kubyer/arc-agi-3-solver/dade1e0efb7bc951b54297b4e4447b0d89fec6be/agents/b/RESULTS_ROUND2.md"
+    },
+    "agents/b/RESULTS_W1_PLANNER.md": {
+      "bytes": 8867,
+      "commit": "dade1e0efb7bc951b54297b4e4447b0d89fec6be",
+      "download_attempts": 1,
+      "elapsed_seconds": 0.5188822919999998,
+      "http_status": 200,
+      "path": "agents/b/RESULTS_W1_PLANNER.md",
+      "resolved_url": "https://raw.githubusercontent.com/Kubyer/arc-agi-3-solver/dade1e0efb7bc951b54297b4e4447b0d89fec6be/agents/b/RESULTS_W1_PLANNER.md",
+      "sha256": "86f41ede94c08817a8759e9df99aef64bbf458fed9484452ce9ae0bfaae6648b",
+      "url": "https://raw.githubusercontent.com/Kubyer/arc-agi-3-solver/dade1e0efb7bc951b54297b4e4447b0d89fec6be/agents/b/RESULTS_W1_PLANNER.md"
+    },
+    "agents/b/RESULTS_W2_MDL.md": {
+      "bytes": 8690,
+      "commit": "dade1e0efb7bc951b54297b4e4447b0d89fec6be",
+      "download_attempts": 1,
+      "elapsed_seconds": 0.5124032920000001,
+      "http_status": 200,
+      "path": "agents/b/RESULTS_W2_MDL.md",
+      "resolved_url": "https://raw.githubusercontent.com/Kubyer/arc-agi-3-solver/dade1e0efb7bc951b54297b4e4447b0d89fec6be/agents/b/RESULTS_W2_MDL.md",
+      "sha256": "657757dc6bb2b9abd5ab811e8e6bacc718957b310e5a6e415f490612e143c1f9",
+      "url": "https://raw.githubusercontent.com/Kubyer/arc-agi-3-solver/dade1e0efb7bc951b54297b4e4447b0d89fec6be/agents/b/RESULTS_W2_MDL.md"
+    },
+    "agents/b/__init__.py": {
+      "bytes": 173,
+      "commit": "dade1e0efb7bc951b54297b4e4447b0d89fec6be",
+      "download_attempts": 1,
+      "elapsed_seconds": 0.54285675,
+      "http_status": 200,
+      "path": "agents/b/__init__.py",
+      "resolved_url": "https://raw.githubusercontent.com/Kubyer/arc-agi-3-solver/dade1e0efb7bc951b54297b4e4447b0d89fec6be/agents/b/__init__.py",
+      "sha256": "589cb560be600905002409e71562388e56c214ec5b9fd6002c08b146b7f2ef99",
+      "url": "https://raw.githubusercontent.com/Kubyer/arc-agi-3-solver/dade1e0efb7bc951b54297b4e4447b0d89fec6be/agents/b/__init__.py"
+    },
+    "agents/b/agent.py": {
+      "bytes": 47607,
+      "commit": "dade1e0efb7bc951b54297b4e4447b0d89fec6be",
+      "download_attempts": 1,
+      "elapsed_seconds": 0.6585429170000001,
+      "http_status": 200,
+      "path": "agents/b/agent.py",
+      "resolved_url": "https://raw.githubusercontent.com/Kubyer/arc-agi-3-solver/dade1e0efb7bc951b54297b4e4447b0d89fec6be/agents/b/agent.py",
+      "sha256": "fca1b0f1d4921b72e4541133814db212f613148ff6b3d043a557dc16bc7a1c7d",
+      "url": "https://raw.githubusercontent.com/Kubyer/arc-agi-3-solver/dade1e0efb7bc951b54297b4e4447b0d89fec6be/agents/b/agent.py"
+    },
+    "agents/b/archive.py": {
+      "bytes": 2590,
+      "commit": "dade1e0efb7bc951b54297b4e4447b0d89fec6be",
+      "download_attempts": 1,
+      "elapsed_seconds": 0.5122145000000001,
+      "http_status": 200,
+      "path": "agents/b/archive.py",
+      "resolved_url": "https://raw.githubusercontent.com/Kubyer/arc-agi-3-solver/dade1e0efb7bc951b54297b4e4447b0d89fec6be/agents/b/archive.py",
+      "sha256": "c3288141ee3525dfa89ecc21df586a160230eb26bc6ee419c76b14a5fa8fafc5",
+      "url": "https://raw.githubusercontent.com/Kubyer/arc-agi-3-solver/dade1e0efb7bc951b54297b4e4447b0d89fec6be/agents/b/archive.py"
+    },
+    "agents/b/goals.py": {
+      "bytes": 35942,
+      "commit": "dade1e0efb7bc951b54297b4e4447b0d89fec6be",
+      "download_attempts": 1,
+      "elapsed_seconds": 0.651717333,
+      "http_status": 200,
+      "path": "agents/b/goals.py",
+      "resolved_url": "https://raw.githubusercontent.com/Kubyer/arc-agi-3-solver/dade1e0efb7bc951b54297b4e4447b0d89fec6be/agents/b/goals.py",
+      "sha256": "83404011299813b3527f2d798f0f6fd7869c33f3741b548e7609f6055675d475",
+      "url": "https://raw.githubusercontent.com/Kubyer/arc-agi-3-solver/dade1e0efb7bc951b54297b4e4447b0d89fec6be/agents/b/goals.py"
+    },
+    "agents/b/mdl_model.py": {
+      "bytes": 15972,
+      "commit": "dade1e0efb7bc951b54297b4e4447b0d89fec6be",
+      "download_attempts": 1,
+      "elapsed_seconds": 0.5188050419999999,
+      "http_status": 200,
+      "path": "agents/b/mdl_model.py",
+      "resolved_url": "https://raw.githubusercontent.com/Kubyer/arc-agi-3-solver/dade1e0efb7bc951b54297b4e4447b0d89fec6be/agents/b/mdl_model.py",
+      "sha256": "7fe570f38ef8a57f7484af57caaeca30cc16a1e5e9e1f59edc45044552e3a0fb",
+      "url": "https://raw.githubusercontent.com/Kubyer/arc-agi-3-solver/dade1e0efb7bc951b54297b4e4447b0d89fec6be/agents/b/mdl_model.py"
+    },
+    "agents/b/model.py": {
+      "bytes": 9704,
+      "commit": "dade1e0efb7bc951b54297b4e4447b0d89fec6be",
+      "download_attempts": 1,
+      "elapsed_seconds": 0.4941596249999999,
+      "http_status": 200,
+      "path": "agents/b/model.py",
+      "resolved_url": "https://raw.githubusercontent.com/Kubyer/arc-agi-3-solver/dade1e0efb7bc951b54297b4e4447b0d89fec6be/agents/b/model.py",
+      "sha256": "5162ee711faba873adc1ea2bc708f0b3730d96edcdbad428916342b0d6c72f19",
+      "url": "https://raw.githubusercontent.com/Kubyer/arc-agi-3-solver/dade1e0efb7bc951b54297b4e4447b0d89fec6be/agents/b/model.py"
+    },
+    "agents/b/objects.py": {
+      "bytes": 2667,
+      "commit": "dade1e0efb7bc951b54297b4e4447b0d89fec6be",
+      "download_attempts": 1,
+      "elapsed_seconds": 0.504583292,
+      "http_status": 200,
+      "path": "agents/b/objects.py",
+      "resolved_url": "https://raw.githubusercontent.com/Kubyer/arc-agi-3-solver/dade1e0efb7bc951b54297b4e4447b0d89fec6be/agents/b/objects.py",
+      "sha256": "91d5c173ace49aa8a0e473a9ed53f9fbc1d51f2377d8a236a527b67f6f639d70",
+      "url": "https://raw.githubusercontent.com/Kubyer/arc-agi-3-solver/dade1e0efb7bc951b54297b4e4447b0d89fec6be/agents/b/objects.py"
+    },
+    "agents/b/success.py": {
+      "bytes": 12387,
+      "commit": "dade1e0efb7bc951b54297b4e4447b0d89fec6be",
+      "download_attempts": 1,
+      "elapsed_seconds": 0.505554208,
+      "http_status": 200,
+      "path": "agents/b/success.py",
+      "resolved_url": "https://raw.githubusercontent.com/Kubyer/arc-agi-3-solver/dade1e0efb7bc951b54297b4e4447b0d89fec6be/agents/b/success.py",
+      "sha256": "b63bc9b5ec6553aeaeaf7e1f39d45623a857eb97580394b3486c80f695f2d00b",
+      "url": "https://raw.githubusercontent.com/Kubyer/arc-agi-3-solver/dade1e0efb7bc951b54297b4e4447b0d89fec6be/agents/b/success.py"
+    }
+  },
+  "model_weights": {
+    "downloaded": false,
+    "present_in_preserved_subset": false
+  },
+  "predecessor": {
+    "manifest_path": "research/sources/kubyer-dade1e0efb7b-manifest.json",
+    "sha256": "a33e2ccc99d507a5a2d55b44524b7d4ce12eff6b2ddc63509fec67251223abfc",
+    "source_bytes": 195733,
+    "source_files": 15,
+    "unchanged": true
+  },
+  "preservation": {
+    "credential_or_account_reads": false,
+    "git_disposition": "external/ ignored by existing .gitignore line8; only this research manifest is intended for root review/commit. No git commit performed by preservation agent.",
+    "imports_or_execution": false,
+    "method": "Predecessor exact 15-file preservation plus one explicitly authorized transitive solver file. Public exact-commit metadata checked first; one bounded public raw GET, cleared process environment, proxy discovery disabled, exact response bytes saved. No other new source path, clone, dependency installation, import or target execution.",
+    "source_bytes_modified": false
+  },
+  "prohibited_paths_downloaded": [],
+  "repository_url": "https://github.com/Kubyer/arc-agi-3-solver",
+  "schema": "upstream-source-allowlist-preservation-v2",
+  "started_at_utc": "2026-10-30T00:03:45.305699+00:00",
+  "status": "preserved"
+}

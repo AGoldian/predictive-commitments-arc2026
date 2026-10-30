@@ -1,0 +1,15 @@
+{
+  "code_file": "cpu-official.ipynb",
+  "competition_sources": [
+    "arc-prize-2026-arc-agi-3"
+  ],
+  "dataset_sources": [],
+  "enable_gpu": false,
+  "enable_internet": false,
+  "id": "goldian/arc26-cpu-kubyer-8e9e72e8b62540049e48460d2dca68ad",
+  "is_private": true,
+  "kernel_type": "notebook",
+  "language": "python",
+  "model_sources": [],
+  "title": "arc26 cpu kubyer 8e9e72e8b62540049e48460d2dca68ad"
+}
